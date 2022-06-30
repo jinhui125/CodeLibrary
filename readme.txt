@@ -3,3 +3,4 @@ Git是一个免费的软件
 Git根据GPL分发
 Git真牛逼
 Git真是YYDS
+Git又高又硬
