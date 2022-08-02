@@ -1,0 +1,6 @@
+describe_caps:
+  appActivity: com.jm.android.jumei.home.activity.StartActivity
+  appPackage: com.jm.android.jumei
+  deviceName: 127.0.0.1:62001
+  platformName: Android
+  platformVersion: '7'
