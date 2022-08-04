@@ -1,14 +1,14 @@
 # -*- coding: UTF-8 -*-
+
 """
 @项目名 ：appium+unittest
-@文件名    ：normal_login.py
+@文件名    ：not_password_login.py
 @开发环境     ：PyCharm
 @作者  ：jinHui
 @日期    ：2022/7/30 18:17
 @测试用例名称：聚美App-不输入密码-登录测试
 """
 import unittest
-from appium import webdriver
 from appium.webdriver.common.appiumby import AppiumBy
 from testProject.pageObject.jumei import JuMei
 from testProject.common.base.command import Command
@@ -36,7 +36,7 @@ class TestLogin(unittest.TestCase):
     def test_not_password_login(self):
         # 测试步骤
         login = JuMei(driver=self.driver)
-        login.login_account(page="login_input")
+        login.login(page="login_input")
 
         login.click(AppiumBy.ANDROID_UIAUTOMATOR, LoginPageElement.Protocol_button.value)
         login.click_enter(AppiumBy.ANDROID_UIAUTOMATOR, LoginPageElement.Account_input.value, string="15623271191")
@@ -50,4 +50,3 @@ class TestLogin(unittest.TestCase):
         # 检查点2
         CheckWidget(driver=self.driver).checkWidget_property(element=LoginPageElement.Login_button.value, time=3,
                                                              attribute="enabled", expected="true")
-

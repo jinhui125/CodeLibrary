@@ -5,14 +5,15 @@ from testProject.common.module.jumei_element.start_page import StartPageElement
 from testProject.common.module.jumei_element.login_page import LoginPageElement
 from testProject.common.module.jumei_element.main_page import MainPageElement
 from testProject.common.module.jumei_element.my_page import MyPageElement
+from testProject.common.base.log_output_settings import LogOutputSettings
 
 
 class JuMei(BasePage):
 
     # 登录账号
-    def login_account(self, account="", password="", page=""):
+    def login(self, account="", password="", page=""):
         """
-        login_account()方法
+        login()方法
             定义：登录操作
             使用方法：JuMei().login_account(account, password, page)
             参数含义：account：账号字符串
@@ -24,44 +25,63 @@ class JuMei(BasePage):
 
         """
         try:
-            if page == "login":  # 完成登录
+            if page == "login_done":  # 完成登录
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, StartPageElement.Agree_continue_button.value)
+                print("=================================================================================")
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, StartPageElement.Allow_permission_button.value)
+                print("=================================================================================")
                 self.wait_element(AppiumBy.ANDROID_UIAUTOMATOR, MainPageElement.My_button.value, time=8)
+                print("=================================================================================")
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, MainPageElement.My_button.value)
+                print("=================================================================================")
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, MyPageElement.Registration_or_login_button.value)
+                print("=================================================================================")
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, LoginPageElement.Account_password_login_button.value)
+                print("=================================================================================")
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, LoginPageElement.Protocol_button.value)
+                print("=================================================================================")
                 self.click_enter(AppiumBy.ANDROID_UIAUTOMATOR, LoginPageElement.Account_input.value, string=account)
+                print("=================================================================================")
                 self.click_enter(AppiumBy.ANDROID_UIAUTOMATOR, LoginPageElement.Password_input.value, string=password)
+                print("=================================================================================")
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, LoginPageElement.Login_button.value)
             elif page == "login_main":  # 登录状态-首页界面
-                self.login_account(account, password, page="login")
+                self.login(account, password, page="login")
+                print("=================================================================================")
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, MainPageElement.Front_page_button.value)
             elif page == "login_classification":  # 登录状态-分类界面
-                self.login_account(account, password, page="login")
+                self.login(account, password, page="login")
+                print("=================================================================================")
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, MainPageElement.Classification_button.value)
             elif page == "login_shoppingCart":  # 登录状态-购物车界面
-                self.login_account(account, password, page="login")
+                self.login(account, password, page="login")
+                print("=================================================================================")
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, MainPageElement.Shopping_cart_button.value)
 
             elif page == "not_login_main":  # 未登录状态-首页界面
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, StartPageElement.Agree_continue_button.value)
+                print("=================================================================================")
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, StartPageElement.Allow_permission_button.value)
+                print("=================================================================================")
                 self.wait_element(AppiumBy.ANDROID_UIAUTOMATOR, MainPageElement.My_button.value, time=8)
             elif page == "not_login_classification":  # 未登录状态-分类界面
-                self.login_account(account, password, page="not_login_main")
+                self.login(account, password, page="not_login_main")
+                print("=================================================================================")
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, MainPageElement.Classification_button.value)
             elif page == "not_login_shoppingCart":  # 未登录状态-购物车界面
-                self.login_account(account, password, page="not_login_main")
+                self.login(account, password, page="not_login_main")
+                print("=================================================================================")
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, MainPageElement.Shopping_cart_button.value)
             elif page == "not_login_my":  # 未登录状态-我的界面
-                self.login_account(account, password, page="not_login_main")
+                self.login(account, password, page="not_login_main")
+                print("=================================================================================")
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, MainPageElement.My_button.value)
 
             elif page == "login_input":  # 登录输入账号密码界面
-                self.login_account(account, password, page="not_login_my")
+                self.login(account, password, page="not_login_my")
+                print("=================================================================================")
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, MyPageElement.Registration_or_login_button.value)
+                print("=================================================================================")
                 self.click(AppiumBy.ANDROID_UIAUTOMATOR, LoginPageElement.Account_password_login_button.value)
 
         except Exception as e:

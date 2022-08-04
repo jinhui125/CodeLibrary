@@ -8,7 +8,8 @@ device_config_info = {'describe_caps': {
     'platformVersion': '',
     'deviceName': '',
     'appPackage': '',
-    'appActivity': ''
+    'appActivity': '',
+    'automationName': 'Uiautomator2'
 }
 }
 

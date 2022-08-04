@@ -4,6 +4,7 @@ import os
 
 class Command:
 
+    @staticmethod
     def adb_command(command):
         """adb_command()方法
             定义：adb指令

@@ -3,7 +3,6 @@ from enum import Enum
 
 
 class LoginPageElement(Enum):
-
     # 手机注册/登录
     Phone_registration_or_login_button = 'new UiSelector().resourceId("com.jm.android.jumei:id/tab_login_phone")'
     # 账号密码登录
@@ -16,3 +15,5 @@ class LoginPageElement(Enum):
     Protocol_button = 'new UiSelector().resourceId("com.jm.android.jumei:id/license_select")'
     # 登录
     Login_button = 'new UiSelector().resourceId("com.jm.android.jumei:id/login_account")'
+    # 账号密码错误-toast弹框
+    toast = "//*[@class='android.widget.Toast']"

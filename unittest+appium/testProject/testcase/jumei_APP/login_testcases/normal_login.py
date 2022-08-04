@@ -34,7 +34,7 @@ class TestLogin(unittest.TestCase):
 
         # 测试步骤
         login = JuMei(driver=self.driver)
-        login.login_account(account="15623271191", password="jh739140236", page="login")
+        login.login(account="15623271191", password="jh739140236", page="login_done")
 
         # 检查点
         CheckWidget(driver=self.driver).checkWidget_exist(element=MyPageElement.Member_entry_button.value, time=3,
