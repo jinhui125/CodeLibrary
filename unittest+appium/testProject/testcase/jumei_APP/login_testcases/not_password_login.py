@@ -16,21 +16,21 @@ from testProject.common.base.checkwidget import CheckWidget
 from testProject.common.module.jumei_element.login_page import LoginPageElement
 from testProject.common.base.deviceconfig import deviceConnect
 from testProject.common.module.package import PackageInfo
+from testProject.testdata.accountLibrary import AccountLibrary
 
 
 class TestLogin(unittest.TestCase):
 
     # 预置条件
     def setUp(self):
-        Command.adb_command(command="adb shell pm clear com.jm.android.jumei")
-        Command.adb_command(command="adb shell pm clear com.jm.android.jumei")
+        Command.clear_user_data(package=PackageInfo.JuMei_package.value)
         self.driver = deviceConnect(deviceName='127.0.0.1:62001', appPackage=PackageInfo.JuMei_package.value,
                                     appActivity=PackageInfo.JuMei_activity.value)
 
     # 收尾条件
     def tearDown(self):
         self.driver.quit()
-        Command.adb_command(command="adb shell pm clear com.jm.android.jumei")
+        Command.clear_user_data(package=PackageInfo.JuMei_package.value)
 
     # 测试用例
     def test_not_password_login(self):
@@ -39,13 +39,15 @@ class TestLogin(unittest.TestCase):
         login.login(page="login_input")
 
         login.click(AppiumBy.ANDROID_UIAUTOMATOR, LoginPageElement.Protocol_button.value)
-        login.click_enter(AppiumBy.ANDROID_UIAUTOMATOR, LoginPageElement.Account_input.value, string="15623271191")
+        login.click_enter(AppiumBy.ANDROID_UIAUTOMATOR, LoginPageElement.Account_input.value,
+                          string=AccountLibrary.JuMei_account.value)
 
         # 检查点1
         CheckWidget(driver=self.driver).checkWidget_property(element=LoginPageElement.Login_button.value, time=3,
                                                              attribute="enabled", expected="false")
 
-        login.click_enter(AppiumBy.ANDROID_UIAUTOMATOR, LoginPageElement.Password_input.value, string="jh739140236")
+        login.click_enter(AppiumBy.ANDROID_UIAUTOMATOR, LoginPageElement.Password_input.value,
+                          string=AccountLibrary.JuMei_password.value)
 
         # 检查点2
         CheckWidget(driver=self.driver).checkWidget_property(element=LoginPageElement.Login_button.value, time=3,

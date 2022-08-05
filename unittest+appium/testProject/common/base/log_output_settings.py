@@ -62,6 +62,17 @@ class LogOutputSettings:
                 print("=" * 100)
                 print('\n')
 
+            elif func.__name__ == "clear":
+                print("clear(by={0}, element={1})".format(args[1], args[2]))
+                print('   清除文本框输入内容: func: {0}'.format(func.__name__))
+                print('     - 元素值：%s' % args[2])
+                print('\n')
+
+            elif func.__name__ == "back":
+                print("back()")
+                print('   返回上一级页面: func: {0}'.format(func.__name__))
+                print('\n')
+
             # print('call %s' % func.__name__)
 
             return func(*args, **kw)

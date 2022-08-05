@@ -14,30 +14,32 @@ from testProject.common.base.command import Command
 from testProject.common.base.checkwidget import CheckWidget
 from testProject.common.base.deviceconfig import deviceConnect
 from testProject.common.module.package import PackageInfo
+from testProject.testdata.accountLibrary import AccountLibrary
 
 
 class TestLogin(unittest.TestCase):
 
     # 预置条件
     def setUp(self):
-        Command.adb_command(command="adb shell pm clear com.jm.android.jumei")
+        Command.clear_user_data(package=PackageInfo.JuMei_package.value)
         self.driver = deviceConnect(deviceName='127.0.0.1:62001', appPackage=PackageInfo.JuMei_package.value,
                                     appActivity=PackageInfo.JuMei_activity.value)
 
     # 收尾条件
     def tearDown(self):
         self.driver.quit()
-        Command.adb_command(command="adb shell pm clear com.jm.android.jumei")
+        Command.clear_user_data(package=PackageInfo.JuMei_package.value)
 
     # 测试用例
     def test_normal_login(self):
 
         # 测试步骤
         login = JuMei(driver=self.driver)
-        login.login(account="15623271191", password="jh739140236", page="login_done")
+        login.login(account=AccountLibrary.JuMei_account.value,
+                    password=AccountLibrary.JuMei_password.value, page="login_done")
 
         # 检查点
-        CheckWidget(driver=self.driver).checkWidget_exist(element=MyPageElement.Member_entry_button.value, time=3,
+        CheckWidget(driver=self.driver).checkWidget_exist(element=MyPageElement.Member_entry_button.value, time=5,
                                                           expected=True)
         CheckWidget(driver=self.driver).checkWidget_exist(element=MyPageElement.Registration_or_login_button.value,
-                                                          time=3, expected=False)
+                                                          time=5, expected=False)

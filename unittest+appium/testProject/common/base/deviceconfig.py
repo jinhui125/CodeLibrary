@@ -9,12 +9,14 @@ device_config_info = {'describe_caps': {
     'deviceName': '',
     'appPackage': '',
     'appActivity': '',
-    'automationName': 'Uiautomator2'
+    'automationName': 'Uiautomator2',
+    'chromedriverExecutable': ''
 }
 }
 
 rootPath = os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 filePath = os.path.join(rootPath, "config\device_config.yaml")
+chromeDriver = os.path.join(rootPath, "H5_chromeDriver\chromedriver.exe")
 
 
 def readYaml(path):
@@ -32,6 +34,7 @@ def deviceParameterSetting(deviceName, appPackage, appActivity):
     device_config_info['describe_caps']['deviceName'] = deviceName
     device_config_info['describe_caps']['appPackage'] = appPackage
     device_config_info['describe_caps']['appActivity'] = appActivity
+    device_config_info['describe_caps']['chromedriverExecutable'] = chromeDriver
     platformVersion = os.popen("adb shell getprop ro.build.version.release")
     device_config_info['describe_caps']['platformVersion'] = platformVersion.read().split(".")[0]
     writeYaml(path=filePath, content=device_config_info)

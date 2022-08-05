@@ -12,3 +12,8 @@ class Command:
             参数含义：command：adb指令的字符串
         """
         os.system(command)
+
+    @staticmethod
+    def clear_user_data(package):
+        Command.adb_command("adb shell pm clear " + package)
+

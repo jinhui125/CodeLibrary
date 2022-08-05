@@ -57,3 +57,26 @@ class BasePage:
         """
         self.click(*element)
         self.input(string, *element)
+
+    @LogOutputSettings.log
+    def clear(self, *element, **kwargs):
+        """clear()方法
+            定义：清除文本框内容并输入或者清除文本框内容
+            使用方法：BasePage().clear(sort, string, element)
+            参数含义：element：需要操作的元素；sort：行为种类；string：需要输入的字符串
+        """
+        if kwargs["sort"] == "clear_enter":   # 清除文本框的内容并输入新的字符串
+            self.locator(*element).clear()
+            self.click_enter(string=kwargs["string"], *element)
+        elif kwargs["sort"] == "edit_clear":  # 清除文本框的内容
+            self.locator(*element).clear()
+        else:
+            raise ValueError("clear_enter方法中的参数sort值错误")
+
+    @LogOutputSettings.log
+    def back(self):
+        """back()方法
+            定义：返回上一级页面
+            使用方法：BasePage().back()
+        """
+        self.driver.back()

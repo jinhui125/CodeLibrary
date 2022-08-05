@@ -178,8 +178,8 @@
         
     <div class='page-header'>
         <h1>聚美APP测试</h1>
-    <p class='attribute'><strong>开始时间:</strong> 2022-08-05 00:03:28</p>
-<p class='attribute'><strong>运行时长:</strong> 0:00:40.507212</p>
+    <p class='attribute'><strong>开始时间:</strong> 2022-08-05 21:15:17</p>
+<p class='attribute'><strong>运行时长:</strong> 0:01:03.170850</p>
 <p class='attribute'><strong>状态:</strong> 通过 1</p>
 
     </div>
@@ -212,7 +212,7 @@
         </tr>
         
     <tr class='passClass'>
-        <td>wrong_account_login.TestLogin</td>
+        <td>third_party_account_login.TestLogin</td>
         <td>1</td>
         <td>1</td>
         <td>0</td>
@@ -221,7 +221,7 @@
     </tr>
 
 <tr id='pt1.1' class='hiddenRow'>
-    <td class='none'><div class='testcase'>test_not_password_login</div></td>
+    <td class='none'><div class='testcase'>test_third_party_account_login</div></td>
     <td colspan='5' align='center'>
     <!--css div popup start-->
     <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
@@ -323,130 +323,150 @@ locator(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.and
      - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/tab_login_account")
 
 
-click(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/license_select"))
+click(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(0)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon")))
    点击元素: func: click
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/license_select")
+     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(0)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon"))
 
 
-wait_element(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/license_select"), time=1)
+wait_element(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(0)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon")), time=1)
    等待元素: func: wait_element
      - 等待元素时间：1
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/license_select")
+     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(0)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon"))
 
 
-locator(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/license_select"))
+locator(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(0)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon")))
    定位元素: func: locator
      - 定位元素方式：-android uiautomator
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/license_select")
-
-
-click_enter(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/lg_user_name"), string=1111111)
-   点击并输入字符: func: click_enter
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/lg_user_name")
-     - 输入的内容：1111111
-
-
-click(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/lg_user_name"))
-   点击元素: func: click
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/lg_user_name")
-
-
-wait_element(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/lg_user_name"), time=1)
-   等待元素: func: wait_element
-     - 等待元素时间：1
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/lg_user_name")
-
-
-locator(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/lg_user_name"))
-   定位元素: func: locator
-     - 定位元素方式：-android uiautomator
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/lg_user_name")
-
-
-input(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/lg_user_name"), string=1111111)
-   输入字符: func: input
-     - 元素值：-android uiautomator
-     - 输入的内容：1111111
-
-
-wait_element(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/lg_user_name"), time=1)
-   等待元素: func: wait_element
-     - 等待元素时间：1
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/lg_user_name")
-
-
-locator(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/lg_user_name"))
-   定位元素: func: locator
-     - 定位元素方式：-android uiautomator
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/lg_user_name")
-
-
-click_enter(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/lg_password"), string=jh739140236)
-   点击并输入字符: func: click_enter
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/lg_password")
-     - 输入的内容：jh739140236
-
-
-click(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/lg_password"))
-   点击元素: func: click
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/lg_password")
-
-
-wait_element(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/lg_password"), time=1)
-   等待元素: func: wait_element
-     - 等待元素时间：1
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/lg_password")
-
-
-locator(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/lg_password"))
-   定位元素: func: locator
-     - 定位元素方式：-android uiautomator
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/lg_password")
-
-
-input(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/lg_password"), string=jh739140236)
-   输入字符: func: input
-     - 元素值：-android uiautomator
-     - 输入的内容：jh739140236
-
-
-wait_element(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/lg_password"), time=1)
-   等待元素: func: wait_element
-     - 等待元素时间：1
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/lg_password")
-
-
-locator(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/lg_password"))
-   定位元素: func: locator
-     - 定位元素方式：-android uiautomator
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/lg_password")
-
-
-click(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/login_account"))
-   点击元素: func: click
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/login_account")
-
-
-wait_element(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/login_account"), time=1)
-   等待元素: func: wait_element
-     - 等待元素时间：1
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/login_account")
-
-
-locator(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/login_account"))
-   定位元素: func: locator
-     - 定位元素方式：-android uiautomator
-     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/login_account")
+     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(0)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon"))
 
 
 ====================================================================================================
-检查元素是否存在: func: checkWidget_toast
+检查元素是否存在: func: checkWidget_exist
 ====================================================================================================
 
 
-toast.text: 您的密码错误，请重新输入或尝试找回密码！
+locator(by=-android uiautomator, element=new UiSelector().text("微博登录"))
+   定位元素: func: locator
+     - 定位元素方式：-android uiautomator
+     - 元素值：new UiSelector().text("微博登录")
+
+
 检查点通过
 实际结果：True   预期结果：True
+====================================================================================================
+检查元素是否存在: func: checkWidget_exist
+====================================================================================================
+
+
+locator(by=-android uiautomator, element=new UiSelector().text("第三方账号登录").resourceId("com.jm.android.jumei:id/login_ext_title"))
+   定位元素: func: locator
+     - 定位元素方式：-android uiautomator
+     - 元素值：new UiSelector().text("第三方账号登录").resourceId("com.jm.android.jumei:id/login_ext_title")
+
+
+catching classes that do not inherit from BaseException is not allowed
+检查点通过
+实际结果：False   预期结果：False
+back()
+   返回上一级页面: func: back
+
+
+click(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(1)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon")))
+   点击元素: func: click
+     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(1)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon"))
+
+
+wait_element(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(1)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon")), time=1)
+   等待元素: func: wait_element
+     - 等待元素时间：1
+     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(1)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon"))
+
+
+locator(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(1)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon")))
+   定位元素: func: locator
+     - 定位元素方式：-android uiautomator
+     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(1)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon"))
+
+
+====================================================================================================
+检查元素是否存在: func: checkWidget_exist
+====================================================================================================
+
+
+locator(by=-android uiautomator, element=new UiSelector().text("下载QQ").resourceId("downLoadBtn"))
+   定位元素: func: locator
+     - 定位元素方式：-android uiautomator
+     - 元素值：new UiSelector().text("下载QQ").resourceId("downLoadBtn")
+
+
+检查点通过
+实际结果：True   预期结果：True
+====================================================================================================
+检查元素是否存在: func: checkWidget_exist
+====================================================================================================
+
+
+locator(by=-android uiautomator, element=new UiSelector().text("第三方账号登录").resourceId("com.jm.android.jumei:id/login_ext_title"))
+   定位元素: func: locator
+     - 定位元素方式：-android uiautomator
+     - 元素值：new UiSelector().text("第三方账号登录").resourceId("com.jm.android.jumei:id/login_ext_title")
+
+
+catching classes that do not inherit from BaseException is not allowed
+检查点通过
+实际结果：False   预期结果：False
+back()
+   返回上一级页面: func: back
+
+
+click(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(2)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon")))
+   点击元素: func: click
+     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(2)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon"))
+
+
+wait_element(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(2)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon")), time=1)
+   等待元素: func: wait_element
+     - 等待元素时间：1
+     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(2)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon"))
+
+
+locator(by=-android uiautomator, element=new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(2)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon")))
+   定位元素: func: locator
+     - 定位元素方式：-android uiautomator
+     - 元素值：new UiSelector().resourceId("com.jm.android.jumei:id/login_ext_layout").childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_item_layout").index(2)).childSelector(new UiSelector().resourceId("com.jm.android.jumei:id/ext_login_icon"))
+
+
+====================================================================================================
+检查元素是否存在: func: checkWidget_exist
+====================================================================================================
+
+
+locator(by=-android uiautomator, element=new UiSelector().text("登录支付宝").className("android.view.View"))
+   定位元素: func: locator
+     - 定位元素方式：-android uiautomator
+     - 元素值：new UiSelector().text("登录支付宝").className("android.view.View")
+
+
+检查点通过
+实际结果：True   预期结果：True
+====================================================================================================
+检查元素是否存在: func: checkWidget_exist
+====================================================================================================
+
+
+locator(by=-android uiautomator, element=new UiSelector().text("第三方账号登录").resourceId("com.jm.android.jumei:id/login_ext_title"))
+   定位元素: func: locator
+     - 定位元素方式：-android uiautomator
+     - 元素值：new UiSelector().text("第三方账号登录").resourceId("com.jm.android.jumei:id/login_ext_title")
+
+
+catching classes that do not inherit from BaseException is not allowed
+检查点通过
+实际结果：False   预期结果：False
+back()
+   返回上一级页面: func: back
+
+
 </pre>
     </div>
     <!--css div popup end-->
