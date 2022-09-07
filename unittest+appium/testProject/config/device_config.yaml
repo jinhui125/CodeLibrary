@@ -1,6 +1,6 @@
 describe_caps:
-  appActivity: com.jm.android.jumei.home.activity.StartActivity
-  appPackage: com.jm.android.jumei
+  appActivity: ''
+  appPackage: ''
   automationName: Uiautomator2
   chromedriverExecutable: E:\CodeLibrary\unittest+appium\testProject\H5_chromeDriver\chromedriver.exe
   deviceName: 127.0.0.1:62001

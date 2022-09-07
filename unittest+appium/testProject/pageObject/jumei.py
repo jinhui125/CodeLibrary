@@ -86,3 +86,6 @@ class JuMei(BasePage):
 
         except Exception as e:
             print(e)
+
+    # # 选择指定商品的种类
+    # def select_product_type(self):

@@ -62,3 +62,6 @@ class LoginPageElement(Enum):
     ZhiFuBao_title = 'new UiSelector().text("登录支付宝").className("android.view.View")'
     # 支付宝登录界面返回按钮
     ZhiFuBao_back_button = 'new UiSelector().description("com.android.auth")'
+
+    # 登录界面-协议订立须知
+    Privacy_notice = 'new UiSelector().text("com.jm.android.jumei:id/image_background")'
