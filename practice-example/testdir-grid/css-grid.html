@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS Grid</title>
+	<style>
+		.el {
+            color: white;
+        }
+        .el--1, .el--9 {
+            background-color: red;
+        }
+        .el--2, .el--10 {
+            background-color: orange;
+        }
+        .el--3, .el--11 {
+            background-color: burlywood;
+            height: 100px;
+        }
+        .el--4, .el--12 {
+            background-color: green;
+        }
+        .el--5, .el--13 {
+            background-color: #1098ad;
+        }
+        .el--6, .el--14 {
+            background-color: brown;
+        }
+        .el--7, .el--15 {
+            background-color: aqua;
+        }
+        .el--8, .el--16 {
+            background-color: darkblue;
+        }
+		.container-1 {
+			/*display: grid;*/
+			background-color: #dddddd;
+			/*1fr单位类似与flexbox中flex:1;，意思是元素自动填充满容器，并且会跟随容器的小大而变化，
+			如果是px单位的话，元素就是固定的大小，不会跟随容器的大小而变化*/
+			/*将网格设置为列为4列，行为2行的网格*/
+			/*grid-template-columns: 200px 2fr 1fr auto;*/
+			/*grid-template-rows: 300px 200px;*/
+			/*repeat(4,1fr)设置为1fr 1fr 1fr 1fr四个相同单位的大小*/
+			grid-template-columns: repeat(4,1fr);
+			/*行使用1fr，必须有一个明确的height值，如果没有明确的高度值则依据单元格中最大的内容height自动填充*/
+			grid-template-rows: 1fr 1fr;
+			/*height: 500px;*/
+
+			/*gap: 10px;*/
+			/*设置单元格之间的列网格线的大小*/
+			column-gap: 20px;
+			/*设置单元格之间的行网格线的大小*/
+			row-gap: 10px;
+			display: none;
+		}
+		/*单元格位置移动、单元格大小调整*/
+		.el--6 {
+			/*将第六个元素从原来的第二行第二列移动到第一行第二列，移动后其他元素依次向后移动*/
+			/*grid-column: 2 / 3的意思是列从第二列一直未到第三列结束*/
+			/*grid-row: 1 / 2的意思是行从第一行开始一直未第二行结束*/
+			grid-column: 2 / 3;
+			grid-row: 1 / 2;
+		}
+		.el--5 {
+			/*grid-column: 2 / span 2;意思是将第五号元素的单元格大小调整为列方向为两个单元格大小*/
+			grid-column: 2 / span 2;
+			/*grid-row: 2 / span 2;*/
+		}
+		.el--8 {
+			grid-column: 1 / -1;
+		}
+		.el--1 {
+			grid-row: 1 / span 2;
+		}
+		.container-2 {
+			/*display: none;*/
+			display: grid;
+			width: 700px;
+			height: 700px;
+			background-color: black;
+
+			grid-template-columns: 125px 200px 200px 125px;
+			grid-template-rows: 250px 250px;
+
+			justify-content: center;
+			align-content: center;
+
+			justify-items: center;
+			align-items: center;
+
+			gap: 10px;
+		}
+		.el--10 {
+			align-self: end;
+			justify-self: end;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="container-1">
+        <div class="el el--1">HTML--1</div>
+        <div class="el el--2">and--2</div>
+        <div class="el el--3">CSS--3</div>
+        <div class="el el--4">are--4</div>
+        <div class="el el--5">amazing--5</div>
+        <div class="el el--6">languages--6</div>
+        <div class="el el--7">to--7</div>
+        <div class="el el--8">learn--8</div>
+    </div><br>
+	<div class="container-2">
+        <div class="el el--9">HTML--1</div>
+        <div class="el el--10">and--2</div>
+        <div class="el el--11">CSS--3</div>
+        <div class="el el--12">are--4</div>
+        <div class="el el--13">amazing--5</div>
+        <div class="el el--14">languages--6</div>
+        <div class="el el--15">to--7</div>
+        <div class="el el--16">learn--8</div>
+    </div>
+	<a href="./index.html">返回首页</a>
+</body>
+</html>

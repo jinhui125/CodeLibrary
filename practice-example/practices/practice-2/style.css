@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    line-height: 1;
+}
+.container {
+    width: 800px;
+    background-color: #087f5b;
+    margin: 100px auto;
+    border-radius: 10px;
+    display: flex;
+    gap: 42px;
+    padding-left: 70px;
+    align-items: center;
+    position: relative;
+}
+img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    transform: scale(1.25);
+    box-shadow: 0 3px 5px 5px rgba(0, 0, 0, 0.25);
+}
+.content-container {
+    font-weight: 20;
+    color: #e6fcf5;
+    line-height: 1.5;
+}
+.content-intro {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.content-auther {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+.content-producer {
+    font-size: 11px;
+}
+.btn {
+    background-color: #ffffff;
+    border: none;
+    height: 35px;
+    width: 35px;
+    position: absolute;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 3px 5px 5px rgba(0, 0, 0, 0.25);
+}
+.btn-icon {
+    height: 24px;
+    width: 24px;
+    stroke: #087f5b;
+    cursor: pointer;
+}
+.btn-left {
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.btn-right {
+    right: 0;
+    top: 50%;
+    transform: translate(50%, -50%);
+}
+.dots {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(0, 25px);
+}
+.dot {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    border: 2px solid #087f5b;
+    background-color: white;
+
+    cursor: pointer;
+}
+.dots button:first-child {
+    background-color: #087f5b;
+}
+

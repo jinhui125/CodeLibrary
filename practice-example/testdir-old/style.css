@@ -1,0 +1,171 @@
+/*选择器优先级：声明!important >
+内联样式 > id选择器 > 类选择器或者伪类选择器 > 元素选择器（包含：后代选择器） > 通用选择器*/
+/*备注：当有多个相同的选择器时，以最后一个选择器为准*/
+/*元素选择器*/
+h1, h2, h3, h4, p, li {
+    font-family: "宋体";
+    color: #444;
+}
+h1, h2, h3, h4 {
+    color: #1098ad;
+}
+h1 {
+    font-size: 26px;
+    font-style: italic;
+}
+h2 {
+    font-size: 40px;
+    position: relative;
+}
+h3 {
+    font-size: 30px;
+
+    text-align: center;
+}
+h4 {
+    font-size: 20px;
+}
+p {
+    font-size: 22px;
+    line-height: 1.5; /*一点五倍行高*/
+}
+li {
+    font-size: 20px;
+}
+aside {
+    background-color: #f7f7f7;
+    border-top: 5px solid #1098ad;
+    border-bottom: 5px dotted #1098ad;
+}
+body {
+    /*background-color: orangered;*/
+    position: relative;
+}
+div {
+    width: 700px;
+    margin: 0 auto;
+    /*position: relative;*/
+}
+nav {
+    text-align: center;
+}
+/*id选择器*/
+/*修改id为auther的元素*/
+#auther {
+    font-size: 18px;
+    float: left;
+    margin-left: 50px;
+}
+#copyright {
+    font-size: 16px;
+    font-style: italic;
+}
+/*类选择器*/
+.auther-img {
+    float: left;
+}
+.auther-info::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+.related-content {
+    font-size: 18px;
+    font-weight: bold;
+}
+.related {
+    list-style: none;
+}
+.main-header {
+    background-color: #f7f7f7;
+}
+
+/*后代选择器*/
+/*将header后代里面的nav元素的后代里面的a元素字体风格变为倾斜风格*/
+nav a {
+    font-style: italic;
+    padding-left: 10px;
+}
+
+/*伪类选择器*/
+/*建议伪类都是下面这种使用方法，切忌不要后代选择器或者其他的选择器一起混用*/
+/*选择所有列表元素的第一行*/
+li:first-child {
+    font-weight: bold;
+}
+/*选择所有列表元素的最后一行*/
+li:last-child {
+    font-style: italic;
+}
+/*选择所有列表元素的第二个孩子*/
+li:nth-child(2) {
+    color: yellow;
+}
+/*选择所有列表元素的奇数孩子*/
+li:nth-child(odd) {
+    color: red;
+}
+/*选择所有列表元素的偶数孩子*/
+li:nth-child(even) {
+    color: black;
+}
+
+/*超链接样式*/
+/*记忆方式：LVHA*/
+/*在链接没有被访问过的时候，链接显示的颜色是黑色，链接没有下划线*/
+a:link {
+    color: black;
+    text-decoration: none;
+}
+/*在链接被访问过后，链接显示的颜色是灰色，链接显示下划线*/
+a:visited {
+    color: blue;
+    text-decoration: underline;
+}
+/*当光标指向链接的时候，链接显示的颜色是粉色*/
+a:hover {
+    color: #1098ad;
+    font-weight: bold;
+    text-decoration: underline dotted orangered;
+}
+/*当光标点击链接的时候，链接的背景色变为黑色，字体风格变为倾斜*/
+a:active {
+    background-color: black;
+    font-style: italic;
+}
+/*声明!important，则此选择器的优先级最高*/
+/*.related-content {*/
+/*    color: black !important;*/
+/*}*/
+
+/*伪元素选择器*/
+/*将h4元素内容的第一个字母颜色设置为黄色*/
+h4::first-letter {
+    color: yellow;
+}
+/*将h4元素内容的第一行内容颜色设置为橘色*/
+h4::first-line {
+    color: orangered;
+}
+/*兄弟选择器*/
+/*将h4下面相邻的兄弟元素p的第一个字母风格设置为斜体*/
+h4 + p::first-letter {
+    font-style: italic;
+}
+/*创建伪元素*/
+h2::after {
+    content: "顶刊";
+    background-color: yellow;
+    color: black;
+    font-size: 18px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.collect {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 20px;
+    cursor: pointer;
+}

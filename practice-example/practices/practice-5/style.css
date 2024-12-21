@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.option-container {
+    width: 500px;
+    margin: 100px auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+}
+.btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #087f5b;
+    background-color: white;
+    cursor: pointer;
+    align-self: center;
+}
+.btn-icon {
+    width: 24px;
+    height: 24px;
+    stroke: #087f5b;
+}
+.dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.page-link:link, .page-link:visited {
+    font-size: 18px;
+    width: 36px;
+    height: 36px;
+    text-decoration: none;
+    color: #1d1d1f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.page-link:hover, .page-link:active {
+    background-color: #087f5b;
+    color: white;
+    border-radius: 50%;
+}
