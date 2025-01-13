@@ -129,6 +129,34 @@
     border-radius: 9px;
 }
 
+.step-img-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-img-box::before {
+    content: "";
+    display: block;
+    width: 45%;
+    padding-bottom: 45%;
+    background-color: #fdf2e9;
+    border-radius: 50%;
+    position: absolute;
+    z-index: -1;
+}
+
+.step-img-box::after {
+    content: "";
+    display: block;
+    width: 30%;
+    padding-bottom: 30%;
+    background-color: #fae5d3;
+    border-radius: 50%;
+    position: absolute;
+    z-index: -1;
+}
+
 .heading-secondary {
     font-weight: 700;
     line-height: 1.2;
@@ -142,6 +170,7 @@
     font-size: 3.3rem;
     line-height: 1.2;
     margin-bottom: 3.2rem;
+    color: #333;
 }
 
 .subheading {
@@ -155,3 +184,30 @@
 }
 /* #endregion---产品使用部分---end */
 
+/* #region---产品赞助logo---start */
+
+.section-featured {
+    padding: 4.8rem 0 3.2rem 0;
+}
+
+.heading-featured-in {
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+    font-weight: 500;
+    text-align: center;
+    color: #999;
+}
+
+.logos {
+    display: flex;
+    justify-content: space-around;
+}
+
+.logos img {
+    height: 22rem;
+    filter: grayscale(70%);
+    opacity: 60%;
+}
+
+/* #endregion---产品赞助logo---end */
