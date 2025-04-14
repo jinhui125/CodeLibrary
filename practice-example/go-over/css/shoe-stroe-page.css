@@ -13,3 +13,51 @@
     right: 15px;
 }
 /* #endregion 文章头部内容 */
+
+/* #region 文章内容部分 */
+
+.article-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+}
+
+.article-title {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: auto 30px;
+    grid-template-rows: auto;
+}
+
+.article-title::after {
+    content: "子刊";
+    align-self: flex-start;
+    margin-top: 5px;
+}
+
+.auther-info-container {
+    display: grid;
+    grid-template-columns: 60px auto;
+    align-items: center;
+}
+
+.content-title {
+    margin-bottom: 10px;
+}
+
+.effect-picture {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.challenge-title {
+    margin-bottom: 10px;
+}
+
+.challenge-region-container {
+    width: 100%;
+    height: 600px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+}
+/* #endregion 文章内容部分 */
