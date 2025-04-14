@@ -1,0 +1,153 @@
+/* #region 文章标题部分 */
+
+.article-header::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.header-title {
+    float: left;
+    line-height: 65px;
+}
+
+.nav-container {
+    float: right;
+}
+
+.nav-option-lists {
+   line-height: 65px;
+   margin-right: 10px;
+}
+
+.nav-option-lists li {
+    display: inline-block;
+    list-style: none;
+}
+
+/* #endregion 文章标题部分 */
+
+/* #region 文章主体内容部分 */
+.article-container {
+    width: 79%;
+    float: left;
+}
+
+.content-container {
+    margin: 10px 10px;
+}
+
+.article-title {
+    line-height: 1.5;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.article-title::after {
+    font-size: 12px;
+    background-color: black;
+    color: white;
+    padding: 1px 3px;
+    border-radius: 5px;
+    right: 5px;
+    position: absolute;
+}
+
+.auther-avatar {
+    float: left;
+}
+
+.auther-content {
+    height: 60px;
+    padding-top: 8px;
+    float: left;
+}
+
+.auther-info-container::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.description-container {
+    margin-top: 10px;
+}
+
+.border-container {
+    width: 40%;
+}
+
+.code-container {
+    float: left;
+}
+
+.code-result-container {
+    float: left;
+}
+
+.article-description-container::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* #endregion 文章主体内容部分 */
+
+/* #region 文章拓展部分 */
+.aside-container {
+    margin-top: 10px;
+    width: 20%;
+    background-color: rgb(231, 255, 205);
+    border-radius: 10px;
+    float: right;
+}
+
+.aside-content-container {
+    margin: 10px auto;
+    width: 95%;
+}
+
+.aside-content-container p {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.related-img {
+    float: left;
+    margin-left: 5px;
+}
+
+.related-link {
+    float: left;
+    margin-left: 5px;
+}
+
+/* #endregion 文章拓展部分 */
+
+.clearfix {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* #region 文章页脚部分 */
+
+
+.footer-container {
+    position: relative;
+}
+
+.creation-time {
+    margin-left: 10px;
+    line-height: 50px;
+    font-weight: bold;
+}
+
+.collect-btn {
+    position: absolute;
+}
+/* #endregion 文章页脚部分 */
+

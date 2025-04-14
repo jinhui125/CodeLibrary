@@ -1,0 +1,15 @@
+/* #region 文章头部内容 */
+
+.article-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.nav-container {
+    position: absolute;
+    right: 15px;
+}
+/* #endregion 文章头部内容 */
