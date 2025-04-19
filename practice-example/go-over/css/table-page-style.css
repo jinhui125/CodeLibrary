@@ -1,11 +1,64 @@
 /* #region 挑战区域 */
 
+/* #region table方式使用的style */
 table {
+    margin: 0px auto;
+    margin-top: 30px;
     border-collapse: collapse;
+    letter-spacing: 1px;
+    text-align: left;
+}
+
+caption {
+    font-size: 20px;
+    letter-spacing: 10px;
+    font-weight: bold;
 }
 
 thead {
     background-color: #087f5b;
+    font-size: 25px;
+    color: white;
 }
+
+tbody {
+    font-size: 20px;
+}
+
+th, td {
+    padding: 10px 40px;
+}
+
+thead th:first-child  {
+    border-top-left-radius: 10px;
+}
+
+thead th:last-child {
+    border-top-right-radius: 10px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: white;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ced4da;
+}
+
+tfoot {
+    background-color: #087f5b;
+    text-align: end;
+    color: white;
+}
+
+tfoot td:first-child {
+    border-bottom-left-radius: 10px; 
+}
+
+tfoot td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+/* #endregion table方式使用的style */
 
 /* #endregion 挑战区域 */
