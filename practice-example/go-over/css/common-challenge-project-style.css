@@ -54,10 +54,25 @@
     margin-bottom: 10px;
 }
 
+/* #endregion 文章内容部分 */
+
+/* #region 挑战区域 */
+
 .challenge-region-container {
+    display: grid;
     width: 100%;
     height: 600px;
     background-color: #f4f4f4;
     border-radius: 10px;
 }
-/* #endregion 文章内容部分 */
+
+.region-container {
+    align-self: center;
+    justify-self: center;
+    width: 95%;
+    height: 90%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+/* #endergion 挑战区域 */
