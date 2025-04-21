@@ -1,0 +1,96 @@
+/* #region 挑战区域 */
+
+.shoe-stroe-content {
+    border: 3px solid black;
+    width: 90%;
+    margin: 0px auto;
+    margin-top: 30px;
+}
+
+.shoe-stroe-title {
+    font-size: 32px;
+    font-weight: bold;
+    background-color: #f4f4f4;
+    text-align: center;
+    line-height: 62px;
+    position: relative;
+}
+
+.shoe-stroe-title::before {
+    content: "出售";
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 3px 5px;
+    background-color: orangered;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    left: -20px;
+    top: -15px;
+}
+
+.shoe-stroe-info-container {
+    display: grid;
+    grid-template-columns: auto 290px 200px;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.shoes-info-conatiner {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    gap: 8px;
+}
+
+.shoe-stroe-picture {
+    border-radius: 10px;
+    margin-left: 30px;
+}
+
+.price-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.shoe-price {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.shoes-color-option-lists {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.shoes-color-option-lists li {
+    width: 25px;
+    height: 25px;
+}
+
+.product-list {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.add-to-card:link, .add-to-card:visited {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 25px;
+    border-radius: 0px;
+    padding: 3px 0px;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+
+.add-to-card:hover, .add-to-card:active {
+    border-radius: 0px;
+    background-color: white;
+    color: black;
+    border-top: 3px solid black;
+}
+/* #endergion 挑战区域 */

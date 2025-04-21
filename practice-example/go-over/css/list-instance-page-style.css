@@ -1,0 +1,69 @@
+/* #region 文章头部部分 */
+
+/* #region 文章头部---标题部分 */
+
+.article-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* #endregion 文章头部---标题部分 */
+
+/* #region 文章头部---导航部分 */
+
+.nav-container {
+    margin-right: 15px;
+}
+
+/* #endregion 文章头部---导航部分 */
+
+/* #endregion 文章头部部分 */
+
+/* #region 文章内容部分 */
+
+.article-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.article-title::after {
+    content: "子刊";
+    align-self: flex-start;
+    margin-top: 5px;
+}
+
+.auther-info-container {
+    display: flex;
+    align-items: center;
+}
+
+.code-description-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.code-container {
+    flex: 1 1 auto;
+}
+
+.code-result-container {
+    flex: 1 1 auto;
+}
+
+.footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.collect-btn {
+    margin-right: 10px;
+}
+
+.content-container {
+    padding-top: 10px;
+}
+/* #endregion 文章内容部分 */
+

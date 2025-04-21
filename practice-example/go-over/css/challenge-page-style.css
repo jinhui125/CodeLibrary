@@ -1,0 +1,107 @@
+/* #region 文章头部内容 */
+
+.article-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.nav-container {
+    position: absolute;
+    right: 15px;
+}
+/* #endregion 文章头部内容 */
+
+/* #region 文章内容部分 */
+
+.article-title {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: auto 30px;
+    grid-template-rows: auto;
+}
+
+.article-title::after {
+    content: "子刊";
+    align-self: flex-start;
+    margin-top: 5px;
+}
+
+.article-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+}
+
+.auther-info-container {
+    display: grid;
+    grid-template-columns: 60px auto;
+    align-items: center;
+}
+
+.content-title {
+    margin-bottom: 10px;
+}
+
+ol li {
+    position: relative;
+}
+
+.shoe-stroe-option {
+    position: relative;
+}
+
+.preview-card {
+    display: none;
+    position: absolute;
+    left: 180px;
+    top: -30px;
+    z-index: 1;
+}
+
+.preview-card-layout {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 400px;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+}
+
+.preview-card-content {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+}
+
+.preview-card-img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.challenge-lists li {
+    font-size: 20px;
+}
+
+.shoe-stroe-link, .card-link, .accordion-link, .table-link, .tab-link, .website-link, .email-layout-link, .omnifood-link {
+    font-size: 20px;
+    position: relative;
+}
+
+
+.shoe-stroe-link:hover .preview-card, .card-link:hover .preview-card, .accordion-link:hover .preview-card, .table-link:hover .preview-card, .tab-link:hover .preview-card, .website-link:hover .preview-card, .email-layout-link:hover .preview-card, .omnifood-link:hover .preview-card {
+    display: block;
+}
+
+.multiple-img {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+/* #endregion 文章内容部分 */

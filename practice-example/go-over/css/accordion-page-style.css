@@ -1,0 +1,78 @@
+/* #region 挑战区域 */
+
+p {
+    padding: 10px 0px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.number-style {
+    text-align: center;
+    color: #dee2e6;
+}
+
+.title-style {
+    color: #212529;
+}
+
+.serial-number-container-style {
+    display: grid;
+    grid-template-columns: 80px 1fr 40px;
+    align-items: center;
+    justify-content: space-between;
+    /* height: 50px; */
+    border-radius: 0px 0px 10px 10px;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.15);
+}
+
+.btn-style {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+    stroke: #495057;
+}
+
+.accordion-content-container {
+    width: 80%;
+    margin: 0px auto;
+    margin-top: 30px;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto;
+    gap: 20px;
+}
+
+.number-two-container {
+    border-top: 5px solid #0ca678;
+}
+
+.text-container {
+    border-radius: 10px;
+    grid-column: 2 / 3;
+}
+
+.text {
+    font-size: 15px;
+    font-weight: bold;
+    color: #495057;
+}
+
+.list-text {
+    list-style: inside;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    color: #868e96;
+}
+/* #endregion 挑战区域 */

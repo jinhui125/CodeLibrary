@@ -1,0 +1,102 @@
+/* #region 挑战区域 */
+
+.card-content-container {
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 70px;
+    background-color: #087f5b;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 60px;
+    position: relative;
+    color: #e9ecef;
+}
+
+.card-img {
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+    margin-left: 80px;
+    transform: scale(1.25, 1.25);
+    box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.25);
+}
+
+.content-info {
+    margin-right: 30px;
+    line-height: 1.5;
+}
+
+.card-content-intro {
+    font-size: 18px;
+    margin-bottom: 15px;
+    text-indent: 2em;
+}
+
+.card-content-auther {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.card-content-producer {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.cite-auther {
+    position: absolute;
+    right: 15px;
+}
+
+.btn-style {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #f8f9fa;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-right {
+    position: absolute;
+    right: 0px;
+    transform: translate(50%, 0px);
+}
+
+.btn-left {
+    position: absolute;
+    left: 0px;
+    transform: translate(-50%, 0px);
+}
+
+.btn-icon {
+    width: 35px;
+    height: 35px;
+    stroke: #087f5b;
+}
+
+.dots {
+    position: absolute;
+    left: 50%;
+    bottom: -30px;
+}
+
+.dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #087f5b;
+    background-color: white;
+    cursor: pointer;
+}
+
+.dot:first-child {
+    background-color: #087f5b;
+}
+/* #endergion 挑战区域 */

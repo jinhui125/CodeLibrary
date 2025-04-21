@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>复习：代码杂志(flexbox结构)</title>
+        <link rel="stylesheet" type="text/css" href="../css/common-style.css">
+        <link rel="stylesheet" type="text/css" href="../css/list-instance-page-style.css">
+        
+    </head>
+    <body>
+        <div class="container">
+            <header class="article-header">
+                <h1 class="header-title">代码杂志</h1>
+                <nav class="nav-container">
+                    <a class="return-main-page link-style" href="./main-page.html" target="_self">-> 返回主页</a>
+                </nav>
+            </header>
+            <article class="article-container">
+                <div class="content-container">
+                    <h2 class="article-title">列表更多使用实例合集</h2>
+                    <div class="auther-info-container">
+                        <img class="auther-avatar" src="../resource-lib/img-lib/auther-avatar.jpg" alt="用户头像">
+                        <div class="auther-content">
+                            <p class="auther-name">作者：<b>金辉</b></p>
+                            <p class="article-release-time">发布于：2025.04.08</p>
+                        </div>
+                    </div>
+                    <div class="article-description-container">
+                        <hr />
+                        <h3 class="content-title">列表更多实例：</h3>
+                        <div class="code-description-container">
+                            <div class="code-container border-container">
+                                <p>代码用例<strong>【有序列表】</strong>：</p>
+                                <pre class="code-description">
+
+  &lt;ol type="A"&gt;
+      &lt;li&gt;啦啦啦&lt;/li&gt;
+      &lt;li&gt;叭叭叭&lt;/li&gt;
+      &lt;li&gt;嘻嘻嘻&lt;/li&gt;
+  &lt;/ol&gt;
+                                </pre>
+                            </div>
+                            <div class="code-result-container border-container">
+                                <p>代码效果：</p>
+                                <div>
+                                    <ol class="code-result" type="A">
+                                        <li>啦啦啦</li>
+                                        <li>叭叭叭</li>
+                                        <li>嘻嘻嘻</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-description-container">
+                            <div class="code-container border-container">
+                                <p>代码用例<strong>【无序列表】</strong>：</p>
+                                <pre class="code-description">
+
+  &lt;ul type="circle"&gt;
+      &lt;li&gt;啦啦啦&lt;/li&gt;
+      &lt;li&gt;叭叭叭&lt;/li&gt;
+      &lt;li&gt;嘻嘻嘻&lt;/li&gt;
+  &lt;/ul&gt;
+                                </pre>
+                            </div>
+                            <div class="code-result-container border-container">
+                                <p>代码效果：</p>
+                                <div>
+                                    <ul class="code-result" type="circle">
+                                        <li>啦啦啦</li>
+                                        <li>叭叭叭</li>
+                                        <li>嘻嘻嘻</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-description-container">
+                            <div class="code-container border-container">
+                                <p>代码用例<strong>【嵌套列表】</strong>：</p>
+                                <pre class="code-description">
+
+&lt;ol&gt;
+    &lt;li&gt;水果类型：&lt;/li&gt;
+        &lt;ul&gt;
+            &lt;li&gt;香蕉
+                &lt;ol&gt;
+                    &lt;li&gt;越南产地&lt;/li&gt;
+                    &lt;li&gt;泰国产地&lt;/li&gt;
+                    &lt;li&gt;西班牙产地&lt;/li&gt;
+                &lt;/ol&gt;
+            &lt;/li&gt;
+            &lt;li&gt;苹果
+                &lt;ul&gt;
+                    &lt;li&gt;红富士&lt;/li&gt;
+                    &lt;li&gt;西富士&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+            &lt;li&gt;西瓜
+                &lt;ol&gt;
+                    &lt;li&gt;无籽西瓜
+                        &lt;ul&gt;
+                            li&gt;日本产地&lt;/li&gt;
+                            li&gt;韩国产地&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;柚子西瓜&lt;/li&gt;
+                &lt;/ol&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;li&gt;蔬菜类型：
+        &lt;ul&gt;
+            &lt;li&gt;西红柿&lt;/li&gt;
+            &lt;li&gt;冬瓜&lt;/li&gt;
+            &lt;li&gt;娃娃菜&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ol&gt;
+                                </pre>
+                            </div>
+                            <div class="code-result-container border-container">
+                                <p>代码效果：</p>
+                                <div>
+                                    <ol class="code-result">
+                                        <li>水果类型：</li>
+                                            <ul>
+                                                <li>香蕉
+                                                    <ol>
+                                                        <li>越南产地</li>
+                                                        <li>泰国产地</li>
+                                                        <li>西班牙产地</li>
+                                                    </ol>
+                                                </li>
+                                                <li>苹果
+                                                    <ul>
+                                                        <li>红富士</li>
+                                                        <li>西富士</li>
+                                                    </ul>
+                                                </li>
+                                                <li>西瓜
+                                                    <ol>
+                                                        <li>无籽西瓜
+                                                            <ul>
+                                                                <li>日本产地</li>
+                                                                <li>韩国产地</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>柚子西瓜</li>
+                                                    </ol>
+                                                </li>
+                                            </ul>
+                                        <li>蔬菜类型：
+                                            <ul>
+                                                <li>西红柿</li>
+                                                <li>冬瓜</li>
+                                                <li>娃娃菜</li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <footer class="footer-container">
+                <p class="creation-time">创作时间：2025.04.08 22:01:02</p>
+                <button class="collect-btn">收藏</button>
+            </footer>
+        </div>
+    </body>
+</html>

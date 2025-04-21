@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+}
+
+body {
+    border-top: 8px solid black;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+hr {
+    border: 3px dashed black;
+    margin: 20px auto;
+}
+
+li {
+    list-style-position: inside;
+}
+
+.link-style:link, .link-style:visited {
+    display: inline-block;
+    height: 30px;
+    padding: 3px 15px;
+    line-height: 30px;
+    text-decoration: none;
+}
+
+.link-style:hover, .link-style:active {
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.container {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.link-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+}
+
+.header-title {
+    margin-left: 15px;
+}
+
+.article-header {
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    height: 65px;
+}
+
+.content-container {
+    margin: 10px 10px;
+}
+
+.article-container {
+    margin-top: 10px;
+    background-color: rgba(255, 246, 205, 0.75);
+    border-radius: 10px;
+}
+
+.article-title::after {
+    font-size: 12px;
+    background-color: black;
+    color: white;
+    padding: 1px 3px;
+    border-radius: 5px;
+}
+
+.auther-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+}
+
+.auther-content {
+    margin-left: 10px;
+}
+
+.border-container {
+    border-radius: 10px;
+}
+
+.code-description, .code-result {
+    margin-top: 10px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    border: 2px solid white;
+    /* height: 140px; */
+}
+
+.code-result-container {
+    margin-left: 30px;
+}
+
+.code-result {
+    list-style-position: inside;
+}
+
+.code-result li {
+    margin-left: 40px;
+}
+
+.code-result li:first-child {
+    margin-top: 10px;
+}
+
+.code-description-container {
+    margin-top: 10px;
+}
+
+.footer-container {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: rgb(231, 255, 205);
+}
+
+.creation-time {
+    margin-left: 10px;
+    line-height: 50px;
+    font-weight: bold;
+}
+
+.collect-btn {
+    bottom: 5px;
+    right: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 3px 10px;
+    cursor: pointer;
+}
