@@ -1,0 +1,125 @@
+/* #region 挑战区域 */
+
+.challenge-region-container {
+    height: 1200px;
+}
+
+.region-container {
+    overflow: scroll;
+}
+
+.website-content-container {
+    width: 100%;
+    height: 100%;
+}
+
+.website-header {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(34, 34, 34, 0.6), rgba(34, 34, 34, 0.6)), url(../resource-lib/img-lib/website-1.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.website-nav {
+    width: 90%;
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-name {
+    margin-top: 5%;
+    font-size: 2.5em;
+    color: #f1f3f5;
+}
+
+.nav-option-lists {
+    width: 22%;
+    margin-top: 5%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-option-lists li {
+    font-size: 1.25em;
+}
+
+.download-game:link, .enter-website-version:link, .enter-office-website:link, .download-game:visited, .enter-website-version:visited, .enter-office-website:visited {
+    border: 3px solid #f1f3f5;
+    border-radius: 10px;
+}
+
+.website-article {
+    width: 90%;
+    margin: 0px auto;
+    margin-top: 12.5em;
+    letter-spacing: 3px;
+}
+
+.website-article-title {
+    margin-bottom: 1.8em;
+    font-size: 3.75em;
+    color: #f1f3f5;
+}
+
+.website-article p {
+    font-size: 1.8em;
+    color: #f1f3f5;
+    margin-bottom: 1em;
+}
+
+.click-to-claim:link, .click-to-claim:visited {
+    margin-top: 20px;
+    padding: 1.5em 1em;
+    font-size: 3em;
+    border-radius: 1em;
+    border: 3px solid orangered;
+    color: orangered;
+}
+
+.click-to-claim:hover, .click-to-claim:active {
+    background-color: orangered;
+    color: #f1f3f5;
+}
+
+.section-title {
+    font-size: 4em;
+    padding: 0.5em 0;
+    text-align: center;
+}
+
+.section-content {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 1em;
+}
+
+.more-events {
+    line-height: 2;
+    text-align: center;
+}
+
+.more-events p {
+    font-size: 1.8em;
+}
+
+.exchange-immediately:link, .go-participate:link, .exchange-immediately:visited, .go-participate:visited {
+    padding: 0.5em 2em;
+    font-size: 1.5em;
+    border-radius: 1em;
+    border: 3px solid orangered;
+    color: orangered;
+}
+
+.exchange-immediately:hover, .go-participate:hover, .exchange-immediately:active, .go-participate:active {
+    background-color: orangered;
+}
+/* #endregion 挑战区域 */
