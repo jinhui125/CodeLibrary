@@ -1,121 +1,69 @@
+#!/usr/bin/python
+# -*- coding:utf-8 -*-
+# @auther    : jinhui
+# @dateTime  : 2025-04-24
+# @function  : 公共方法类
+# @version   : V1.0
+
 import os
-import re
 import sys
 import time
 import signal
 import datetime
+import subprocess
 
-class CommonFunc():
+class CommonFunc:
 
-    def __init__(self):
-        pass
+    def __init__(self, signal_flag = False):
+        self.signal_flag = signal_flag
     
-    def progress_bar(t, description):
-	
-        for i in range(1, 101):
-            print("\r{}: {}%: ".format(description, i), "▋" * (i // 2), end="", flush=True)
-            time.sleep(t/100)
+    def dynamic_string(self, dynamic_string_style, text_description, delay_time = 0.25, bar_time = 0, wait_style = 'circle', bar_style = '▋', count = 1):
 
-    def handle_signal(subprocess_obj, signal_flag, count = 1, text_description = "", wait_style = 'circle', delay_time = 0.25):
         wait_style_dict = {
-                            'circle': ['\\', '|', '/', '-'], 
-                            'columnar': ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'],
-                            'poker': ['♠️ ', '♥️ ', '♦️ ', '♣️ '],
-                            'moon': ['🌕', '🌖', '🌗', '🌘', '🌑', '🌒', '🌓', '🌔'],
-                            'clock': ['🕛', '🕐', '🕑', '🕒', '🕓', '🕔', '🕕', '🕖', '🕗', '🕘', '🕙', '🕚'],
-                            # 'ellipsis': ['🂱', '🂲', '🂳', '🂴', '🂵', '🂶', '🂷', '🂸', '🂹', '🂺', '🂻', '🂼', '🂽', '🂾', '🂡', '🂢', '🂣', '🂤', '🂥', '🂦', '🂧', '🂨', '🂩', '🂪', 
-                            # 			'🂫', '🂬', '🂭', '🂮', '🃁', '🃂', '🃃', '🃄', '🃅', '🃆', '🃇', '🃈', '🃉', '🃊', '🃋', '🃌', '🃍', '🃎', '🃑', '🃒', '🃓', '🃔', '🃕', '🃖', 
-                            # 			'🃗', '🃘', '🃙', '🃚', '🃛', '🃜', '🃝', '🃞', '🃏']
-                            }
-        
-        print(f'执行开始时间: {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
+                                    'circle': ['\\', '|', '/', '-'], 
+                                    'columnar': ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'],
+                                    'poker_suit': ['♠️ ', '♥️ ', '♦️ ', '♣️ '],
+                                    'moon': ['🌕', '🌖', '🌗', '🌘', '🌑', '🌒', '🌓', '🌔'],
+                                    'clock': ['🕛', '🕐', '🕑', '🕒', '🕓', '🕔', '🕕', '🕖', '🕗', '🕘', '🕙', '🕚'],
+                                    'playing_cards': ['🂱', '🂲', '🂳', '🂴', '🂵', '🂶', '🂷', '🂸', '🂹', '🂺', '🂻', '🂼', '🂽', '🂾', '🂡', '🂢', '🂣', '🂤', '🂥', '🂦', '🂧', '🂨', '🂩', '🂪', 
+                                                '🂫', '🂬', '🂭', '🂮', '🃁', '🃂', '🃃', '🃄', '🃅', '🃆', '🃇', '🃈', '🃉', '🃊', '🃋', '🃌', '🃍', '🃎', '🃑', '🃒', '🃓', '🃔', '🃕', '🃖', 
+                                                '🃗', '🃘', '🃙', '🃚', '🃛', '🃜', '🃝', '🃞', '🃏']
 
-        while not signal_flag:
-            try:
-                count += 1
-                print(f'\r{text_description}', f'{wait_style_dict[wait_style][count % len(wait_style_dict[wait_style])]}', end='', flush=True)
-                time.sleep(delay_time)
+                                }
 
-            except KeyboardInterrupt:
-                signal_flag = True
-                os.killpg(os.getpgid(subprocess_obj.pid), signal.SIGKILL)
-                subprocess_obj.wait()
-                print('\n')
-                sys.exit(0)
-                break
+        if dynamic_string_style == 'proress_bar':
+            for i in range(1, 101):
+                print(f'\r{text_description}: {bar_style * (i // 2)} 倒计时: {bar_time - (i // (100/bar_time))}s', end='', flush=True)
+                time.sleep(bar_time/100)
                 
-            finally:
-                pass
+        elif dynamic_string_style == 'wait_animation':
+            print(f'\r{text_description} {wait_style_dict[wait_style][count % len(wait_style_dict[wait_style])]}', end='', flush=True)
+            time.sleep(delay_time)
 
-    def string_format(string, way, width, fill=' '):
-
-        count = 0
-        for word in string:
-            if (word >= '\u4e00' and word <= '\u9fa5') or word in ['；', '：', '，', '（', '）', '！', '？', '——', '……',
-                                                                '、', '》', '《']:
-                count += 1
-        width = width-count if width >= count else 0
-        return '{0:{1}{2}{3}}'.format(string, fill, way, width)
-
-
-    def table(col_ls: list, row_ls: list, l_width=50, r_width=3):
-
-        title = [string_format(col_ls[0], '<', l_width, ' '),
-                string_format(col_ls[1], '<', l_width, ' ')]
-        content_ls = []
-        for row in row_ls:
-            content_ls.append([string_format(row[0], '<', l_width, ' '),
-                            string_format(row[1], '>', r_width, ' ')])
-        result = f"{'|'.join(title)}\n"
-        for content in content_ls:
-            result += f"{'|'.join(content)}\n"
-        return result
-
-
-    def replace_content(file, old_strs, new_strs, replace_mode = "replace", re_str = "", insert_index = ""):
-
-        tmp_str = ''
-        if bool(len(file)):
-            with open(file=file, mode='r', encoding='utf-8') as fb:
-                lines_ls = fb.readlines()
-                for index in range(0, int(lines_ls.__len__())):
-                    for i in range(0, int(old_strs.__len__())):
-                        if old_strs[i] in lines_ls[index].strip():
-                            print(lines_ls[index])
-                            if replace_mode == "replace":
-                                lines_ls[index] = f'{new_strs[i]}\n'
-                            elif replace_mode == "modify":
-                                lines_ls[index] = replace_content(file='', old_strs=lines_ls[index], new_strs=new_strs[i], replace_mode=replace_mode, re_str=re_str[i])
-                            elif replace_mode == "append":
-                                lines_ls[index] = replace_content(file='', old_strs=lines_ls[index], new_strs=new_strs[i], replace_mode=replace_mode, insert_index=insert_index)
-                        else:
-                            continue
-
-                for i in range(0, int(lines_ls.__len__())):
-                    tmp_str += lines_ls[i]
-
-            with open(file=file, mode='w', encoding='utf-8') as fb:
-                fb.write(tmp_str)
         else:
-            tmp_list = []
-            if replace_mode == 'modify':
-                if re.search(pattern=re_str, string=old_strs):
-                    index_tmp = re.search(pattern=re_str, string=old_strs).span()
-                    tmp_list = [old_strs[0:index_tmp[0]], old_strs[index_tmp[0]:index_tmp[1]], old_strs[index_tmp[1]:]]
-                    print(tmp_list)
-                    tmp_list[1] = new_strs
-                else:
-                    tmp_list.append(old_strs)
+            pass
 
-            elif replace_mode == 'append':
-                if insert_index != 1:
-                    tmp_list = [old_strs[0:insert_index], old_strs[insert_index], old_strs[(insert_index+1):]]
-                elif insert_index == len(old_strs):
-                    tmp_list.append(old_strs + new_strs)
-                else:
-                    tmp_list.append(new_strs + old_strs)
+    def signal_handler(self, sig, frame):
 
-            else:
-                pass
-            print(tmp_list)
-            return "".join(tmp_list)
+        self.signal_flag = True
+
+    def handle_signal(self, subprocess_obj, text_description, wait_style = 'circle', delay_time = 0.25):
+
+        print(f'开始执行时间: {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
+        tmp_count = 1
+
+        while not self.signal_flag:
+
+            tmp_count += 1
+            self.dynamic_string(dynamic_string_style='wait_animation', text_description=text_description, wait_style=wait_style, delay_time=delay_time, count=tmp_count)
+
+            signal.signal(signal.SIGINT, test.signal_handler)
+        
+        subprocess_obj.terminate()
+        subprocess_obj.wait()
+        sys.exit(0)
+
+if __name__ == '__main__':
+    test = CommonFunc()
+    test_subprocess = subprocess.Popen(args=f'python ../test_file.py', shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    test.handle_signal(subprocess_obj=test_subprocess, text_description='事件模拟中')
