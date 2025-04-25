@@ -1,0 +1,295 @@
+/* #region 挑战区域 */
+
+html {
+    font-size: 62.5%;
+}
+
+.region-container {
+    overflow: hidden;
+}
+
+.omnifood-main {
+    width: 100%;
+    height: 100%;
+    background-color: #fdf2e9;
+}
+
+.omnifood-content-container {
+    width: 95%;
+    height: 95%;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+    border-radius: 10px;
+    overflow: scroll;
+}
+
+.omnifood-header {
+    width: 95%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 25rem 35rem;
+    grid-template-rows: auto;
+    /* align-items: center; */
+    justify-content: space-between;
+}
+
+.logo-container {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.logo-icon {
+    width: 4.9rem;
+    height: 4.9rem;
+    filter: drop-shadow(1px 1px 3px #2b8a3e);
+}
+
+.logo-icon path {
+    fill: black;
+}
+
+.logo-name {
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-style: italic;
+    text-shadow: 1px 1px 3px #2b8a3e;
+    letter-spacing: 0.1rem;
+}
+
+.omnifood-nav {
+    margin-top: 1.5rem;
+    align-self: center;
+}
+
+.ominfood-nav-option-lists {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ominfood-nav-option-lists li {
+    list-style: none;
+    font-size: 1.5rem;
+}
+
+.nav-link:link, .nav-link:visited {
+    color: black;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+}
+
+.nav-link:hover, .nav-link:active {
+    transition: background-color 0.5s;
+    background-color: #e67e22;
+    color: white;
+    transition: text-shadow 1s;
+    text-shadow: 0 0 5px white;
+    
+}
+
+.omnifood-section {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: auto 40rem;
+    grid-template-rows: auto;
+    gap: 1rem;
+}
+
+.omnifood-section-title {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.omnifood-section-content {
+    font-size: 1.8rem;
+    line-height: 1.5;
+}
+
+.omnifood-section-img {
+    width: 40rem;
+    height: 40rem;
+    border-radius: 10px;
+}
+
+.omnifood-section-button {
+    margin-top: 10rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+}
+
+.start-eat-well-btn:link, .start-eat-well-btn:visited {
+    background-color: #e67e22;
+    color: white;
+    font-size: 1.8rem;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.start-eat-well-btn:hover, .start-eat-well-btn:active {
+    transition: background-color 0.3s;
+    background-color: #cf711f;
+    transition: text-shadow 1s;
+    text-shadow: 0 0 5px white;
+}
+
+.learn-more-btn:link, .learn-more-btn:visited {
+    background-color: white;
+    color: black;
+    font-size: 1.8rem;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.learn-more-btn:hover, .learn-more-btn:active {
+    transition: background-color 0.3s;
+    background-color: #fdf2e9;
+    transition: text-shadow 1s;
+    text-shadow: 0 0 10px black;
+    box-shadow: inset 0 0 0 3px white;
+}
+
+.avatar-container {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.avatar-picture-container {
+    display: flex;
+    align-items: center;
+}
+
+.avatar-picture {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    
+}
+
+.avatar-layout {
+    margin-right: -2rem;
+    border: 3px solid white;
+}
+
+.avatar-number {
+    margin-left: 4rem;
+    font-weight: bold;
+}
+
+.omnifood-featured-container {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.featured-title {
+    font-size: 2.2rem;
+    text-align: center;
+    color: #999;
+}
+
+.featured-picture-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.featured-picture {
+    width: 20rem;
+    height: 20rem;
+    filter: grayscale(70%);
+    opacity: 60%;
+}
+
+.work-step-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    row-gap: 3rem;
+    column-gap: 3rem;
+}
+
+.work-step-title-container {
+    grid-column: 1 / 3;
+}
+
+.work-step-tag {
+    font-size: 1.6rem;
+    color: #e67e22;
+    font-weight: bold;
+    line-height: 2;
+}
+
+.work-step-title {
+    font-size: 2.3rem;
+}
+
+.step-one, .step-two, .step-three, .step-four {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #999;
+}
+
+.step-one-title, .step-two-title, .step-three-title, .step-four-title {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.step-one-description, .step-two-description, .step-three-description, .step-four-description {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    color: #868e96;
+}
+
+.step-img-container {
+    height: 48rem;
+    position: relative;
+}
+
+.outer-circle {
+    width: 45rem;
+    height: 45rem;
+    border-radius: 50%;
+    background-color: #fdf2e9;
+
+    position: absolute;
+    top: 1.5rem;
+
+    z-index: 1;
+}
+
+.step-img {
+    width: 24rem;
+    height: 48rem;
+    border-radius: 10px;
+
+    position: absolute;
+    left: 10.5rem;
+
+    z-index: 3;
+}
+
+.inner-circle {
+    width: 30rem;
+    height: 30rem;
+    border-radius: 50%;
+    background-color: #fae5d3;
+
+    position: absolute;
+    top: 7.5rem;
+    left: 7.5rem;
+
+    z-index: 2;
+}
+
+
+/* #endregion 挑战区域 */
