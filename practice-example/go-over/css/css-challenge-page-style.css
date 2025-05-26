@@ -1,0 +1,88 @@
+/* html {
+    font-size: 62.5%;
+} */
+/* #region 文章头部部分 */
+
+.article-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.nav-container {
+    position: absolute;
+    right: 15px;
+}
+
+/* #endregion 文章头部部分 */
+
+/* #region 文章内容部分 */
+
+.article-title {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: auto 30px;
+    grid-template-rows: auto;
+}
+
+.article-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+}
+
+.auther-info-container {
+    display: grid;
+    grid-template-columns: 60px auto;
+    align-items: center;
+}
+
+.content-title {
+    margin-bottom: 10px;
+}
+
+ol li {
+    position: relative;
+}
+
+.preview-card {
+    display: none;
+    position: absolute;
+    left: 180px;
+    top: -30px;
+    z-index: 1;
+}
+
+.preview-card-layout {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 300px;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+}
+
+.preview-card-content {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+}
+
+.preview-card-img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.css-1-link {
+    font-size: 20px;
+    position: relative;
+}
+
+.css-1-link:hover .preview-card {
+    display: block;
+}
+/* #endregion 文章内容部分 */
