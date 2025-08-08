@@ -75,6 +75,9 @@ def table(col_ls: list, row_ls: list, l_width=50, r_width=3):
 		result += f"{'|'.join(content)}\n"
 	return result
 
+def contains_regex_in_file(file_path, pattern):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return re.search(pattern, file.read())
 
 def replace_content(file, old_strs, new_strs, replace_mode = "replace", re_str = "", insert_index = ""):
 
@@ -131,6 +134,9 @@ def handle_command(command: str, stdout=False):
 	else:
 		sp = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, encoding='utf-8')
 		return sp.stdout.readlines()
+
+# 加载cybertron相关命令
+handle_command(command="source ~/cybertron/setup.bash")
 
 def exec_command(command):
 
@@ -196,16 +202,17 @@ def exec_command(command):
 		pid = handle_command(command="ps -aux | grep panel_server_sched | grep -v grep | awk '{print $2}'",
 							 stdout=True)[0].strip()
 		input_time = int(input("请输入你想获取多长时间内的性能变化(单位秒): ").strip())
-		handle_command(f'sh mem_cpu.sh {pid} >mem_cpu.log 2>&1 &')
+		handle_command(f'sh {os.path.dirname(os.path.abspath(__file__))}/rely_files/mem_cpu.sh {pid} >mem_cpu.log 2>&1 &')
 		time.sleep(2)
 		progress_bar(t=input_time, description=f'正在计算{input_time}s内panel-serve的cpu性能...')
 		print('\n' + string_format(f'panel-server在{input_time}s内的cpu和内存计算结果如下', '^', 100, '-'))
-		return handle_command('sh cal.sh mem_cpu.log')
+		return handle_command(f'sh {os.path.dirname(os.path.abspath(__file__))}/rely_files/cal.sh mem_cpu.log')
 
 	elif command == command_dict['切换车端环境']:
 		print(table(col_ls=["车端环境名称", "车端环境字段"], row_ls=[['QA测试环境', 'pre'], ['线上运营环境', 'online'],
 																	 ['opn环境', 'opn'], ['test环境', 'test']], l_width=15, r_width=12))
 		input_value = str(input('请输入你想将车端切换的环境名称: '))
+		is_matched_string = True if contains_regex_in_file(file_path=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py', pattern='original_url = ') else False
 		if input_value == 'pre':
 			replace_content(file=f'{exec_command(command="GetHome_path")}/cybertron/bin/integration_config.py',
 							old_strs=['host = '],
@@ -218,12 +225,18 @@ def exec_command(command):
 			replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/etc/otaclient.conf',
 							old_strs=['mode = ', 'use = '],
 							new_strs=['mode = pre', 'use = True'])
-			replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
-							old_strs=['domain = '],
-							new_strs=['idgops-pre'], replace_mode="modify", re_str=[r"idgops(-(opn|test|pre)?)?"])
-			replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
-							old_strs=[r'url = "https://{}.baidu.com'],
-							new_strs=['.format("idgops-pre")'], replace_mode="modify", re_str=[r".format\((domain|\"idgops-pre\"|\"idgops-opn\"|\"idgops-test\"|\"idgops\")?\)"])
+			
+			if is_matched_string:
+				replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
+								old_strs=['original_url = '],
+								new_strs=['idgops-pre'], replace_mode="modify", re_str=[r"idgops(-(opn|test|pre)?)?"])
+			else:
+				replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
+								old_strs=['domain = '],
+								new_strs=['idgops-pre'], replace_mode="modify", re_str=[r"idgops(-(opn|test|pre)?)?"])
+				replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
+								old_strs=[r'url = "https://{}.baidu.com'],
+								new_strs=['.format("idgops-pre")'], replace_mode="modify", re_str=[r".format\((domain|\"idgops-pre\"|\"idgops-opn\"|\"idgops-test\"|\"idgops\")?\)"])
 			
 		elif input_value == 'online' or input_value == 'opn':
 			replace_content(file=f'{exec_command(command="GetHome_path")}/cybertron/bin/integration_config.py',
@@ -238,20 +251,30 @@ def exec_command(command):
 				replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/etc/otaclient.conf',
 								old_strs=['mode = ', 'use = '],
 								new_strs=['mode = online', 'use = True'])
-				replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
-								old_strs=['domain = '],
-								new_strs=['idgops'], replace_mode="modify", re_str=[r"idgops(-(opn|test|pre)?)?"])
-				replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
-							old_strs=[r'url = "https://{}.baidu.com'],
-							new_strs=['.format("idgops")'], replace_mode="modify", re_str=[r".format\((domain|\"idgops-pre\"|\"idgops-opn\"|\"idgops-test\"|\"idgops\")?\)"])
+				if is_matched_string:
+					replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
+									old_strs=['original_url = '],
+									new_strs=['idgops'], replace_mode="modify", re_str=[r"idgops(-(opn|test|pre)?)?"])
+				else:
+					replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
+									old_strs=['domain = '],
+									new_strs=['idgops'], replace_mode="modify", re_str=[r"idgops(-(opn|test|pre)?)?"])
+					replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
+								old_strs=[r'url = "https://{}.baidu.com'],
+								new_strs=['.format("idgops")'], replace_mode="modify", re_str=[r".format\((domain|\"idgops-pre\"|\"idgops-opn\"|\"idgops-test\"|\"idgops\")?\)"])
 			elif input_value == 'opn':
 				replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/etc/otaclient.conf',
 								old_strs=['mode = ', 'use = '],
 								new_strs=['mode = opn', 'use = True'])
-				replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
-								old_strs=['domain = '],
-								new_strs=['idgops-opn'], replace_mode="modify", re_str=[r"idgops(-(opn|test|pre)?)?"])
-				replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
+				if is_matched_string:
+					replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
+									old_strs=['original_url = '],
+									new_strs=['idgops-opn'], replace_mode="modify", re_str=[r"idgops(-(opn|test|pre)?)?"])
+				else:
+					replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
+									old_strs=['domain = '],
+									new_strs=['idgops-opn'], replace_mode="modify", re_str=[r"idgops(-(opn|test|pre)?)?"])
+					replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
 							old_strs=[r'url = "https://{}.baidu.com'],
 							new_strs=['.format("idgops-opn")'], replace_mode="modify", re_str=[r".format\((domain|\"idgops-pre\"|\"idgops-opn\"|\"idgops-test\"|\"idgops\")?\)"])
 				
@@ -267,10 +290,15 @@ def exec_command(command):
 			replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/etc/otaclient.conf',
 							old_strs=['mode = ', 'use = '],
 							new_strs=['mode = test', 'use = True'])
-			replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
-								old_strs=['domain = '],
-								new_strs=['idgops-test'], replace_mode="modify", re_str=[r"idgops(-(opn|test|pre)?)?"])
-			replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
+			if is_matched_string:
+				replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
+									old_strs=['original_url = '],
+									new_strs=['idgops-test'], replace_mode="modify", re_str=[r"idgops(-(opn|test|pre)?)?"])
+			else:
+				replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
+									old_strs=['domain = '],
+									new_strs=['idgops-test'], replace_mode="modify", re_str=[r"idgops(-(opn|test|pre)?)?"])
+				replace_content(file=f'{exec_command(command="GetHome_path")}/otaclient/script/config_deploy.py',
 							old_strs=[r'url = "https://{}.baidu.com'],
 							new_strs=['.format("idgops-test")'], replace_mode="modify", re_str=[r".format\((domain|\"idgops-pre\"|\"idgops-opn\"|\"idgops-test\"|\"idgops\")?\)"])
 			
@@ -288,27 +316,27 @@ def exec_command(command):
 		tmp_time = 0
 		flag = False
 		if input_value == '1':
-			p = subprocess.Popen(args=f'python module_error_mock.py 2 254 "error"', shell=True, stdout=subprocess.DEVNULL,
+			p = subprocess.Popen(args=f'python {os.path.dirname(os.path.abspath(__file__))}/rely_files/module_error_mock.py 2 254 "error"', shell=True, stdout=subprocess.DEVNULL,
 								  stderr=subprocess.DEVNULL, start_new_session=True)
 			handle_signal(subprocess_obj=p, signal_flag=False, text_description = "事故场景模拟中", wait_style='moon', delay_time=0.125)
 
 		elif input_value == '2':
-			p = subprocess.Popen(args=f'python module_error_mock.py 1 119 "error"', shell=True, stdout=subprocess.DEVNULL,
+			p = subprocess.Popen(args=f'python {os.path.dirname(os.path.abspath(__file__))}/rely_files/module_error_mock.py 1 119 "error"', shell=True, stdout=subprocess.DEVNULL,
 								  stderr=subprocess.DEVNULL, start_new_session=True)
 			handle_signal(subprocess_obj=p, signal_flag=False, text_description = "事故场景模拟中", wait_style='poker')
 
 		elif input_value == '3':
-			p = subprocess.Popen(args=f'python module_error_mock.py 2 243 "error"', shell=True, stdout=subprocess.DEVNULL,
+			p = subprocess.Popen(args=f'python {os.path.dirname(os.path.abspath(__file__))}/rely_files/module_error_mock.py 2 243 "error"', shell=True, stdout=subprocess.DEVNULL,
 								  stderr=subprocess.DEVNULL, start_new_session=True)
 			handle_signal(subprocess_obj=p, signal_flag=False, text_description = "事故场景模拟中", wait_style='columnar')
 
 		elif input_value == '4':
-			p = subprocess.Popen(args=f'python module_error_mock.py 1 213 "error"', shell=True, stdout=subprocess.DEVNULL,
+			p = subprocess.Popen(args=f'python {os.path.dirname(os.path.abspath(__file__))}/rely_files/module_error_mock.py 1 213 "error"', shell=True, stdout=subprocess.DEVNULL,
 								  stderr=subprocess.DEVNULL, start_new_session=True)
 			handle_signal(subprocess_obj=p, signal_flag=False, text_description = "事故场景模拟中", wait_style='circle')
 
 		elif input_value == '5':
-			p = subprocess.Popen(args=f'python module_error_mock.py 6 700 "error"', shell=True, stdout=subprocess.DEVNULL,
+			p = subprocess.Popen(args=f'python {os.path.dirname(os.path.abspath(__file__))}/rely_files/module_error_mock.py 6 700 "error"', shell=True, stdout=subprocess.DEVNULL,
 								  stderr=subprocess.DEVNULL, start_new_session=True)
 			handle_signal(subprocess_obj=p, signal_flag=False, text_description = "事故场景模拟中", wait_style='clock', delay_time=0.125)
 
