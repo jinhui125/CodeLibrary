@@ -10,8 +10,9 @@ class LoginPage(BasePage):
         self.check_element = CheckElement(driver=driver)
 
     # 打开登录网站
-    def open(self):
-        self.driver.get('https://login.zhipin.com/')
+    def open(self, website_url):
+        # self.driver.get('https://login.zhipin.com/')
+        self.driver.get(website_url)
 
     # 点击我要招聘按钮
     def click_recruit_btn(self):

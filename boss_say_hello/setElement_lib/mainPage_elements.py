@@ -1,7 +1,7 @@
 from enum import Enum
 from selenium.webdriver.common.by import By
 
-class LoginPageElements(Enum):
+class MainPageElements(Enum):
 
     # 推荐牛人按钮
     referral_NB_btn = (By.CSS_SELECTOR, 'a[ka="menu-geek-recommend"]')
@@ -40,10 +40,10 @@ class LoginPageElements(Enum):
     say_hi_btn = (By.CSS_SELECTOR, '.btn-greet')
 
     # 候选人卡片按钮
-    candidate_card_btn = (By.CSS_SELECTOR, 'candidate-card-wrap')
+    candidate_card_btn = (By.CSS_SELECTOR, '.candidate-card-wrap')
 
     # 候选人卡片关键词tag
-    candidate_card_key_tag = (By.CSS_SELECTOR, '.tags-wrap .tag-item')
+    # candidate_card_keys_tag = (By.CSS_SELECTOR, '.tags-wrap .tag-item')
     
     # 候选人简历详情图片
     resume_png = (By.CSS_SELECTOR, 'canvas[id=resume]')

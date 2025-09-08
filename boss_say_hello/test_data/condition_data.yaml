@@ -1,0 +1,14 @@
+positionName:
+# FED_engineer: 职位：前端开发工程师
+# ED_engineer: 职位：电气设计工程师
+# HN_engineer: 职位：硬件网络工程师
+# CS_engineer: 职位：悬架工程师
+# IAED_engineer: 职位：内外饰设计工程师
+# VA_engineer: 职位：视频标注
+  - FED_engineer
+conditionData:
+# 格式要求: &代表与条件：指在简历必须同时包含多个关键字; -代表或条件: 指在简历只需要包含多个关键字中的其中一个
+  - 小花 & 小红
+  - 小华
+  - 小明
+  - 小朱
