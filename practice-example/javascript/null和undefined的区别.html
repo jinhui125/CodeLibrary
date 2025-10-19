@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript中null和undefined的区别</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .undefined-card {
+            border-top: 5px solid #ff6b6b;
+        }
+        
+        .null-card {
+            border-top: 5px solid #4ecdc4;
+        }
+        
+        h2 {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .undefined-card h2 {
+            color: #ff6b6b;
+        }
+        
+        .null-card h2 {
+            color: #4ecdc4;
+        }
+        
+        .definition {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .comparison-table {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background-color: #f5f7fa;
+        }
+        
+        .demo-section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+        
+        .demo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .demo-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .demo-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        button {
+            background: #2575fc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background: #1a5fd6;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            min-height: 40px;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+        }
+        
+        .visual-representation {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+        }
+        
+        .visual-box {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            width: 45%;
+        }
+        
+        .undefined-visual {
+            background: #ffebee;
+            border: 2px dashed #ff6b6b;
+        }
+        
+        .null-visual {
+            background: #e0f2f1;
+            border: 2px solid #4ecdc4;
+        }
+        
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>JavaScript中null和undefined的区别</h1>
+            <p class="subtitle">理解这两个特殊值及其在代码中的使用场景</p>
+        </header>
+        
+        <div class="comparison">
+            <div class="card undefined-card">
+                <h2>undefined</h2>
+                <div class="definition">
+                    <p>undefined 表示变量已声明但尚未赋值，或函数没有返回值。</p>
+                </div>
+                
+                <h3>产生场景：</h3>
+                <ul>
+                    <li>已声明但未初始化的变量</li>
+                    <li>函数没有明确返回值</li>
+                    <li>访问对象不存在的属性</li>
+                    <li>函数参数未传递</li>
+                    <li>数组未定义的元素</li>
+                </ul>
+                
+                <h3>代码示例：</h3>
+                <div class="code-block">
+// 1. 声明但未赋值的变量<br>
+let x;<br>
+console.log(x); // undefined<br><br>
+
+// 2. 函数没有返回值<br>
+function noReturn() {<br>
+  // 没有return语句<br>
+}<br>
+console.log(noReturn()); // undefined<br><br>
+
+// 3. 访问不存在的对象属性<br>
+let obj = {};<br>
+console.log(obj.nonExistent); // undefined<br><br>
+
+// 4. 函数参数未传递<br>
+function greet(name) {<br>
+  console.log(name); // 当不传递参数时为undefined<br>
+}<br>
+greet();<br><br>
+
+// 5. 数组未定义的元素<br>
+let arr = [1, , 3];<br>
+console.log(arr[1]); // undefined
+                </div>
+            </div>
+            
+            <div class="card null-card">
+                <h2>null</h2>
+                <div class="definition">
+                    <p>null 表示一个空值或不存在的对象引用，是开发者主动设置的值。</p>
+                </div>
+                
+                <h3>产生场景：</h3>
+                <ul>
+                    <li>开发者主动将变量设置为空值</li>
+                    <li>表示一个空对象引用</li>
+                    <li>DOM元素不存在时的返回值</li>
+                    <li>初始化可能稍后赋值的变量</li>
+                    <li>清空对象引用</li>
+                </ul>
+                
+                <h3>代码示例：</h3>
+                <div class="code-block">
+// 1. 主动设置为空值<br>
+let user = null;<br>
+console.log(user); // null<br><br>
+
+// 2. 表示空对象引用<br>
+let emptyObj = null;<br><br>
+
+// 3. DOM元素不存在<br>
+let nonExistentElement = document.getElementById('nonexistent');<br>
+console.log(nonExistentElement); // null<br><br>
+
+// 4. 初始化稍后赋值的变量<br>
+let data = null;<br>
+// 稍后...<br>
+data = fetchDataFromAPI();<br><br>
+
+// 5. 清空对象引用<br>
+let myObject = { key: 'value' };<br>
+myObject = null; // 清空引用
+                </div>
+            </div>
+        </div>
+        
+        <div class="visual-representation">
+            <div class="visual-box undefined-visual">
+                <div class="icon">❓</div>
+                <h3>undefined</h3>
+                <p>表示"未定义"或"不存在"</p>
+                <p>系统自动分配的值</p>
+                <p>类型: undefined</p>
+            </div>
+            <div class="visual-box null-visual">
+                <div class="icon">⭕</div>
+                <h3>null</h3>
+                <p>表示"空值"或"无对象"</p>
+                <p>开发者主动设置的值</p>
+                <p>类型: object (历史遗留)</p>
+            </div>
+        </div>
+        
+        <div class="comparison-table">
+            <h2>详细比较</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>比较点</th>
+                        <th>undefined</th>
+                        <th>null</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>含义</td>
+                        <td>变量已声明但未赋值</td>
+                        <td>表示空值或不存在的对象</td>
+                    </tr>
+                    <tr>
+                        <td>类型</td>
+                        <td>undefined</td>
+                        <td>object (历史遗留问题)</td>
+                    </tr>
+                    <tr>
+                        <td>如何产生</td>
+                        <td>JavaScript引擎自动分配</td>
+                        <td>开发者主动赋值</td>
+                    </tr>
+                    <tr>
+                        <td>转换为数字</td>
+                        <td>NaN</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>转换为布尔值</td>
+                        <td>false</td>
+                        <td>false</td>
+                    </tr>
+                    <tr>
+                        <td>严格相等(===)</td>
+                        <td>undefined === undefined // true</td>
+                        <td>null === null // true</td>
+                    </tr>
+                    <tr>
+                        <td>抽象相等(==)</td>
+                        <td>undefined == null // true</td>
+                        <td>null == undefined // true</td>
+                    </tr>
+                    <tr>
+                        <td>JSON序列化</td>
+                        <td>被忽略（属性不存在）</td>
+                        <td>保留为null</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="demo-section">
+            <h2>实际应用演示</h2>
+            <p>在下面的输入框中测试null和undefined的行为：</p>
+            
+            <div class="demo-container">
+                <div class="demo-box">
+                    <h3>类型检查</h3>
+                    <p>输入一个值，检查它的类型和与null/undefined的比较结果：</p>
+                    <input type="text" id="typeInput" placeholder="输入一个值或留空">
+                    <button onclick="checkType()">检查类型</button>
+                    <div id="typeResult" class="result"></div>
+                </div>
+                
+                <div class="demo-box">
+                    <h3>默认值处理</h3>
+                    <p>演示如何使用nullish coalescing (??) 和逻辑或 (||) 处理默认值：</p>
+                    <button onclick="showDefaultHandling()">演示默认值处理</button>
+                    <div id="defaultResult" class="result"></div>
+                </div>
+            </div>
+            
+            <div class="demo-box">
+                <h3>实际应用场景</h3>
+                <button onclick="showPracticalExamples()">显示实际应用示例</button>
+                <div id="practicalResult" class="result"></div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>JavaScript基础知识 &copy; 2023 - 理解null和undefined的区别</p>
+        </footer>
+    </div>
+
+    <script>
+        function checkType() {
+            const input = document.getElementById("typeInput").value;
+            const resultElement = document.getElementById("typeResult");
+            
+            let result = "";
+            
+            // 处理空输入
+            if (input === "") {
+                result += `<p>输入为空字符串</p>`;
+                result += `<p>类型: <span class="highlight">${typeof input}</span></p>`;
+            } else if (input === "null") {
+                result += `<p>输入为字符串"null"</p>`;
+                result += `<p>类型: <span class="highlight">${typeof input}</span></p>`;
+            } else if (input === "undefined") {
+                result += `<p>输入为字符串"undefined"</p>`;
+                result += `<p>类型: <span class="highlight">${typeof input}</span></p>`;
+            } else {
+                // 尝试解析为数字
+                const num = Number(input);
+                if (!isNaN(num)) {
+                    result += `<p>输入为数字: ${num}</p>`;
+                    result += `<p>类型: <span class="highlight">${typeof num}</span></p>`;
+                } else {
+                    result += `<p>输入为字符串: "${input}"</p>`;
+                    result += `<p>类型: <span class="highlight">${typeof input}</span></p>`;
+                }
+            }
+            
+            // 比较与null和undefined
+            result += `<h4>比较结果:</h4>`;
+            result += `<p>== null: <span class="highlight">${input == null}</span></p>`;
+            result += `<p>== undefined: <span class="highlight">${input == undefined}</span></p>`;
+            result += `<p>=== null: <span class="highlight">${input === null}</span></p>`;
+            result += `<p>=== undefined: <span class="highlight">${input === undefined}</span></p>`;
+            
+            resultElement.innerHTML = result;
+            resultElement.className = "result success";
+        }
+        
+        function showDefaultHandling() {
+            const resultElement = document.getElementById("defaultResult");
+            
+            let result = "<h4>默认值处理演示:</h4>";
+            
+            // 使用不同方法处理默认值
+            const testValues = [undefined, null, 0, "", false, "实际值"];
+            
+            testValues.forEach(value => {
+                const orResult = value || "默认值";
+                const nullishResult = value ?? "默认值";
+                
+                result += `<p>值: <span class="highlight">${JSON.stringify(value)}</span></p>`;
+                result += `<p>  使用 || : <span class="highlight">${JSON.stringify(orResult)}</span></p>`;
+                result += `<p>  使用 ?? : <span class="highlight">${JSON.stringify(nullishResult)}</span></p>`;
+                result += `<br>`;
+            });
+            
+            result += `<p><strong>注意:</strong> ?? (nullish coalescing) 只在值为null或undefined时使用默认值，而 || 会在任何falsy值(0, '', false)时使用默认值。</p>`;
+            
+            resultElement.innerHTML = result;
+            resultElement.className = "result success";
+        }
+        
+        function showPracticalExamples() {
+            const resultElement = document.getElementById("practicalResult");
+            
+            let result = "<h4>实际应用场景:</h4>";
+            
+            // 场景1: 函数参数默认值
+            result += `<p><strong>场景1: 函数参数默认值</strong></p>`;
+            result += `<div class="code-block">
+function greet(name) {<br>
+  // 旧方法: 使用 || 但会覆盖空字符串<br>
+  // const finalName = name || '陌生人';<br><br>
+  
+  // 更好: 使用 ?? 只处理undefined和null<br>
+  const finalName = name ?? '陌生人';<br>
+  return `Hello, ${finalName}!`;<br>
+}<br><br>
+
+console.log(greet(undefined)); // "Hello, 陌生人!"<br>
+console.log(greet(null)); // "Hello, 陌生人!"<br>
+console.log(greet("")); // "Hello, !" (空字符串被保留)<br>
+console.log(greet("Alice")); // "Hello, Alice!"
+            </div>`;
+            
+            // 场景2: 对象属性访问
+            result += `<p><strong>场景2: 对象属性访问</strong></p>`;
+            result += `<div class="code-block">
+const user = {<br>
+  profile: {<br>
+    name: 'John',<br>
+    age: null // 表示年龄未知<br>
+  }<br>
+};<br><br>
+
+// 安全地访问嵌套属性<br>
+const userName = user?.profile?.name ?? '未知用户';<br>
+const userAge = user?.profile?.age ?? '年龄未知';<br><br>
+
+console.log(userName); // "John"<br>
+console.log(userAge); // "年龄未知" (因为age是null)
+            </div>`;
+            
+            // 场景3: API响应处理
+            result += `<p><strong>场景3: API响应处理</strong></p>`;
+            result += `<div class="code-block">
+// 模拟API响应<br>
+const apiResponse = {<br>
+  data: null, // 表示没有数据<br>
+  status: 'success'<br>
+};<br><br>
+
+// 处理响应数据<br>
+const responseData = apiResponse.data ?? []; // 如果data是null或undefined，使用空数组<br>
+console.log(responseData); // []<br><br>
+
+// 与undefined比较<br>
+const undefinedData = undefined ?? [];<br>
+console.log(undefinedData); // []
+            </div>`;
+            
+            resultElement.innerHTML = result;
+            resultElement.className = "result success";
+        }
+    </script>
+</body>
+</html>
