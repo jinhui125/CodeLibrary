@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+.container {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 3rem;
+}
+
+.options-container {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    column-gap: 0.5rem;
+    row-gap: 1rem;
+}
+
+.link-btn-style {
+    display: inline-block;
+    width: 100%;
+    /* padding: 2rem 4rem; */
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 2rem;
+    background-color: #4a69bd;
+    border-radius: 0.5rem;
+    color: white;
+}

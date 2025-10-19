@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript练习题：7-36题</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="header-title">27个JavaScript初级练习题</h1>
+            <p class="header-desc">结合HTML和CSS的交互式学习体验</p>
+            <nav class="nav-container">
+                <p class="tag-style">27个练习</p>
+                <p class="tag-style">5个类别</p>
+                <p class="tag-style">初级难度</p>
+            </nav>
+        </header>
+        <section class="section-one">
+            <h2 class="section-one-title">学习进度</h2>
+            <div class="progressBar-containers">
+                <div id="progressBar"></div>
+            </div>
+            <p class="progressBar-desc">已完成<span id="finish-number">0</span>/27个练习题</p>
+        </section>
+        <section class="section-two">
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">1</p>
+                        </div>
+                        <h2 class="card-title">Hello World</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，在页面上显示"Hello, World!"消息。</p>
+                    <div class="run-container">
+                        <button onclick="exercise1()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-1" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">2</p>
+                        </div>
+                        <h2 class="card-title">改变背景颜色</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，随机改变页面背景颜色。</p>
+                    <div id="color-show" class="run-container">
+                        <button onclick="exercise2()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-2" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">3</p>
+                        </div>
+                        <h2 class="card-title">计算两个数字的和</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，计算两个输入数字的和并显示结果。</p>
+                    <div class="run-container">
+                        <input type="number" id="num-1" placeholder="输入第一个数">
+                        <input type="number" id="num-2" placeholder="输入第二个数">
+                        <button onclick="exercise3()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-3" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">4</p>
+                        </div>
+                        <h2 class="card-title">显示当前时间</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，显示当前日期和时间。</p>
+                    <div class="run-container">
+                        <button onclick="exercise4()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-4" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">5</p>
+                        </div>
+                        <h2 class="card-title">切换元素显示/隐藏</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，切换元素的显示和隐藏状态。</p>
+                    <div class="run-container">
+                        <div class="hide-div">
+                            <p>这个内容可以被显示或者隐藏。</p>
+                        </div>
+                        <button onclick="exercise5()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-5" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">6</p>
+                        </div>
+                        <h2 class="card-title">验证表单输入</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，验证输入框是否为空。</p>
+                    <div class="run-container">
+                        <input type="text" id="input-text" placeholder="请输入一些内容">
+                        <button onclick="exercise6()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-6" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">7</p>
+                        </div>
+                        <h2 class="card-title">创建列表项</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，将输入的内容添加到列表。</p>
+                    <div class="run-container">
+                        <input type="text" id="input-number" placeholder="请输入列表内容">
+                        <button onclick="exercise7()" class="run-btn-style">运行测试</button>
+                        <ul id="list-item"></ul>
+                        <div id="run-result-7" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">8</p>
+                        </div>
+                        <h2 class="card-title">计数器</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，可以增加、减少和重置计数值。</p>
+                    <div class="run-container">
+                        <p id="show-number" style="width: 100%; font-size: 3rem; text-align: center; padding: 1rem 0;">0</p>
+                        <button onclick="exercise8('increase')" class="run-btn-style">增加</button>
+                        <button onclick="exercise8('reduce')" class="run-btn-style">减少</button>
+                        <button onclick="exercise8('reset')" class="run-btn-style">重置</button>
+                        <div id="run-result-8" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">9</p>
+                        </div>
+                        <h2 class="card-title">改变文本样式</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，根据按钮点击改变文本的样式。</p>
+                    <div class="run-container">
+                        <p id="switch-style" style="width: 100%; font-size: 1.7rem; padding: 1rem 0; color: black;">这段文本的样式可以被改变</p>
+                        <button onclick="exercise9('blod')" class="run-btn-style">粗体</button>
+                        <button onclick="exercise9('italic')" class="run-btn-style">斜体</button>
+                        <button onclick="exercise9('underline')" class="run-btn-style">下划线</button>
+                        <button onclick="exercise9('color')" class="run-btn-style">改变颜色</button>
+                        <button onclick="exercise9('reset')" class="run-btn-style">重置样式</button>
+                        <div id="run-result-9" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">10</p>
+                        </div>
+                        <h2 class="card-title">简单计算器</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，可以执行基本的数学运算。</p>
+                    <div class="run-container">
+                        <input type="number" id="number-1" placeholder="第一个数字" value="10">
+                        <input type="number" id="number-2" placeholder="第二个数字" value="5"><br>
+                        <button onclick="exercise10('add')" class="run-btn-style">➕</button>
+                        <button onclick="exercise10('subtract')" class="run-btn-style">➖</button>
+                        <button onclick="exercise10('multiply')" class="run-btn-style">✖️</button>
+                        <button onclick="exercise10('divide')" class="run-btn-style">➗</button>
+                        <div id="run-result-10" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">11</p>
+                        </div>
+                        <h2 class="card-title">数组最大值</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，找出数组中的最大值。</p>
+                    <div class="run-container">
+                        <p id="array-max" style="width: 100%; font-size: 1.6rem; padding: 1rem 0; margin-bottom: 1rem;"></p>
+                        <button onclick="exercise11()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-11" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">12</p>
+                        </div>
+                        <h2 class="card-title">字符串反转</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，将字符串反转。</p>
+                    <div class="run-container">
+                        <input type="text" id="reverse-string" placeholder="输入要反转的字符串" value="Hello World">
+                        <button onclick="exercise12()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-12" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">13</p>
+                        </div>
+                        <h2 class="card-title">计算阶乘</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，计算给定数字的阶乘。</p>
+                    <div class="run-container">
+                        <input type="number" id="factorial-number" placeholder="输入数字" value='5'>
+                        <button onclick="exercise13()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-13" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">14</p>
+                        </div>
+                        <h2 class="card-title">检查回文字符串</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，检查字符串是否是回文（正反读都一样）。</p>
+                    <div class="run-container">
+                        <input type="text" id="palindrome-string" placeholder="输入要检查的字符串" value='racecar'>
+                        <button onclick="exercise14()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-14" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">15</p>
+                        </div>
+                        <h2 class="card-title">查找元音字母数量</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，统计字符串中的元音字母数量。</p>
+                    <div class="run-container">
+                        <input type="text" id="vowel-string" placeholder="输入字符串" value='Hello World'>
+                        <button onclick="exercise15()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-15" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">16</p>
+                        </div>
+                        <h2 class="card-title">数组去重</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，移除数组中的重复元素。</p>
+                    <div class="run-container">
+                        <p id="show-array" style="width: 100%; font-size: 1.6rem; padding: 1rem 0;"></p>
+                        <button onclick="exercise16()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-16" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">17</p>
+                        </div>
+                        <h2 class="card-title">FizzBuzz游戏</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，实现FizzBuzz游戏逻辑。</p>
+                    <div class="run-container">
+                        <input type="number" id="fizzbuzz-number" placeholder="输入数字" value="15">
+                        <button onclick="exercise17()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-17" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">18</p>
+                        </div>
+                        <h2 class="card-title">数组排序</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，对数组进行升序排序。</p>
+                    <div class="run-container">
+                        <p id="original-array" style="width: 100%; font-size: 1.6rem; padding: 1rem 0; margin-bottom: 1rem;"></p>
+                        <button onclick="exercise18()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-18" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">19</p>
+                        </div>
+                        <h2 class="card-title">查找最长单词</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，找出句子中最长的单词。</p>
+                    <div class="run-container">
+                        <input type="text" id="words-string" placeholder="输入句子" value="the quick brown fox" style="width: 100%; font-size: 1.6rem; padding: 0.5rem 0; margin-bottom: 1rem;">
+                        <button onclick="exercise19()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-19" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">20</p>
+                        </div>
+                        <h2 class="card-title">标题大小写转换</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，将句子转换为标题大小写（每个单词首字母大写）。</p>
+                    <div class="run-container">
+                        <input type="text" id="transform-string" placeholder="输入句子" value="hello world" style="width: 100%; font-size: 1.6rem; padding: 0.5rem 0; margin-bottom: 1rem;">
+                        <button onclick="exercise20()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-20" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">21</p>
+                        </div>
+                        <h2 class="card-title">数组元素求和</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，计算数组中所有元素的和。</p>
+                    <div class="run-container">
+                        <p id="sum-array" style="width: 100%; font-size: 1.6rem; padding: 1rem 0; margin-bottom: 1rem;"></p>
+                        <button onclick="exercise21()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-21" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">22</p>
+                        </div>
+                        <h2 class="card-title">查找数组中的元素</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，检查数组中是否包含特定元素。</p>
+                    <div class="run-container">
+                        <p id="show-arr" style="width: 100%; font-size: 1.6rem; padding: 1rem 0; margin-bottom: 1rem;"></p>
+                        <input type="text" id="check-specific-string" placeholder="请输入要查找的元素" value="apple" style="width: 100%; font-size: 1.6rem; padding: 0.5rem 0; margin-bottom: 1rem;">
+                        <button onclick="exercise22()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-22" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">23</p>
+                        </div>
+                        <h2 class="card-title">数组合并</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，合并两个数组并去重。</p>
+                    <div class="run-container">
+                        <p id="merge-array-1" style="width: 100%; font-size: 1.6rem; padding: 1rem 0; margin-bottom: 1rem;"></p>
+                        <p id="merge-array-2" style="width: 100%; font-size: 1.6rem; padding: 1rem 0; margin-bottom: 1rem;"></p>
+                        <button onclick="exercise23()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-23" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">24</p>
+                        </div>
+                        <h2 class="card-title">计算字符出现次数</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，统计字符串中每个字符出现的次数。</p>
+                    <div class="run-container">
+                        <input type="text" id="stat-array" placeholder="输入字符串" value="hello" style="width: 100%; font-size: 1.6rem; padding: 0.5rem 0; margin-bottom: 1rem;">
+                        <button onclick="exercise24()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-24" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">25</p>
+                        </div>
+                        <h2 class="card-title">数组扁平化</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，将嵌套数组扁平化为一维数组。</p>
+                    <div class="run-container">
+                        <p id="delayering-array" style="width: 100%; font-size: 1.6rem; padding: 1rem 0; margin-bottom: 1rem;"></p>
+                        <button onclick="exercise25()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-25" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">26</p>
+                        </div>
+                        <h2 class="card-title">查找两个数组的交集</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，找出两个数组的共同元素。</p>
+                    <div class="run-container">
+                        <p id="test-array-1" style="width: 100%; font-size: 1.6rem; padding: 1rem 0; margin-bottom: 1rem;"></p>
+                        <p id="test-array-2" style="width: 100%; font-size: 1.6rem; padding: 1rem 0; margin-bottom: 1rem;"></p>
+                        <button onclick="exercise26()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-26" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-item">
+                <div class="card-header-container">
+                    <div class="card-content">
+                        <div class="card-number-container">
+                            <p class="card-number-text">27</p>
+                        </div>
+                        <h2 class="card-title">密码强度检查器</h2>
+                    </div>
+                </div>
+                <div class="inner-container">
+                    <p class="card-desc">创建一个函数，检查密码的强度。</p>
+                    <div class="run-container">
+                        <input type="password" id="password" placeholder="输入密码" style="width: 100%; font-size: 1.6rem; padding: 0.5rem 0; margin-bottom: 1rem;">
+                        <button onclick="exercise27()" class="run-btn-style">运行测试</button>
+                        <div id="run-result-27" class="run-result"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="./javascript.js"></script>
+</body>
+</html>

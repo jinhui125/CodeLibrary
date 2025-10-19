@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    color: #333;
+    /* background-color: #f8f9fa; */
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.container {
+    width: 60%;
+    margin: 0 auto;
+}
+
+/* #region 分栏布局的优势与应用【2分栏布局】 */
+
+.column-div-two-container, .column-div-three-container, .column-div-four-container {
+    margin-top: 2rem;
+    background-color: white;
+    border-radius: 0.6rem;
+    box-shadow: 0 0 1rem 0.6rem rgba(0, 0, 0, 0.05);
+    padding: 2rem 2rem;
+}
+
+.column-div-two-content {
+    /* display: grid; */
+    /* grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr)); */
+    column-count: 2;
+    column-gap: 4rem;
+    column-rule: 0.2rem solid #3498db;
+}
+
+.column-div-two-name, .column-div-three-name, .column-div-four-name {
+    text-align: center;
+    font-size: 2.6rem;
+    line-height: 1.6;
+    border-bottom: 0.2rem solid #3498db;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+}
+
+.item-div-title {
+    color: #3498db;
+    font-size: 1.9rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.item-div-content p {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* #endregion 分栏布局的优势与应用【2分栏布局】 */
+
+/* #region 分栏布局的优势与应用【3分栏布局】 */
+
+.column-div-three-content {
+    /* display: grid; */
+    /* grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr)); */
+    column-count: 3;
+    column-gap: 4rem;
+    column-rule: 0.2rem solid #3498db;
+}
+
+/* #endregion 分栏布局的优势与应用【3分栏布局】 */
+
+/* #region 分栏布局的优势与应用【4分栏布局】 */
+
+.column-div-four-content {
+    /* display: grid; */
+    /* grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr)); */
+    column-count: 4;
+    column-gap: 4rem;
+    column-rule: 0.2rem solid #3498db;
+}
+
+/* #endregion 分栏布局的优势与应用【4分栏布局】 */
+
+
+
+
+
+

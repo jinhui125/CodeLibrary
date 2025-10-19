@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript基础知识点与练习题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            color: #2575fc;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .topic {
+            margin-bottom: 25px;
+        }
+        
+        .topic h3 {
+            color: #6a11cb;
+            margin-bottom: 10px;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .exercise {
+            background: #eef5ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #2575fc;
+        }
+        
+        .exercise h4 {
+            margin-bottom: 10px;
+            color: #2575fc;
+        }
+        
+        button {
+            background: #2575fc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background: #1a5fd6;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            background: #f8f9fa;
+            min-height: 40px;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>JavaScript基础知识点与练习题</h1>
+            <p class="subtitle">学习JavaScript基础知识并通过练习巩固</p>
+        </header>
+        
+        <div class="content">
+            <div class="section">
+                <h2>JavaScript基础知识点</h2>
+                
+                <div class="topic">
+                    <h3>1. 变量与数据类型</h3>
+                    <p>JavaScript中有三种声明变量的方式：<code>var</code>, <code>let</code>, <code>const</code></p>
+                    <div class="code-block">
+// 变量声明示例<br>
+var name = "张三"; // 字符串<br>
+let age = 25; // 数字<br>
+const isStudent = true; // 布尔值<br>
+<br>
+// 数据类型<br>
+let number = 42; // 数字<br>
+let text = "Hello"; // 字符串<br>
+let isTrue = false; // 布尔值<br>
+let empty = null; // 空值<br>
+let notDefined; // undefined<br>
+let person = { // 对象<br>
+    firstName: "李",<br>
+    lastName: "四"<br>
+};<br>
+let colors = ["红", "绿", "蓝"]; // 数组
+                    </div>
+                </div>
+                
+                <div class="topic">
+                    <h3>2. 运算符</h3>
+                    <p>JavaScript包含算术运算符、比较运算符和逻辑运算符</p>
+                    <div class="code-block">
+// 算术运算符<br>
+let a = 10, b = 5;<br>
+let sum = a + b; // 15<br>
+let difference = a - b; // 5<br>
+let product = a * b; // 50<br>
+let quotient = a / b; // 2<br>
+<br>
+// 比较运算符<br>
+console.log(a == 10); // true<br>
+console.log(a === "10"); // false (值和类型都需相等)<br>
+console.log(a > b); // true<br>
+<br>
+// 逻辑运算符<br>
+let x = true, y = false;<br>
+console.log(x && y); // false (与)<br>
+console.log(x || y); // true (或)<br>
+console.log(!x); // false (非)
+                    </div>
+                </div>
+                
+                <div class="topic">
+                    <h3>3. 条件语句</h3>
+                    <p>使用if...else和switch控制程序流程</p>
+                    <div class="code-block">
+// if...else语句<br>
+let score = 85;<br>
+if (score >= 90) {<br>
+    console.log("优秀");<br>
+} else if (score >= 70) {<br>
+    console.log("良好");<br>
+} else {<br>
+    console.log("需要努力");<br>
+}<br>
+<br>
+// switch语句<br>
+let day = 3;<br>
+switch(day) {<br>
+    case 1:<br>
+        console.log("星期一");<br>
+        break;<br>
+    case 2:<br>
+        console.log("星期二");<br>
+        break;<br>
+    default:<br>
+        console.log("其他日子");<br>
+}
+                    </div>
+                </div>
+                
+                <div class="topic">
+                    <h3>4. 循环</h3>
+                    <p>使用for、while和do...while循环重复执行代码</p>
+                    <div class="code-block">
+// for循环<br>
+for (let i = 0; i < 5; i++) {<br>
+    console.log(i); // 输出0,1,2,3,4<br>
+}<br>
+<br>
+// while循环<br>
+let count = 0;<br>
+while (count < 3) {<br>
+    console.log(count);<br>
+    count++;<br>
+}<br>
+<br>
+// do...while循环<br>
+let num = 0;<br>
+do {<br>
+    console.log(num);<br>
+    num++;<br>
+} while (num < 3);
+                    </div>
+                </div>
+                
+                <div class="topic">
+                    <h3>5. 函数</h3>
+                    <p>函数是可重复使用的代码块</p>
+                    <div class="code-block">
+// 函数声明<br>
+function greet(name) {<br>
+    return "你好, " + name + "!";<br>
+}<br>
+<br>
+// 函数调用<br>
+let greeting = greet("王五");<br>
+console.log(greeting); // "你好, 王五!"<br>
+<br>
+// 箭头函数 (ES6)<br>
+const multiply = (a, b) => a * b;<br>
+console.log(multiply(4, 5)); // 20
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>JavaScript练习题</h2>
+                
+                <div class="exercise">
+                    <h4>练习1: 变量与数据类型</h4>
+                    <p>创建一个包含你个人信息的对象，并显示在页面上。</p>
+                    <button onclick="exercise1()">运行练习1</button>
+                    <div id="result1" class="result"></div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>练习2: 条件语句</h4>
+                    <p>编写一个程序，根据输入的成绩判断等级：90+为A，80-89为B，70-79为C，60-69为D，60以下为F。</p>
+                    <input type="number" id="scoreInput" placeholder="输入成绩 (0-100)" min="0" max="100">
+                    <button onclick="exercise2()">判断等级</button>
+                    <div id="result2" class="result"></div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>练习3: 循环</h4>
+                    <p>使用循环计算1到100之间所有偶数的和。</p>
+                    <button onclick="exercise3()">计算偶数和</button>
+                    <div id="result3" class="result"></div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>练习4: 函数</h4>
+                    <p>编写一个函数，接受两个数字参数，返回它们的最大公约数。</p>
+                    <input type="number" id="num1" placeholder="第一个数字">
+                    <input type="number" id="num2" placeholder="第二个数字">
+                    <button onclick="exercise4()">计算最大公约数</button>
+                    <div id="result4" class="result"></div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>练习5: 数组操作</h4>
+                    <p>创建一个数组，包含5个你喜欢的颜色，然后：1) 添加一个新颜色，2) 删除第一个颜色，3) 将数组反转。</p>
+                    <button onclick="exercise5()">操作数组</button>
+                    <div id="result5" class="result"></div>
+                </div>
+                
+                <div class="exercise">
+                    <h4>练习6: 字符串操作</h4>
+                    <p>编写一个函数，判断输入的字符串是否是回文（正读反读都一样）。</p>
+                    <input type="text" id="palindromeInput" placeholder="输入字符串">
+                    <button onclick="exercise6()">检查回文</button>
+                    <div id="result6" class="result"></div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>JavaScript基础教程 &copy; 2023 - 通过练习巩固知识</p>
+        </footer>
+    </div>
+
+    <script>
+        // 练习1: 变量与数据类型
+        function exercise1() {
+            const person = {
+                name: "李小明",
+                age: 25,
+                city: "北京",
+                hobbies: ["阅读", "编程", "旅行"]
+            };
+            
+            let result = `
+                <p><strong>姓名:</strong> ${person.name}</p>
+                <p><strong>年龄:</strong> ${person.age}</p>
+                <p><strong>城市:</strong> ${person.city}</p>
+                <p><strong>爱好:</strong> ${person.hobbies.join(", ")}</p>
+            `;
+            
+            document.getElementById("result1").innerHTML = result;
+            document.getElementById("result1").className = "result success";
+        }
+        
+        // 练习2: 条件语句
+        function exercise2() {
+            const score = parseInt(document.getElementById("scoreInput").value);
+            const resultElement = document.getElementById("result2");
+            
+            if (isNaN(score) || score < 0 || score > 100) {
+                resultElement.innerHTML = "请输入0-100之间的有效成绩";
+                resultElement.className = "result error";
+                return;
+            }
+            
+            let grade;
+            if (score >= 90) {
+                grade = "A";
+            } else if (score >= 80) {
+                grade = "B";
+            } else if (score >= 70) {
+                grade = "C";
+            } else if (score >= 60) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+            
+            resultElement.innerHTML = `成绩 ${score} 的等级是: <strong>${grade}</strong>`;
+            resultElement.className = "result success";
+        }
+        
+        // 练习3: 循环
+        function exercise3() {
+            let sum = 0;
+            for (let i = 1; i <= 100; i++) {
+                if (i % 2 === 0) {
+                    sum += i;
+                }
+            }
+            
+            document.getElementById("result3").innerHTML = `1到100之间所有偶数的和是: <strong>${sum}</strong>`;
+            document.getElementById("result3").className = "result success";
+        }
+        
+        // 练习4: 函数
+        function exercise4() {
+            const num1 = parseInt(document.getElementById("num1").value);
+            const num2 = parseInt(document.getElementById("num2").value);
+            const resultElement = document.getElementById("result4");
+            
+            if (isNaN(num1) || isNaN(num2)) {
+                resultElement.innerHTML = "请输入两个有效的数字";
+                resultElement.className = "result error";
+                return;
+            }
+            
+            function gcd(a, b) {
+                if (b === 0) {
+                    return a;
+                }
+                return gcd(b, a % b);
+            }
+            
+            const result = gcd(Math.abs(num1), Math.abs(num2));
+            resultElement.innerHTML = `${num1} 和 ${num2} 的最大公约数是: <strong>${result}</strong>`;
+            resultElement.className = "result success";
+        }
+        
+        // 练习5: 数组操作
+        function exercise5() {
+            let colors = ["红色", "蓝色", "绿色", "黄色", "紫色"];
+            let steps = [];
+            
+            steps.push(`初始数组: [${colors.join(", ")}]`);
+            
+            // 添加新颜色
+            colors.push("橙色");
+            steps.push(`添加"橙色"后: [${colors.join(", ")}]`);
+            
+            // 删除第一个颜色
+            colors.shift();
+            steps.push(`删除第一个颜色后: [${colors.join(", ")}]`);
+            
+            // 反转数组
+            colors.reverse();
+            steps.push(`反转数组后: [${colors.join(", ")}]`);
+            
+            document.getElementById("result5").innerHTML = steps.join("<br>");
+            document.getElementById("result5").className = "result success";
+        }
+        
+        // 练习6: 字符串操作
+        function exercise6() {
+            const input = document.getElementById("palindromeInput").value;
+            const resultElement = document.getElementById("result6");
+            
+            if (!input) {
+                resultElement.innerHTML = "请输入一个字符串";
+                resultElement.className = "result error";
+                return;
+            }
+            
+            function isPalindrome(str) {
+                // 移除非字母数字字符并转换为小写
+                const cleanStr = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+                // 反转字符串
+                const reversedStr = cleanStr.split('').reverse().join('');
+                // 比较原字符串和反转后的字符串
+                return cleanStr === reversedStr;
+            }
+            
+            const result = isPalindrome(input);
+            if (result) {
+                resultElement.innerHTML = `"${input}" <strong>是</strong>回文`;
+            } else {
+                resultElement.innerHTML = `"${input}" <strong>不是</strong>回文`;
+            }
+            resultElement.className = "result success";
+        }
+    </script>
+</body>
+</html>

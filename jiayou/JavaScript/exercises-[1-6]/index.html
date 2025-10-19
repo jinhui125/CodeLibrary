@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript练习题：1-6题</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>JavaScript练习题</h1>
+        <div class="exercises-card">
+            <div class="card-style">
+                <h2 class="exercise-title">练习1: 变量与数据类型</h2>
+                <p class="exercise-decs">创建一个包含你个人信息的对象，并显示在页面上。</p>
+                <button onclick="exercise1()">运行练习1</button>
+                <div id="result-1" class="result"></div>
+            </div>
+            <div class="card-style">
+                <h2 class="exercise-title">练习2: 条件判断语句</h2>
+                <p class="exercise-decs">编写一个程序，根据输入的成绩判断等级：90+为A，80-89为B，70-79为C，60-69为D，60以下为F。</p>
+                <input type="number" id="scoreInput" placeholder="输入成绩（0-100）" min="0" max="100">
+                <button onclick="exercise2()">判断等级</button>
+                <div id="result-2" class="result"></div>
+            </div>
+            <div class="card-style">
+                <h2 class="exercise-title">练习3: 循环</h2>
+                <p class="exercise-decs">使用循环计算1到100之间所有偶数的和。</p>
+                <button onclick="exercise3()">计算偶数和</button>
+                <div id="result-3" class="result"></div>
+            </div>
+            <div class="card-style">
+                <h2 class="exercise-title">练习4: 函数</h2>
+                <p class="exercise-decs">编写一个函数，接受两个数字参数，返回它们的乘积。</p>
+                <input type="number" id="number-1" placeholder="第一个数字">
+                <input type="number" id="number-2" placeholder="第二个数字">
+                <button onclick="exercise4()">计算两个数的乘积</button>
+                <div id="result-4" class="result"></div>
+            </div>
+            <div class="card-style">
+                <h2 class="exercise-title">练习5: 数组操作</h2>
+                <p class="exercise-decs">创建一个数组，包含5个你喜欢的颜色，然后：1）添加一个新的颜色，2）删除第一个颜色，3）将数组反转。</p>
+                <button onclick="exercise5()">操作数组</button>
+                <div id="result-5" class="result"></div>
+            </div>
+            <div class="card-style">
+                <h2 class="exercise-title">练习6: 字符串操作</h2>
+                <p class="exercise-decs">编写一个函数，判断输入的字符串是否是回文（正读反读都一样）。</p>
+                <input type="text" id="palindromeInput" placeholder="输入字符串">
+                <button onclick="exercise6()">检查回文</button>
+                <div id="result-6" class="result"></div>
+            </div>
+        </div>
+    </div>
+    <script src="./javascript.js"></script>
+</body>
+</html>

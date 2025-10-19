@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>练习题【13】: 圣杯布局</title>
+        <link rel="stylesheet" type="text/css" href="./style.css">
+    </head>
+    <body>
+        <header>
+            <div class="container header-container">
+                <h1 class="header-name">网站名称</h1>
+                <nav class="nav-container">
+                    <ul class="options-container">
+                        <li>
+                            <a class="nav-link" href="#" target="_self">首页</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#" target="_self">关于</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#" target="_self">服务</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#" target="_self">博客</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#" target="_self">联系</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div class="container">
+            <div class="main-container">
+                <aside class="left-sidebar-content">
+                    <div class="left-sidebar-content-1 sidebar-content-conatiner">
+                        <h2 class="left-sidebar-name-1">导航菜单</h2>
+                        <ul class="left-sidebar-options-1 sidebar-options-style">
+                            <li>
+                                <a class="sidebar-link" href="#" target="_self">仪表板</a>
+                            </li>
+                            <li>
+                                <a class="sidebar-link" href="#" target="_self">个人资料</a>
+                            </li>
+                            <li>
+                                <a class="sidebar-link" href="#" target="_self">消息</a>
+                            </li>
+                            <li>
+                                <a class="sidebar-link" href="#" target="_self">设置</a>
+                            </li>
+                            <li>
+                                <a class="sidebar-link" href="#" target="_self">帮助中心</a>
+                            </li>
+                            <li>
+                                <a class="sidebar-link" href="#" target="_self">注销</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="left-sidebar-content-2 sidebar-content-conatiner">
+                        <h2 class="left-sidebar-name-2">热门文章</h2>
+                        <ul class="left-sidebar-options-2 sidebar-options-style">
+                            <li>
+                                <a class="sidebar-link" href="#" target="_self">2023年Web开发趋势</a>
+                            </li>
+                            <li>
+                                <a class="sidebar-link" href="#" target="_self">CSS布局最佳实践</a>
+                            </li>
+                            <li>
+                                <a class="sidebar-link" href="#" target="_self">JavaScript性能优化</a>
+                            </li>
+                            <li>
+                                <a class="sidebar-link" href="#" target="_self">响应式设计指南</a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+                <main class="main-content">
+                    <div class="main-content-container">
+                        <h1 class="mian-content-title">欢迎来到圣杯布局实例</h1>
+                        <div>
+                            <h2>什么是圣杯布局？</h2>
+                            <p>圣杯布局是网页设计中的一种常见布局模式，它包含页眉、页脚和一个包含三个栏目的主要内容区域：一个较宽的主内容区和两个较窄的边栏。</p>
+                            <p>这种布局之所以被称为"圣杯"，是因为它曾经是CSS布局中的一个挑战，开发者需要找到一种方法让中间的内容区域首先渲染，同时又能实现三栏布局。</p>
+                            <div class="article-pubdate">发布于: 2023年10月15日 | 分类: Web开发</div>
+                        </div>
+                        <div>
+                            <h2>实现现代圣杯布局</h2>
+                            <p>随着CSS Flexbox和Grid布局的出现，实现圣杯布局变得非常简单。在这个示例中，我们使用了Flexbox来创建响应式的三栏布局。</p>
+                            <p>在移动设备上，这些栏目会堆叠在一起，左侧边栏、主内容和右侧边栏按顺序排列，确保在所有设备上都有良好的用户体验。</p>
+                            <div class="article-pubdate">发布于: 2023年10月10日 | 分类: CSS</div>
+                        </div>
+                        <div>
+                            <h2>响应式设计的重要性</h2>
+                            <p>随着CSS 在当今多设备的环境中，响应式设计不再是可选项，而是必需品。使用响应式布局可以确保您的网站在桌面、平板和手机等各种设备上都能正常显示。</p>
+                            <p>通过媒体查询和弹性布局，我们可以创建适应不同屏幕尺寸的布局，提供一致的用户体验。</p>
+                            <div class="article-pubdate">发布于: 2023年10月5日 | 分类: 设计</div>
+                        </div>
+                    </div>
+                </main>
+                <aside class="right-sidebar-content">
+                    <div class="right-sidebar-content-1 sidebar-content-conatiner">
+                        <h2 class="right-sidebar-name-1">最新消息</h2>
+                        <ul class="right-sidebar-options-1 sidebar-options-style">
+                            <li>
+                                <a class="sidebar-link" href="#" target="_self">网站更新日志 - 2023年10月</a>
+                            </li>
+                            <li>
+                                <a class="sidebar-link" href="#" target="_self">新功能发布: 暗色模式</a>
+                            </li>
+                            <li>
+                                <a class="sidebar-link" href="#" target="_self">即将举行的Web开发研讨会</a>
+                            </li>
+                            <li>
+                                <a class="sidebar-link" href="#" target="_self">招聘: 前端开发者</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="right-sidebar-content-2 sidebar-content-conatiner">
+                        <h2 class="right-sidebar-name-2">标签云</h2>
+                        <ul class="right-sidebar-options-2">
+                            <li>
+                                <a class="tag-cloud-btn" href="#" target="_self">HTML</a>
+                            </li>
+                            <li>
+                                <a class="tag-cloud-btn" href="#" target="_self">CSS</a>
+                            </li>
+                            <li>
+                                <a class="tag-cloud-btn" href="#" target="_self">JavaScript</a>
+                            </li>
+                            <li>
+                                <a class="tag-cloud-btn" href="#" target="_self">响应式设计</a>
+                            </li>
+                            <li>
+                                <a class="tag-cloud-btn" href="#" target="_self">Web性能</a>
+                            </li>
+                            <li>
+                                <a class="tag-cloud-btn" href="#" target="_self">用户体验</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="right-sidebar-content-3 sidebar-content-conatiner">
+                        <h2 class="right-sidebar-name-3">订阅更新</h2>
+                        <p style="margin-bottom: 0.5rem;">输入您的电子邮件地址以及订阅我们的新闻通讯:</p>
+                        <form action="#" method="post">
+                            <input type="email" placeholder="您的邮箱地址" id="email" name="email" required>
+                            <button class="subscription-btn" type="submit">订阅</button>
+                        </form>
+                    </div>
+                </aside>
+            </div>
+        </div>
+        <footer>
+            <div class="container footer-container">
+                <div class="about-us-container">
+                    <h3>关于我们</h3>
+                    <p>我们致力于提供高质量的Web开发教程和资源，帮助开发者提升技能。</p>
+                </div>
+                <div class="qiuck-link-container">
+                    <h3>快速链接</h3>
+                    <ul class="links-container">
+                        <li>
+                            <a class="nav-link" href="#" target="_self">首页</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#" target="_self">关于我们</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#" target="_self">服务</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#" target="_self">博客</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#" target="_self">联系</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="contact-info-container">
+                    <h3>联系方式</h3>
+                    <p>电子邮件: info@example.com</p>
+                    <p>电话: +86 123 4567 8910</p>
+                    <p>地址: 北京市朝阳区示例街道123号</p>
+                </div>
+            </div>
+            <div class="div-line">
+                <p class="copyright-mark">© 2023 网站名称. 保留所有权利。</p>
+            </div>
+        </footer>
+    </body>
+</html>

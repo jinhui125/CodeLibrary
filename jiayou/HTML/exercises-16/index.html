@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>使用媒体查询实现响应式布局</title>
+        <link rel="stylesheet" type="text/css" href="./style.css">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="header-container">
+                    <h1 class="header-content-title">响应式设计</h1>
+                    <nav class="nav-container">
+                        <ul class="options-container">
+                            <li>
+                                <a class="nav-link-btn" href="#" target="_self">首页</a>
+                            </li>
+                            <li>
+                                <a class="nav-link-btn" href="#" target="_self">关于</a>
+                            </li>
+                            <li>
+                                <a class="nav-link-btn" href="#" target="_self">服务</a>
+                            </li>
+                            <li>
+                                <a class="nav-link-btn" href="#" target="_self">作品</a>
+                            </li>
+                            <li>
+                                <a class="nav-link-btn" href="#" target="_self">联系</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <section class="breakpoint-system-container">
+            <div class="container">
+                <div class="breakpoint-system-content">
+                    <h2 class="breakpoint-system-title">响应式断点系统</h2>
+                    <div class="breakpoint-system-grid">
+                        <div class="xs-content grid-content">
+                            <h3 class="xs-title grid-title">XS</h3>
+                            <p class="xs-text">手机（超小屏幕）</p>
+                            <p class="xs-text">0px - 575px</p>
+                        </div>
+                        <div class="sm-content grid-content">
+                            <h3 class="sm-title grid-title">SM</h3>
+                            <p class="sm-text">平板（小屏幕）</p>
+                            <p class="sm-text">576px - 767px</p>
+                        </div>
+                        <div class="md-content grid-content">
+                            <h3 class="md-title grid-title">MD</h3>
+                            <p class="md-text">小桌面（中屏幕）</p>
+                            <p class="md-text">768px - 991px</p>
+                        </div>
+                        <div class="lg-content grid-content">
+                            <h3 class="lg-title grid-title">LG</h3>
+                            <p class="lg-text">桌面（大屏幕）</p>
+                            <p class="lg-text">992px - 1199px</p>
+                        </div>
+                        <div class="xl-content grid-content">
+                            <h3 class="xl-title grid-title">XL</h3>
+                            <p class="xl-text">大桌面（超大屏幕）</p>
+                            <p class="xl-text">1200px - 1399px</p>
+                        </div>
+                        <div class="xxl-content grid-content">
+                            <h3 class="xxl-title grid-title">XXL</h3>
+                            <p class="xxl-text">超大桌面</p>
+                            <p class="xxl-text">1400px - ∞px</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="grid-system-container">
+            <div class="container">
+                <h2 class="grid-system-title">响应式网格系统</h2>
+                <div class="grid-system-grid-cards">
+                    <div class="card-1-content">
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="phone-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                        </svg> -->
+                        <h3 class="card-1-title">移动优先</h3>
+                        <p class="card-1-text">从小屏幕开始设计，逐步增强大屏幕体验</p>
+                    </div>
+                    <div class="card-2-content">
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="tablet-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5h3m-6.75 2.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-15a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 4.5v15a2.25 2.25 0 0 0 2.25 2.25Z" />
+                        </svg> -->
+                        <h3 class="card-2-title">灵活断点</h3>
+                        <p class="card-2-text">基于内容设置断点，而非特定设备尺寸</p>
+                    </div>
+                    <div class="card-3-content">
+                        <!-- <svg t="1759498428855" class="laptop-icon" viewBox="0 0 1280 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4841" width="200" height="200"><path d="M1248 832H763.08c-1.48 39.62-29.42 64-65.48 64H576c-37.38 0-66.04-34.94-65.54-64H32c-17.6 0-32 14.4-32 32v32c0 70.4 57.6 128 128 128h1024c70.4 0 128-57.6 128-128v-32c0-17.6-14.4-32-32-32zM1152 96c0-52.8-43.2-96-96-96H224C171.2 0 128 43.2 128 96v672h1024V96z m-128 544H256V128h768v512z" p-id="4842"></path></svg> -->
+                        <h3 class="card-3-title">渐进增强</h3>
+                        <p class="card-3-text">随着屏幕尺寸增加，逐步添加更复杂的布局</p>
+                    </div>
+                    <div class="card-4-content">
+                        <!-- <svg t="1759498531296" class="computer-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5841" width="200" height="200"><path d="M832 160 192 160c-38.4 0-64 32-64 64l0 448c0 38.4 32 64 64 64l256 0 0 64L352 800C332.8 800 320 812.8 320 832c0 19.2 12.8 32 32 32l320 0c19.2 0 32-12.8 32-32 0-19.2-12.8-32-32-32L576 800l0-64 256 0c38.4 0 64-32 64-64l0-448C896 192 864 160 832 160zM832 672l-640 0 0-448 640 0 0 0L832 672z" p-id="5842"></path></svg> -->
+                        <h3 class="card-4-title">性能优化</h3>
+                        <p class="card-4-text">不同断点加载不同资源，优化性能</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="layout-demo-container">
+            <div class="container">
+                <h2 class="layout-demo-title">响应式布局演示</h2>
+                <div class="layout-demo-grid">
+                    <div class="left-sidebar-content">
+                        <h3 class="left-sidebar-title">头部/侧边栏</h3>
+                    </div>
+                    <div class="main-content">
+                        <h3 class="main-title">主要内容</h3>
+                    </div>
+                    <div class="right-sidebar-content">
+                        <h3 class="right-sidebar-title">侧边栏/页脚</h3>
+                    </div>
+                </div>
+                <p class="layout-bottom-content">调整浏览器窗口大小，观察布局变化</p>
+            </div>
+        </section>
+        <section class="table-container">
+            <div class="container">
+                <table class="table-container">
+                    <thead>
+                        <th>
+                            <tr>
+                                <td>设备类型</td>
+                                <td>断点范围</td>
+                                <td>列数</td>
+                                <td>布局特点</td>
+                            </tr>
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>手机</td>
+                            <td>< 576px</td>
+                            <td>1列</td>
+                            <td>垂直堆叠，简化导航</td>
+                        </tr>
+                        <tr>
+                            <td>平板</td>
+                            <td>576px - 768px</td>
+                            <td>2列</td>
+                            <td>简单网格，汉堡菜单</td>
+                        </tr>
+                        <tr>
+                            <td>小桌面</td>
+                            <td>768px - 992px</td>
+                            <td>3列</td>
+                            <td>完整导航，中等密度</td>
+                        </tr>
+                        <tr>
+                            <td>桌面</td>
+                            <td>992px - 1200px</td>
+                            <td>4列</td>
+                            <td>复杂布局，高信息密度</td>
+                        </tr>
+                        <tr>
+                            <td>大桌面</td>
+                            <td>> 1200px</td>
+                            <td>4+列</td>
+                            <td>最大内容展示，高级交互</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <footer class="footer-container">
+            <div class="container">
+                <div class="div-line">
+                    <p class="copyright-mark">© 2023 响应式设计演示. 保留所有权利。</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

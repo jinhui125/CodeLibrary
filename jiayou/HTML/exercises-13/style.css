@@ -1,0 +1,234 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: #f5f7fa;
+}
+
+.container {
+    margin: 0 1.5rem;  
+}
+
+/* #region 头部内容 */
+
+header {
+    background-color: #4a69bd;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #2c3e50, #4a69bd);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+}
+
+.header-name {
+    font-size: 2.6rem;
+    color: white;
+    text-shadow: 0 0 0.2rem white;
+}
+
+.options-container {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-link {
+    display: inline-block;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s;
+}
+
+.nav-link:link, .nav-link:visited {
+    color: white;
+}
+
+.nav-link:hover, .nav-link:active {
+    color: #f8c291;
+}
+/* #endregion 头部内容 */
+
+/* #region 主内容 */
+
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 59rem;
+    column-gap: 3rem;
+    margin: 3rem auto;
+}
+
+.left-sidebar-content, .main-content, .right-sidebar-content {
+    border-radius: 0.5rem;
+    background-color: white;
+    box-shadow: 0 0 0 0.3rem white;
+}
+
+.main-content-container {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+
+.main-content-container h2 {
+    font-size: 2.2rem;
+    color: #4a69bd;
+    margin-bottom: 1rem;
+}
+
+.main-content-container p {
+    line-height: 1.6;
+    font-size: 1.6rem;
+}
+
+.mian-content-title {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.article-pubdate {
+    color: #888;
+    font-size: 1.6rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.sidebar-content-conatiner {
+    width: 88%;
+    font-size: 1.5rem;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+
+.left-sidebar-name-1, .left-sidebar-name-2, .right-sidebar-name-1, .right-sidebar-name-2, .right-sidebar-name-3 {
+    padding: 1rem 0;
+    margin-bottom: 0.5rem;
+    border-bottom: 0.2rem solid #4a69bd;
+}
+
+.sidebar-options-style, .right-sidebar-options-2, .links-container {
+    list-style: none;
+}
+
+.sidebar-options-style li {
+    border-bottom: 0.1rem solid #eee;
+}
+
+.sidebar-link {
+    display: inline-block;
+    color: #4a69bd;
+    padding: 0.5rem 0;
+    text-decoration: none;
+    font-size: 1.6rem;
+}
+
+.sidebar-link:hover {
+    color: #e55039;
+    transition: color 0.3s;
+}
+
+.right-sidebar-options-2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag-cloud-btn {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    text-decoration: none;
+    border-radius: 0.4rem;
+}
+
+.tag-cloud-btn:link, .tag-cloud-btn:visited {
+    background-color: #4a69bd;
+    color: white;
+}
+
+.tag-cloud-btn:hover, .tag-cloud-btn:active {
+    background-color: #f8c291;
+    transition: background-color 0.3s;
+}
+
+#email {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    /* height: 3rem; */
+    padding: 0.8rem 0.5rem;
+}
+
+.subscription-btn {
+    width: 100%;
+    padding: 0.5rem 0;
+    background-color: #e55039;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+.subscription-btn:hover {
+    box-shadow: 0 0 0.2rem 0.1rem #e55039;
+    text-shadow: 0 0 0.5rem white;
+    transition: box-shadow 0.3s, text-shadow 0.3s;
+}
+
+/* #endregion 主内容 */
+
+/* #region 尾部内容 */
+
+footer {
+    background-color: #2c3e50;
+}
+
+.footer-container {
+    width: 73%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.about-us-container, .qiuck-link-container, .contact-info-container {
+    width: 30%;
+}
+
+.footer-container h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #f8c291;
+}
+
+.footer-container p {
+    font-size: 1.6rem;
+    color: white;
+}
+
+.div-line {
+    width: 73%;
+    margin: 0 auto;
+    margin-top: 4rem;
+    border-top: 0.1rem solid #4a69bd;
+}
+
+.copyright-mark {
+    text-align: center;
+    padding: 2.5rem 0;
+    color: white;
+    font-size: 1.6rem;
+}
+/* #endregion 尾部内容 */

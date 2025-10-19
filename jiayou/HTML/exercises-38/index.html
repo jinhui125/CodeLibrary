@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>粘性导航栏实现</title>
+        <link rel="stylesheet" type="text/css" href="./style.css">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="header-container">
+                    <h1 class="header-name">StickyNav</h1>
+                    <nav class="nav-container">
+                        <ul class="nav-option-lists">
+                            <li>
+                                <a class="nav-link-btn" href="#main" target="_self">首页</a>
+                            </li>
+                            <li>
+                                <a class="nav-link-btn" href="#about-us" target="_self">关于</a>
+                            </li>
+                            <li>
+                                <a class="nav-link-btn" href="#our-services" target="_self">服务</a>
+                            </li>
+                            <li>
+                                <a class="nav-link-btn" href="#works-show" target="_self">作品</a>
+                            </li>
+                            <li>
+                                <a class="nav-link-btn" href="#contact-us" target="_self">联系</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div class="theme-switch-container">
+            <ul class="theme-switch-option-lists">
+                <li>
+                    <a class="theme-switch-btn" href="#" target="_self">默认</a>
+                </li>
+                <li>
+                    <a class="theme-switch-btn" href="#" target="_self">透明</a>
+                </li>
+                <li>
+                    <a class="theme-switch-btn" href="#" target="_self">深色</a>
+                </li>
+                <li>
+                    <a class="theme-switch-btn" href="#" target="_self">渐变</a>
+                </li>
+            </ul>
+        </div>
+        <section id="main" class="main-container">
+            <div class="container">
+                <div class="main-content">
+                    <h2>粘性导航栏演示</h2>
+                    <p>这是一个在滚动时保持可见的粘性导航栏实现示例。向下滚动页面查看效果。</p>
+                    <a class="know-more-btn link-btn-style" href="#about-us" target="_self">了解更多</a>
+                </div>
+            </div>
+        </section>
+        <section id="about-us" class="cards-container">
+            <div class="container">
+                <div class="cards-content">
+                    <h2 class="cards-name">关于我们</h2>
+                    <p class="cards-text">我们关注于创建优秀的用户体验和现代化的网页设计</p>
+                    <div class="cards">
+                        <div class="card-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="brush-icon icon-style">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42" />
+                            </svg>
+                            <h3>创意设计</h3>
+                            <p>我们提供独特而创新的设计解决方案，确保您的网站脱颖而出。</p>
+                        </div>
+                        <div class="card-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="code-icon icon-style">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+                            </svg>
+                            <h3>优质代码</h3>
+                            <p>我们编写干净、高效且可维护的代码，确保网站性能卓越。</p>
+                        </div>
+                        <div class="card-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="phone-icon icon-style">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                            </svg>
+                            <h3>响应式设计</h3>
+                            <p>我们的设计在各种设备上都能完美呈现，提供一致的用户体验。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="our-services" class="cards-container" style="background-color: #f1f2f6;">
+            <div class="container">
+                <div class="cards-content">
+                    <h2 class="cards-name">我们的服务</h2>
+                    <p class="cards-text">我们提供全方位的网页设计和开发服务</p>
+                    <div class="cards">
+                        <div class="card-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="laptop-icon icon-style">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
+                            </svg>
+                            <h3>网站开发</h3>
+                            <p>从概念到部署，我们提供完整的网站开发服务。</p>
+                        </div>
+                        <div class="card-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="shopping-cart-icon icon-style">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                            </svg>
+                            <h3>电子商务</h3>
+                            <p>创建功能强大的在线商店，提升您的销售业绩。</p>
+                        </div>
+                        <div class="card-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="search-icon icon-style">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                            </svg>
+                            <h3>SEO优化</h3>
+                            <p>优化您的网站，提高在搜索引擎中的排名。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="works-show" class="cards-container">
+            <div class="container">
+                <div class="cards-content">
+                    <h2 class="cards-name">作品展示</h2>
+                    <p class="cards-text">游览我们的一些精选项目</p>
+                    <div class="cards">
+                        <div class="card-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="briefcase-icon icon-style">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z" />
+                            </svg>
+                            <h3>企业网站</h3>
+                            <p>为各种规模的企业创建专业的官方网站。</p>
+                        </div>
+                        <div class="card-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="phone-icon icon-style">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                            </svg>
+                            <h3>移动应用</h3>
+                            <p>开发直观易用的移动应用程序。</p>
+                        </div>
+                        <div class="card-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="chart-line-icon icon-style">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605" />
+                            </svg>
+                            <h3>数据分析</h3>
+                            <p>创建数据可视化和分析平台。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contact-us" class="contact-us-container">
+            <div class="container">
+                <div class="contact-us-content">
+                    <h2 class="contact-us-name">联系我们</h2>
+                    <p class="contact-us-info">有兴趣合作吗？请随时与我们联系</p>
+                    <p class="contact-us-text">我们很乐意听取您的想法并讨论如何帮助您实现目标。请通过以下方式与我们联系：</p>
+                    <div class="contact-us-ways">
+                        <div class="email-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="letter-icon">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                            </svg>
+                            <a class="send-email-btn">发送邮件</a>
+                        </div>
+                        <div class="dial-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="dial-icon">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                            </svg>
+                            <a class="cellphone-btn">拨打电话</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="footer-container">
+            <div class="container">
+                <div class="div-line">
+                    <p class="copyright-mark">© 2023 粘性导航栏演示. 保留所有权利。</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

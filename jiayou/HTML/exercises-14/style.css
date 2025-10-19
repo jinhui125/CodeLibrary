@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+.container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.outside-container {
+    width: 33rem;
+    height: 30rem;
+    margin: 0 auto;
+    background-color: bisque;
+    position: relative;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.inner-container {
+    width: 26rem;
+    height: 23rem;
+    background-color: aquamarine;
+    position: absolute;
+    border-radius: 50%;
+    top: 3.5rem;
+    left: 3.5rem;
+    z-index: 2;
+}
+
+.auther-img {
+    width: 13rem;
+    height: 10rem;
+    border-radius: 1rem;
+    position: absolute;
+    z-index: 3;
+    top: 10rem;
+    left: 10rem;
+}
