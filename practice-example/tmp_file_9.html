@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid瀑布流布局</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.7rem 1.5rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .btn.active {
+            background: #2c3e50;
+        }
+        
+        /* 瀑布流布局核心样式 */
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-auto-rows: 10px; /* 控制行高基数 */
+            grid-gap: 15px;
+        }
+        
+        .masonry-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            break-inside: avoid;
+        }
+        
+        .masonry-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .masonry-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .masonry-content {
+            padding: 1rem;
+        }
+        
+        .masonry-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .masonry-desc {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        /* 不同高度的项目 */
+        .item-small {
+            grid-row-end: span 20; /* 小项目占20行 */
+        }
+        
+        .item-medium {
+            grid-row-end: span 30; /* 中等项目占30行 */
+        }
+        
+        .item-large {
+            grid-row-end: span 40; /* 大项目占40行 */
+        }
+        
+        .item-xlarge {
+            grid-row-end: span 50; /* 超大项目占50行 */
+        }
+        
+        /* Flexbox瀑布流布局（备用方案） */
+        .masonry-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .masonry-flex .masonry-item {
+            flex: 1 0 300px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .masonry-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .masonry-flex .masonry-item {
+                flex: 1 0 250px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .masonry-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .masonry-flex .masonry-item {
+                flex: 1 0 100%;
+            }
+        }
+        
+        /* 代码展示区域 */
+        .code-section {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+            overflow-x: auto;
+        }
+        
+        .code-section h3 {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+        }
+        
+        .code-block {
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+            white-space: pre;
+        }
+        
+        .info-box {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 5px;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .comparison-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem 0;
+            color: #7f8c8d;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CSS Grid瀑布流布局</h1>
+            <p class="subtitle">使用CSS Grid和Flexbox创建响应式瀑布流布局，适用于图片展示、博客文章卡片等多种场景</p>
+        </header>
+        
+        <div class="controls">
+            <button class="btn active" data-layout="grid">Grid布局</button>
+            <button class="btn" data-layout="flex">Flexbox布局</button>
+            <button class="btn" data-layout="add">添加项目</button>
+            <button class="btn" data-layout="shuffle">随机排序</button>
+        </div>
+        
+        <div class="info-box">
+            <h3><i class="fas fa-info-circle"></i> 瀑布流布局特点</h3>
+            <p>瀑布流布局（Masonry Layout）是一种流行的网页布局方式，其特点是项目宽度固定，高度不固定，按照一定的规则排列，形成类似瀑布流动的效果。</p>
+        </div>
+        
+        <!-- Grid瀑布流布局 -->
+        <div class="masonry-layout" id="grid-layout">
+            <div class="masonry-grid" id="masonry-grid">
+                <!-- 项目将通过JavaScript动态添加 -->
+            </div>
+        </div>
+        
+        <!-- Flexbox瀑布流布局（默认隐藏） -->
+        <div class="masonry-layout" id="flex-layout" style="display: none;">
+            <div class="masonry-flex" id="masonry-flex">
+                <!-- 项目将通过JavaScript动态添加 -->
+            </div>
+        </div>
+        
+        <div class="comparison">
+            <div class="comparison-item">
+                <h3>CSS Grid瀑布流优点</h3>
+                <ul>
+                    <li>真正的二维布局控制</li>
+                    <li>项目可以轻松跨越行和列</li>
+                    <li>浏览器原生支持，性能好</li>
+                    <li>代码简洁，易于维护</li>
+                </ul>
+            </div>
+            
+            <div class="comparison-item">
+                <h3>Flexbox瀑布流优点</h3>
+                <ul>
+                    <li>更好的浏览器兼容性</li>
+                    <li>一维布局控制更直观</li>
+                    <li>项目顺序控制更灵活</li>
+                    <li>在某些简单场景下实现更简单</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="code-section">
+            <h3>CSS Grid瀑布流核心代码</h3>
+            <div class="code-block">
+.masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: 10px; /* 控制行高基数 */
+    grid-gap: 15px;
+}
+
+.masonry-item {
+    /* 项目样式 */
+    grid-row-end: span X; /* 根据项目高度设置跨越的行数 */
+}
+            </div>
+        </div>
+        
+        <footer>
+            <p>CSS Grid瀑布流布局示例 &copy; 2023</p>
+        </footer>
+    </div>
+
+    <script>
+        // 示例数据
+        const items = [
+            { title: "自然风光", desc: "美丽的山水景色", height: "small", color: "#1abc9c" },
+            { title: "城市建筑", desc: "现代都市的摩天大楼", height: "medium", color: "#3498db" },
+            { title: "美食摄影", desc: "令人垂涎的美食照片", height: "large", color: "#e74c3c" },
+            { title: "动物世界", desc: "可爱的野生动物", height: "small", color: "#f39c12" },
+            { title: "旅行日记", desc: "记录精彩的旅行时刻", height: "xlarge", color: "#9b59b6" },
+            { title: "艺术创作", desc: "独特的艺术设计作品", height: "medium", color: "#34495e" },
+            { title: "科技产品", desc: "最新的科技设备", height: "small", color: "#16a085" },
+            { title: "运动瞬间", desc: "捕捉运动的精彩时刻", height: "large", color: "#d35400" },
+            { title: "人物肖像", desc: "生动的人物表情", height: "medium", color: "#c0392b" },
+            { title: "夜景摄影", desc: "城市的夜晚美景", height: "small", color: "#2980b9" }
+        ];
+        
+        // 生成随机高度
+        function getRandomHeight() {
+            const heights = ["small", "medium", "large", "xlarge"];
+            return heights[Math.floor(Math.random() * heights.length)];
+        }
+        
+        // 生成随机颜色
+        function getRandomColor() {
+            const colors = ["#1abc9c", "#3498db", "#9b59b6", "#e74c3c", "#f39c12", "#2ecc71", "#34495e"];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
+        // 创建项目元素
+        function createItem(item, index) {
+            const itemEl = document.createElement('div');
+            itemEl.className = `masonry-item item-${item.height}`;
+            itemEl.innerHTML = `
+                <div style="height: 150px; background: ${item.color}; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                    ${item.title}
+                </div>
+                <div class="masonry-content">
+                    <h3 class="masonry-title">${item.title}</h3>
+                    <p class="masonry-desc">${item.desc}</p>
+                    <p class="masonry-desc">项目高度: ${item.height}</p>
+                </div>
+            `;
+            return itemEl;
+        }
+        
+        // 初始化布局
+        function initLayout() {
+            const gridContainer = document.getElementById('masonry-grid');
+            const flexContainer = document.getElementById('masonry-flex');
+            
+            // 清空容器
+            gridContainer.innerHTML = '';
+            flexContainer.innerHTML = '';
+            
+            // 添加项目
+            items.forEach((item, index) => {
+                const gridItem = createItem(item, index);
+                const flexItem = createItem(item, index);
+                
+                gridContainer.appendChild(gridItem);
+                flexContainer.appendChild(flexItem);
+            });
+        }
+        
+        // 添加新项目
+        function addItem() {
+            const newItem = {
+                title: `新项目 ${items.length + 1}`,
+                desc: "这是新添加的项目",
+                height: getRandomHeight(),
+                color: getRandomColor()
+            };
+            
+            items.push(newItem);
+            
+            const gridContainer = document.getElementById('masonry-grid');
+            const flexContainer = document.getElementById('masonry-flex');
+            
+            const gridItem = createItem(newItem, items.length);
+            const flexItem = createItem(newItem, items.length);
+            
+            gridContainer.appendChild(gridItem);
+            flexContainer.appendChild(flexItem);
+        }
+        
+        // 随机排序项目
+        function shuffleItems() {
+            for (let i = items.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [items[i], items[j]] = [items[j], items[i]];
+            }
+            
+            initLayout();
+        }
+        
+        // 切换布局
+        function switchLayout(layout) {
+            const gridLayout = document.getElementById('grid-layout');
+            const flexLayout = document.getElementById('flex-layout');
+            const gridBtn = document.querySelector('[data-layout="grid"]');
+            const flexBtn = document.querySelector('[data-layout="flex"]');
+            
+            if (layout === 'grid') {
+                gridLayout.style.display = 'block';
+                flexLayout.style.display = 'none';
+                gridBtn.classList.add('active');
+                flexBtn.classList.remove('active');
+            } else {
+                gridLayout.style.display = 'none';
+                flexLayout.style.display = 'block';
+                gridBtn.classList.remove('active');
+                flexBtn.classList.add('active');
+            }
+        }
+        
+        // 事件监听
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const layout = this.getAttribute('data-layout');
+                
+                switch(layout) {
+                    case 'grid':
+                    case 'flex':
+                        switchLayout(layout);
+                        break;
+                    case 'add':
+                        addItem();
+                        break;
+                    case 'shuffle':
+                        shuffleItems();
+                        break;
+                }
+            });
+        });
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', initLayout);
+    </script>
+</body>
+</html>

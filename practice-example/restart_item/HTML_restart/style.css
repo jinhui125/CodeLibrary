@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+td {
+    border: 1px solid black;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.list-style {
+    list-style-type: none;
+    float: inline-start;
+}
+
+.link-style {
+    text-decoration: none;
+}
+
+.table-container {
+    border: 1px solid black;
+    border-spacing: 0px;
+}

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS滤镜属性演示</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6b8cbb;
+            --bg-color: #f5f7fa;
+            --text-color: #333;
+            --border-color: #ddd;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            gap: 20px;
+        }
+        
+        .controls {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        
+        .preview {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .filter-control {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+        
+        .value-display {
+            text-align: right;
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .image-container {
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        #filtered-image {
+            width: 100%;
+            display: block;
+            transition: filter 0.3s ease;
+        }
+        
+        .presets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .preset-btn {
+            padding: 8px 15px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .preset-btn:hover {
+            background: var(--primary-color);
+        }
+        
+        .css-output {
+            width: 100%;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            border: 1px solid var(--border-color);
+        }
+        
+        .reset-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .reset-btn:hover {
+            background: #c0392b;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CSS滤镜属性演示</h1>
+            <p class="description">通过下方的控制面板调整各种CSS滤镜属性，实时查看效果并获取对应的CSS代码。</p>
+        </header>
+        
+        <div class="content">
+            <div class="controls">
+                <div class="filter-control">
+                    <label for="blur">模糊 (blur)</label>
+                    <input type="range" id="blur" min="0" max="10" step="0.1" value="0">
+                    <div class="value-display"><span id="blur-value">0px</span></div>
+                </div>
+                
+                <div class="filter-control">
+                    <label for="brightness">亮度 (brightness)</label>
+                    <input type="range" id="brightness" min="0" max="200" step="1" value="100">
+                    <div class="value-display"><span id="brightness-value">100%</span></div>
+                </div>
+                
+                <div class="filter-control">
+                    <label for="contrast">对比度 (contrast)</label>
+                    <input type="range" id="contrast" min="0" max="200" step="1" value="100">
+                    <div class="value-display"><span id="contrast-value">100%</span></div>
+                </div>
+                
+                <div class="filter-control">
+                    <label for="grayscale">灰度 (grayscale)</label>
+                    <input type="range" id="grayscale" min="0" max="100" step="1" value="0">
+                    <div class="value-display"><span id="grayscale-value">0%</span></div>
+                </div>
+                
+                <div class="filter-control">
+                    <label for="hue-rotate">色相旋转 (hue-rotate)</label>
+                    <input type="range" id="hue-rotate" min="0" max="360" step="1" value="0">
+                    <div class="value-display"><span id="hue-rotate-value">0deg</span></div>
+                </div>
+                
+                <div class="filter-control">
+                    <label for="invert">反相 (invert)</label>
+                    <input type="range" id="invert" min="0" max="100" step="1" value="0">
+                    <div class="value-display"><span id="invert-value">0%</span></div>
+                </div>
+                
+                <div class="filter-control">
+                    <label for="opacity">不透明度 (opacity)</label>
+                    <input type="range" id="opacity" min="0" max="100" step="1" value="100">
+                    <div class="value-display"><span id="opacity-value">100%</span></div>
+                </div>
+                
+                <div class="filter-control">
+                    <label for="saturate">饱和度 (saturate)</label>
+                    <input type="range" id="saturate" min="0" max="200" step="1" value="100">
+                    <div class="value-display"><span id="saturate-value">100%</span></div>
+                </div>
+                
+                <div class="filter-control">
+                    <label for="sepia">深褐色 (sepia)</label>
+                    <input type="range" id="sepia" min="0" max="100" step="1" value="0">
+                    <div class="value-display"><span id="sepia-value">0%</span></div>
+                </div>
+                
+                <button class="reset-btn" id="reset-btn">重置所有滤镜</button>
+                
+                <div class="presets">
+                    <h3>预设效果:</h3>
+                    <button class="preset-btn" data-preset="vintage">复古效果</button>
+                    <button class="preset-btn" data-preset="black-and-white">黑白效果</button>
+                    <button class="preset-btn" data-preset="high-contrast">高对比度</button>
+                    <button class="preset-btn" data-preset="inverted">反色效果</button>
+                </div>
+            </div>
+            
+            <div class="preview">
+                <div class="image-container">
+                    <img id="filtered-image" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="演示图片">
+                </div>
+                
+                <div class="css-output">
+                    <strong>生成的CSS代码:</strong>
+                    <code id="css-code">filter: none;</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有滑块元素
+            const sliders = document.querySelectorAll('input[type="range"]');
+            const image = document.getElementById('filtered-image');
+            const cssCode = document.getElementById('css-code');
+            const resetBtn = document.getElementById('reset-btn');
+            const presetBtns = document.querySelectorAll('.preset-btn');
+            
+            // 初始化值显示
+            sliders.forEach(slider => {
+                const valueDisplay = document.getElementById(`${slider.id}-value`);
+                if (slider.id === 'blur') {
+                    valueDisplay.textContent = `${slider.value}px`;
+                } else if (slider.id === 'hue-rotate') {
+                    valueDisplay.textContent = `${slider.value}deg`;
+                } else {
+                    valueDisplay.textContent = `${slider.value}%`;
+                }
+            });
+            
+            // 更新滤镜函数
+            function updateFilter() {
+                const blur = document.getElementById('blur').value;
+                const brightness = document.getElementById('brightness').value;
+                const contrast = document.getElementById('contrast').value;
+                const grayscale = document.getElementById('grayscale').value;
+                const hueRotate = document.getElementById('hue-rotate').value;
+                const invert = document.getElementById('invert').value;
+                const opacity = document.getElementById('opacity').value;
+                const saturate = document.getElementById('saturate').value;
+                const sepia = document.getElementById('sepia').value;
+                
+                // 构建filter字符串
+                const filterString = `filter: 
+                    blur(${blur}px)
+                    brightness(${brightness}%)
+                    contrast(${contrast}%)
+                    grayscale(${grayscale}%)
+                    hue-rotate(${hueRotate}deg)
+                    invert(${invert}%)
+                    opacity(${opacity}%)
+                    saturate(${saturate}%)
+                    sepia(${sepia}%);`;
+                
+                // 应用滤镜
+                image.style.filter = `
+                    blur(${blur}px)
+                    brightness(${brightness}%)
+                    contrast(${contrast}%)
+                    grayscale(${grayscale}%)
+                    hue-rotate(${hueRotate}deg)
+                    invert(${invert}%)
+                    opacity(${opacity}%)
+                    saturate(${saturate}%)
+                    sepia(${sepia}%)
+                `;
+                
+                // 更新CSS代码显示
+                cssCode.textContent = filterString;
+            }
+            
+            // 为所有滑块添加事件监听
+            sliders.forEach(slider => {
+                slider.addEventListener('input', function() {
+                    const valueDisplay = document.getElementById(`${this.id}-value`);
+                    if (this.id === 'blur') {
+                        valueDisplay.textContent = `${this.value}px`;
+                    } else if (this.id === 'hue-rotate') {
+                        valueDisplay.textContent = `${this.value}deg`;
+                    } else {
+                        valueDisplay.textContent = `${this.value}%`;
+                    }
+                    updateFilter();
+                });
+            });
+            
+            // 重置按钮
+            resetBtn.addEventListener('click', function() {
+                sliders.forEach(slider => {
+                    if (slider.id === 'brightness' || slider.id === 'contrast' || slider.id === 'saturate') {
+                        slider.value = 100;
+                    } else if (slider.id === 'opacity') {
+                        slider.value = 100;
+                    } else {
+                        slider.value = 0;
+                    }
+                    
+                    const valueDisplay = document.getElementById(`${slider.id}-value`);
+                    if (slider.id === 'blur') {
+                        valueDisplay.textContent = `${slider.value}px`;
+                    } else if (slider.id === 'hue-rotate') {
+                        valueDisplay.textContent = `${slider.value}deg`;
+                    } else {
+                        valueDisplay.textContent = `${slider.value}%`;
+                    }
+                });
+                updateFilter();
+            });
+            
+            // 预设效果
+            presetBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const preset = this.dataset.preset;
+                    
+                    switch(preset) {
+                        case 'vintage':
+                            document.getElementById('sepia').value = 70;
+                            document.getElementById('contrast').value = 120;
+                            document.getElementById('brightness').value = 90;
+                            document.getElementById('hue-rotate').value = 10;
+                            break;
+                        case 'black-and-white':
+                            document.getElementById('grayscale').value = 100;
+                            document.getElementById('contrast').value = 120;
+                            break;
+                        case 'high-contrast':
+                            document.getElementById('contrast').value = 180;
+                            document.getElementById('saturate').value = 150;
+                            break;
+                        case 'inverted':
+                            document.getElementById('invert').value = 100;
+                            document.getElementById('hue-rotate').value = 180;
+                            break;
+                    }
+                    
+                    // 更新所有值显示
+                    sliders.forEach(slider => {
+                        const valueDisplay = document.getElementById(`${slider.id}-value`);
+                        if (slider.id === 'blur') {
+                            valueDisplay.textContent = `${slider.value}px`;
+                        } else if (slider.id === 'hue-rotate') {
+                            valueDisplay.textContent = `${slider.value}deg`;
+                        } else {
+                            valueDisplay.textContent = `${slider.value}%`;
+                        }
+                    });
+                    
+                    updateFilter();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>粘性页脚实现</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #a8c0ff;
+        }
+        
+        main {
+            flex: 1;
+            padding: 2rem 0;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #4b6cb7;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2 {
+            color: #34495e;
+            margin: 1.5rem 0 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .method-card {
+            background: #f8f9fa;
+            border-left: 4px solid #4b6cb7;
+            padding: 1.5rem;
+            border-radius: 5px;
+        }
+        
+        .method-card h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .demo-area {
+            background: #edf2f7;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .content-toggle {
+            display: flex;
+            margin: 1.5rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .toggle-btn {
+            padding: 0.7rem 1.5rem;
+            background: #e2e8f0;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .toggle-btn.active {
+            background: #4b6cb7;
+            color: white;
+        }
+        
+        .toggle-content {
+            display: none;
+            padding: 1.5rem 0;
+        }
+        
+        .toggle-content.active {
+            display: block;
+        }
+        
+        /* 粘性页脚样式 */
+        footer {
+            background: linear-gradient(90deg, #182848 0%, #4b6cb7 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-top: auto; /* 关键属性 - 使页脚保持在底部 */
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #cbd5e0;
+            margin-bottom: 0.5rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #a0aec0;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.75rem;
+            }
+            
+            .method-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">粘性页脚演示</div>
+                <nav>
+                    <ul>
+                        <li><a href="#intro">介绍</a></li>
+                        <li><a href="#methods">实现方法</a></li>
+                        <li><a href="#demo">演示</a></li>
+                        <li><a href="#code">代码</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="content-section" id="intro">
+            <h1>粘性页脚实现指南</h1>
+            <p>粘性页脚（Sticky Footer）是一种网页设计技术，确保页脚始终位于页面底部，即使页面内容不足以填满整个视口高度时也是如此。</p>
+            <p>传统的页脚设计在内容较少时会在页面中间"漂浮"，而粘性页脚通过CSS技术解决了这个问题。</p>
+        </section>
+        
+        <section class="content-section" id="methods">
+            <h2>实现粘性页脚的几种方法</h2>
+            <div class="method-grid">
+                <div class="method-card">
+                    <h3>Flexbox方法</h3>
+                    <p>使用Flexbox布局是最现代和推荐的方法。将body设置为flex容器，并将main内容区域设置为flex:1，页脚会自动被推到页面底部。</p>
+                </div>
+                <div class="method-card">
+                    <h3>Grid方法</h3>
+                    <p>使用CSS Grid布局，将页面划分为网格区域，并将页脚放置在底部区域。</p>
+                </div>
+                <div class="method-card">
+                    <h3>Calc方法</h3>
+                    <p>使用CSS calc()函数计算最小高度，确保内容区域至少为视口高度减去页脚高度。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section" id="demo">
+            <h2>粘性页脚演示</h2>
+            <p>尝试调整浏览器窗口高度，观察页脚如何始终保持在页面底部：</p>
+            
+            <div class="content-toggle">
+                <button class="toggle-btn active" data-target="demo1">少量内容</button>
+                <button class="toggle-btn" data-target="demo2">中等内容</button>
+                <button class="toggle-btn" data-target="demo3">大量内容</button>
+            </div>
+            
+            <div class="toggle-content active" id="demo1">
+                <div class="demo-area">
+                    <p>这是少量内容的演示。页脚应该紧跟在内容后面，但始终保持在页面底部。</p>
+                </div>
+            </div>
+            
+            <div class="toggle-content" id="demo2">
+                <div class="demo-area">
+                    <p>这是中等量内容的演示。</p>
+                    <p>当内容增多时，页脚会向下移动，但仍然保持在内容之后。</p>
+                    <p>如果内容超过一屏，页脚会正常出现在滚动后的页面底部。</p>
+                </div>
+            </div>
+            
+            <div class="toggle-content" id="demo3">
+                <div class="demo-area">
+                    <p>这是大量内容的演示。</p>
+                    <p>当内容足够多，需要滚动才能查看全部时，页脚会正常出现在页面底部。</p>
+                    <p>尝试滚动页面，查看页脚如何保持在底部。</p>
+                    <div style="height: 800px; display: flex; align-items: center; justify-content: center;">
+                        <p>这是额外的填充内容，用于模拟长页面。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section" id="code">
+            <h2>实现代码</h2>
+            <p>以下是使用Flexbox实现粘性页脚的核心CSS代码：</p>
+            
+            <div class="code-example">
+/* 关键CSS代码 */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1; /* 使主要内容区域占据所有可用空间 */
+}
+
+footer {
+    margin-top: auto; /* 将页脚推到页面底部 */
+}
+            </div>
+            
+            <p>这种方法利用了Flexbox的弹性布局特性，通过将body设置为flex容器，并让主要内容区域占据所有可用空间，页脚会自动被推到页面底部。</p>
+            
+            <h3>HTML结构</h3>
+            <div class="code-example">
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;!-- 页头内容 --&gt;
+    &lt;/header&gt;
+    
+    &lt;main&gt;
+        &lt;!-- 主要内容 --&gt;
+    &lt;/main&gt;
+    
+    &lt;footer&gt;
+        &lt;!-- 页脚内容 --&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <p>我们专注于前端开发技术分享和教程制作。</p>
+                    <a href="#">了解更多</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <a href="#">首页</a>
+                    <a href="#">教程</a>
+                    <a href="#">博客</a>
+                    <a href="#">联系我们</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>联系信息</h3>
+                    <p>邮箱: contact@example.com</p>
+                    <p>电话: +123 456 7890</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 粘性页脚演示. 所有权利保留.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 内容切换功能
+        document.querySelectorAll('.toggle-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // 移除所有active类
+                document.querySelectorAll('.toggle-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelectorAll('.toggle-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // 添加active类到当前按钮和对应内容
+                button.classList.add('active');
+                const targetId = button.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+        
+        // 添加一些随机内容来演示不同内容长度
+        const demoContents = [
+            "这是少量内容的演示。页脚应该紧跟在内容后面，但始终保持在页面底部。",
+            "这是中等量内容的演示。当内容增多时，页脚会向下移动，但仍然保持在内容之后。如果内容超过一屏，页脚会正常出现在滚动后的页面底部。",
+            "这是大量内容的演示。当内容足够多，需要滚动才能查看全部时，页脚会正常出现在页面底部。尝试滚动页面，查看页脚如何保持在底部。"
+        ];
+        
+        // 初始填充内容
+        document.querySelectorAll('.demo-area p').forEach((p, index) => {
+            if (index < demoContents.length) {
+                p.textContent = demoContents[index];
+            }
+        });
+    </script>
+</body>
+</html>

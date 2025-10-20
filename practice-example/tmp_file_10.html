@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>粘性导航栏实现</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        /* 粘性导航栏样式 */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        /* 导航栏基础样式 */
+        .navbar {
+            background: linear-gradient(90deg, #2c3e50 0%, #3498db 100%);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-scrolled {
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.7rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-left: 2rem;
+            position: relative;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #a8c0ff;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #a8c0ff;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active .nav-link {
+            color: #a8c0ff;
+        }
+        
+        .active .nav-link::after {
+            width: 100%;
+        }
+        
+        /* 汉堡菜单按钮 */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* 页面内容样式 */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .content-section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                background: rgba(44, 62, 80, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                padding: 2rem 0;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 1.5rem 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+        }
+        
+        /* 导航栏样式变体 */
+        .style-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .style-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: all 0.3s;
+        }
+        
+        .style-btn:hover {
+            background: #2980b9;
+        }
+        
+        /* 导航栏样式变体 */
+        .navbar-transparent {
+            background: transparent;
+            box-shadow: none;
+        }
+        
+        .navbar-dark {
+            background: #2c3e50;
+        }
+        
+        .navbar-gradient {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        /* 进度指示器 */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #a8c0ff);
+            z-index: 1001;
+            transition: width 0.1s;
+        }
+    </style>
+</head>
+<body>
+    <!-- 滚动进度条 -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <!-- 粘性导航栏 -->
+    <div class="sticky-nav" id="stickyNav">
+        <nav class="navbar" id="navbar">
+            <div class="container">
+                <div class="nav-container">
+                    <a href="#" class="logo">StickyNav</a>
+                    
+                    <ul class="nav-menu" id="navMenu">
+                        <li class="nav-item active">
+                            <a href="#home" class="nav-link">首页</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#about" class="nav-link">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#services" class="nav-link">服务</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#portfolio" class="nav-link">作品</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#contact" class="nav-link">联系</a>
+                        </li>
+                    </ul>
+                    
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    
+    <!-- 页面内容 -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>粘性导航栏演示</h1>
+            <p>这是一个在滚动时保持可见的粘性导航栏实现示例。向下滚动页面查看效果。</p>
+            <a href="#about" class="btn">了解更多</a>
+        </div>
+    </section>
+    
+    <section id="about" class="content-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>关于我们</h2>
+                <p>我们专注于创建优秀的用户体验和现代化的网页设计</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>创意设计</h3>
+                    <p>我们提供独特而创新的设计解决方案，确保您的网站脱颖而出。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>优质代码</h3>
+                    <p>我们编写干净、高效且可维护的代码，确保网站性能卓越。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>响应式设计</h3>
+                    <p>我们的设计在各种设备上都能完美呈现，提供一致的用户体验。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="services" class="content-section" style="background: #f1f2f6;">
+        <div class="container">
+            <div class="section-title">
+                <h2>我们的服务</h2>
+                <p>我们提供全方位的网页设计和开发服务</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>网站开发</h3>
+                    <p>从概念到部署，我们提供完整的网站开发服务。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>电子商务</h3>
+                    <p>创建功能强大的在线商店，提升您的销售业绩。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>SEO优化</h3>
+                    <p>优化您的网站，提高在搜索引擎中的排名。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="portfolio" class="content-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>作品展示</h2>
+                <p>浏览我们的一些精选项目</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>企业网站</h3>
+                    <p>为各种规模的企业创建专业的官方网站。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile"></i>
+                    </div>
+                    <h3>移动应用</h3>
+                    <p>开发直观易用的移动应用程序。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>数据分析</h3>
+                    <p>创建数据可视化和分析平台。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="content-section" style="background: #f1f2f6;">
+        <div class="container">
+            <div class="section-title">
+                <h2>联系我们</h2>
+                <p>有兴趣合作吗？请随时与我们联系</p>
+            </div>
+            
+            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <p>我们很乐意听取您的想法并讨论如何帮助您实现目标。请通过以下方式与我们联系：</p>
+                <div style="margin-top: 2rem;">
+                    <a href="mailto:contact@example.com" class="btn" style="margin-right: 1rem;">
+                        <i class="fas fa-envelope"></i> 发送邮件
+                    </a>
+                    <a href="tel:+1234567890" class="btn">
+                        <i class="fas fa-phone"></i> 拨打电话
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 粘性导航栏演示. 所有权利保留.</p>
+        </div>
+    </footer>
+    
+    <!-- 样式控制按钮 -->
+    <div class="style-controls">
+        <button class="style-btn" data-style="default">默认</button>
+        <button class="style-btn" data-style="transparent">透明</button>
+        <button class="style-btn" data-style="dark">深色</button>
+        <button class="style-btn" data-style="gradient">渐变</button>
+    </div>
+
+    <script>
+        // 获取DOM元素
+        const stickyNav = document.getElementById('stickyNav');
+        const navbar = document.getElementById('navbar');
+        const navMenu = document.getElementById('navMenu');
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const styleButtons = document.querySelectorAll('.style-btn');
+        const scrollProgress = document.getElementById('scrollProgress');
+        
+        // 滚动时改变导航栏样式
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+            
+            // 更新滚动进度条
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            scrollProgress.style.width = scrolled + "%";
+        });
+        
+        // 切换移动端菜单
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+        
+        // 点击导航链接时平滑滚动到对应部分
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                // 关闭移动端菜单
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                
+                // 平滑滚动到目标部分
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // 更新活动链接
+                navLinks.forEach(item => item.parentElement.classList.remove('active'));
+                link.parentElement.classList.add('active');
+            });
+        });
+        
+        // 更改导航栏样式
+        styleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const style = button.getAttribute('data-style');
+                
+                // 移除所有样式类
+                navbar.classList.remove('navbar-transparent', 'navbar-dark', 'navbar-gradient');
+                
+                // 添加选中的样式类
+                if (style !== 'default') {
+                    navbar.classList.add(`navbar-${style}`);
+                }
+            });
+        });
+        
+        // 根据滚动位置高亮当前部分
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.parentElement.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.parentElement.classList.add('active');
+                }
+            });
+        });
+        
+        // 页面加载时初始化
+        window.addEventListener('load', () => {
+            // 添加淡入效果
+            document.body.style.opacity = 0;
+            document.body.style.transition = 'opacity 0.5s';
+            
+            setTimeout(() => {
+                document.body.style.opacity = 1;
+            }, 100);
+        });
+    </script>
+</body>
+</html>

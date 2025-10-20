@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML+CSS 进阶知识点</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #7209b7;
+            --success-color: #4cc9f0;
+            --warning-color: #f72585;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --gray-color: #6c757d;
+            --border-radius: 10px;
+            --box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        .dark-mode {
+            --light-color: #121212;
+            --dark-color: #f8f9fa;
+            --gray-color: #adb5bd;
+            --box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            --card-bg: #2d3748;
+            --text-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            transition: var(--transition);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(120deg, var(--primary-color), var(--accent-color));
+            border-radius: var(--border-radius);
+            color: white;
+            box-shadow: var(--box-shadow);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            font-weight: bold;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .knowledge-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .knowledge-section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--success-color);
+            font-size: 2rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin: 20px 0 15px;
+            font-size: 1.5rem;
+        }
+
+        h4 {
+            color: var(--accent-color);
+            margin: 15px 0 10px;
+            font-size: 1.2rem;
+        }
+
+        .knowledge-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(67, 97, 238, 0.05);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .knowledge-item:hover {
+            background: rgba(67, 97, 238, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .code-example {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 18px;
+            border-radius: var(--border-radius);
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .tag {
+            color: #f92672;
+        }
+
+        .attribute {
+            color: #a6e22e;
+        }
+
+        .value {
+            color: #fd971f;
+        }
+
+        .comment {
+            color: #75715e;
+        }
+
+        .selector {
+            color: #66d9ef;
+        }
+
+        .property {
+            color: #a6e22e;
+        }
+
+        .preview-area {
+            border: 1px solid var(--gray-color);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+            background: white;
+            color: black;
+        }
+
+        .knowledge-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .knowledge-tab {
+            padding: 12px 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: bold;
+        }
+
+        .knowledge-tab:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .knowledge-tab.active {
+            background: var(--warning-color);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            border-top: 2px solid var(--primary-color);
+            color: var(--gray-color);
+            font-size: 1.1rem;
+        }
+
+        .note {
+            background: #fff3cd;
+            color: #856404;
+            padding: 18px;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+            border-left: 5px solid #ffc107;
+            font-size: 1.1rem;
+        }
+
+        .dark-mode .note {
+            background: #5e4c09;
+            color: #ffd351;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .tip {
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin: 15px 0;
+            border-left: 5px solid #0c5460;
+            font-size: 1.1rem;
+        }
+        
+        .dark-mode .tip {
+            background: #0c5460;
+            color: #d1ecf1;
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            margin: 25px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed var(--success-color);
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+
+        .dark-mode ::-webkit-scrollbar-track {
+            background: #2d3748;
+        }
+
+        .dark-mode ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+        }
+
+        /* 代码高亮 */
+        .code-example span {
+            display: block;
+            line-height: 1.5;
+        }
+        
+        /* 演示区域样式 */
+        .demo-flex {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .demo-item {
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            flex: 1;
+            min-width: 80px;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .demo-grid-item {
+            padding: 20px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        /* 动画演示 */
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .demo-animation {
+            padding: 15px;
+            background: var(--success-color);
+            color: white;
+            border-radius: 5px;
+            margin: 15px 0;
+            animation: slideIn 1s ease-out;
+        }
+        
+        /* 变换演示 */
+        .demo-transform {
+            width: 100px;
+            height: 100px;
+            background: var(--warning-color);
+            margin: 20px auto;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: transform 0.5s ease;
+        }
+        
+        .demo-transform:hover {
+            transform: rotate(45deg) scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>HTML+CSS 进阶知识点汇总</h1>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i> 切换模式
+            </button>
+        </header>
+
+        <div class="knowledge-container">
+            <section class="knowledge-section">
+                <h2>HTML+CSS 高级技术与最佳实践</h2>
+                
+                <div class="knowledge-tabs">
+                    <button class="knowledge-tab active" data-category="layout">高级布局</button>
+                    <button class="knowledge-tab" data-category="responsive">响应式设计</button>
+                    <button class="knowledge-tab" data-category="animation">动画与变换</button>
+                    <button class="knowledge-tab" data-category="architecture">架构与方法论</button>
+                    <button class="knowledge-tab" data-category="performance">性能优化</button>
+                </div>
+
+                <div class="knowledge-content">
+                    <!-- 高级布局 -->
+                    <div class="knowledge-item" data-category="layout">
+                        <h3>CSS Grid 高级布局技术</h3>
+                        <p>CSS Grid 是现代布局的强大工具，可以创建复杂的二维布局：</p>
+                        
+                        <h4>网格区域命名</h4>
+                        <div class="code-example">
+                            <span class="selector">.container</span> {
+                            <span>  <span class="property">display</span>: grid;</span>
+                            <span>  <span class="property">grid-template-areas</span>: </span>
+                            <span>    <span class="value">"header header header"</span></span>
+                            <span>    <span class="value">"sidebar content ads"</span></span>
+                            <span>    <span class="value">"footer footer footer"</span>;</span>
+                            <span>  <span class="property">grid-template-rows</span>: 80px 1fr 60px;</span>
+                            <span>  <span class="property">grid-template-columns</span>: 1fr 3fr 1fr;</span>
+                            <span>}</span>
+                            <span class="selector">.header</span> { <span class="property">grid-area</span>: header; }
+                            <span class="selector">.sidebar</span> { <span class="property">grid-area</span>: sidebar; }
+                            <span class="selector">.content</span> { <span class="property">grid-area</span>: content; }
+                            <span class="selector">.ads</span> { <span class="property">grid-area</span>: ads; }
+                            <span class="selector">.footer</span> { <span class="property">grid-area</span>: footer; }
+                        </div>
+                        
+                        <h4>网格自动排列</h4>
+                        <div class="code-example">
+                            <span class="selector">.container</span> {
+                            <span>  <span class="property">display</span>: grid;</span>
+                            <span>  <span class="property">grid-template-columns</span>: repeat(auto-fit, minmax(200px, 1fr));</span>
+                            <span>  <span class="property">gap</span>: 20px;</span>
+                            <span>}</span>
+                        </div>
+                        
+                        <div class="demo-grid">
+                            <div class="demo-grid-item">项目 1</div>
+                            <div class="demo-grid-item">项目 2</div>
+                            <div class="demo-grid-item">项目 3</div>
+                            <div class="demo-grid-item">项目 4</div>
+                            <div class="demo-grid-item">项目 5</div>
+                            <div class="demo-grid-item">项目 6</div>
+                        </div>
+                    </div>
+
+                    <div class="knowledge-item" data-category="layout">
+                        <h3>Flexbox 高级技巧</h3>
+                        <p>Flexbox 提供了强大的单维度布局能力：</p>
+                        
+                        <h4>Flexbox 排序与对齐</h4>
+                        <div class="code-example">
+                            <span class="selector">.container</span> {
+                            <span>  <span class="property">display</span>: flex;</span>
+                            <span>  <span class="property">justify-content</span>: space-between;</span>
+                            <span>  <span class="property">align-items</span>: center;</span>
+                            <span>}</span>
+                            <span class="selector">.item</span> {
+                            <span>  <span class="property">flex</span>: 1 1 200px;</span>
+                            <span>  <span class="property">order</span>: 2;</span>
+                            <span>}</span>
+                            <span class="selector">.item:first-child</span> {
+                            <span>  <span class="property">order</span>: 1;</span>
+                            <span>  <span class="property">align-self</span>: flex-start;</span>
+                            <span>}</span>
+                        </div>
+                        
+                        <div class="demo-flex">
+                            <div class="demo-item">项目 1</div>
+                            <div class="demo-item">项目 2</div>
+                            <div class="demo-item">项目 3</div>
+                        </div>
+                    </div>
+
+                    <div class="knowledge-item" data-category="layout">
+                        <h3>多列布局</h3>
+                        <p>使用CSS多列属性创建类似报纸的多列布局：</p>
+                        
+                        <div class="code-example">
+                            <span class="selector">.multi-column</span> {
+                            <span>  <span class="property">column-count</span>: 3;</span>
+                            <span>  <span class="property">column-gap</span>: 20px;</span>
+                            <span>  <span class="property">column-rule</span>: 1px solid #ddd;</span>
+                            <span>}</span>
+                            <span class="selector">.multi-column h4</span> {
+                            <span>  <span class="property">column-span</span>: all;</span>
+                            <span>}</span>
+                        </div>
+                    </div>
+
+                    <!-- 响应式设计 -->
+                    <div class="knowledge-item" data-category="responsive">
+                        <h3>现代响应式设计技术</h3>
+                        <p>响应式设计不仅仅是媒体查询，还包括以下技术：</p>
+                        
+                        <h4>CSS容器查询</h4>
+                        <div class="code-example">
+                            <span class="selector">.card</span> {
+                            <span>  <span class="property">container-type</span>: inline-size;</span>
+                            <span>}</span>
+                            <span class="selector">@container (min-width: 400px)</span> {
+                            <span>  <span class="selector">.card</span> {</span>
+                            <span>    <span class="property">display</span>: flex;</span>
+                            <span>  }</span>
+                            <span>}</span>
+                        </div>
+                        
+                        <h4>响应式图片</h4>
+                        <div class="code-example">
+                            <span class="tag">&lt;picture&gt;</span>
+                            <span>  <span class="tag">&lt;source</span> <span class="attribute">media</span>=<span class="value">"(min-width: 800px)"</span> <span class="attribute">srcset</span>=<span class="value">"large.jpg"</span><span class="tag">&gt;</span></span>
+                            <span>  <span class="tag">&lt;source</span> <span class="attribute">media</span>=<span class="value">"(min-width: 400px)"</span> <span class="attribute">srcset</span>=<span class="value">"medium.jpg"</span><span class="tag">&gt;</span></span>
+                            <span>  <span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">"small.jpg"</span> <span class="attribute">alt</span>=<span class="value">"示例图片"</span><span class="tag">&gt;</span></span>
+                            <span class="tag">&lt;/picture&gt;</span>
+                        </div>
+                    </div>
+
+                    <div class="knowledge-item" data-category="responsive">
+                        <h3>移动优先设计</h3>
+                        <p>移动优先是一种设计策略，先为移动设备设计，然后使用媒体查询为更大屏幕增强体验：</p>
+                        
+                        <div class="code-example">
+                            <span class="comment">/* 基础样式 - 移动设备 */</span>
+                            <span class="selector">.container</span> {
+                            <span>  <span class="property">padding</span>: 10px;</span>
+                            <span>}</span>
+                            <span class="selector">.nav</span> {
+                            <span>  <span class="property">display</span>: flex;</span>
+                            <span>  <span class="property">flex-direction</span>: column;</span>
+                            <span>}</span>
+                            <span class="comment">/* 中等屏幕 - 平板 */</span>
+                            <span class="selector">@media (min-width: 768px)</span> {
+                            <span>  <span class="selector">.container</span> {</span>
+                            <span>    <span class="property">padding</span>: 20px;</span>
+                            <span>  }</span>
+                            <span>}</span>
+                            <span class="comment">/* 大屏幕 - 桌面 */</span>
+                            <span class="selector">@media (min-width: 1024px)</span> {
+                            <span>  <span class="selector">.nav</span> {</span>
+                            <span>    <span class="property">flex-direction</span>: row;</span>
+                            <span>  }</span>
+                            <span>}</span>
+                        </div>
+                    </div>
+
+                    <!-- 动画与变换 -->
+                    <div class="knowledge-item" data-category="animation">
+                        <h3>高级CSS动画</h3>
+                        <p>使用CSS创建复杂的动画效果：</p>
+                        
+                        <h4>关键帧动画</h4>
+                        <div class="code-example">
+                            <span class="selector">@keyframes slideIn</span> {
+                            <span>  0% {</span>
+                            <span>    <span class="property">transform</span>: translateX(-100%);</span>
+                            <span>    <span class="property">opacity</span>: 0;</span>
+                            <span>  }</span>
+                            <span>  50% {</span>
+                            <span>    <span class="property">opacity</span>: 0.5;</span>
+                            <span>  }</span>
+                            <span>  100% {</span>
+                            <span>    <span class="property">transform</span>: translateX(0);</span>
+                            <span>    <span class="property">opacity</span>: 1;</span>
+                            <span>  }</span>
+                            <span>}</span>
+                            <span class="selector">.animated-element</span> {
+                            <span>  <span class="property">animation</span>: slideIn 1s ease-out forwards;</span>
+                            <span>  <span class="property">animation-delay</span>: 0.5s;</span>
+                            <span>}</span>
+                        </div>
+                        
+                        <div class="demo-animation">
+                            这是一个动画演示元素
+                        </div>
+                        
+                        <h4>使用cubic-bezier自定义时序函数</h4>
+                        <div class="code-example">
+                            <span class="selector">.custom-timing</span> {
+                            <span>  <span class="property">transition</span>: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);</span>
+                            <span>}</span>
+                        </div>
+                    </div>
+
+                    <div class="knowledge-item" data-category="animation">
+                        <h3>3D变换与透视</h3>
+                        <p>使用CSS创建3D效果：</p>
+                        
+                        <div class="code-example">
+                            <span class="selector">.scene</span> {
+                            <span>  <span class="property">perspective</span>: 800px;</span>
+                            <span>}</span>
+                            <span class="selector">.card</span> {
+                            <span>  <span class="property">transform-style</span>: preserve-3d;</span>
+                            <span>  <span class="property">transition</span>: transform 1s;</span>
+                            <span>}</span>
+                            <span class="selector">.card:hover</span> {
+                            <span>  <span class="property">transform</span>: rotateY(180deg);</span>
+                            <span>}</span>
+                            <span class="selector">.face</span> {
+                            <span>  <span class="property">backface-visibility</span>: hidden;</span>
+                            <span>}</span>
+                            <span class="selector">.back</span> {
+                            <span>  <span class="property">transform</span>: rotateY(180deg);</span>
+                            <span>}</span>
+                        </div>
+                        
+                        <div class="demo-transform">
+                            悬停查看3D效果
+                        </div>
+                    </div>
+
+                    <!-- 架构与方法论 -->
+                    <div class="knowledge-item" data-category="architecture">
+                        <h3>CSS架构与方法论</h3>
+                        <p>大型项目中的CSS组织和架构方法：</p>
+                        
+                        <h4>BEM命名规范</h4>
+                        <div class="code-example">
+                            <span class="comment">/* Block */</span>
+                            <span class="selector">.menu</span> { }
+                            <span class="comment">/* Element */</span>
+                            <span class="selector">.menu__item</span> { }
+                            <span class="comment">/* Modifier */</span>
+                            <span class="selector">.menu__item--active</span> { }
+                        </div>
+                        
+                        <h4>ITCSS架构</h4>
+                        <p>倒三角CSS架构，从通用到具体：</p>
+                        <ol>
+                            <li>Settings - 变量和配置</li>
+                            <li>Tools - 混合宏和函数</li>
+                            <li>Generic - 重置和标准化</li>
+                            <li>Elements - 原生HTML元素样式</li>
+                            <li>Objects - 类基样式（OOCSS）</li>
+                            <li>Components - 特定组件样式</li>
+                            <li>Utilities - 工具类和辅助类</li>
+                        </ol>
+                    </div>
+
+                    <div class="knowledge-item" data-category="architecture">
+                        <h3>CSS预处理器</h3>
+                        <p>使用Sass/SCSS增强CSS功能：</p>
+                        
+                        <div class="code-example">
+                            <span class="comment">// 变量</span>
+                            <span class="property">$primary-color</span>: #4361ee;
+                            <span class="property">$spacing-unit</span>: 1rem;
+                            
+                            <span class="comment">// 嵌套</span>
+                            <span class="selector">.menu</span> {
+                            <span>  <span class="property">display</span>: flex;</span>
+                            <span>  </span>
+                            <span>  <span class="selector">&__item</span> {</span>
+                            <span>    <span class="property">padding</span>: $spacing-unit;</span>
+                            <span>    </span>
+                            <span>    <span class="selector">&--active</span> {</span>
+                            <span>      <span class="property">color</span>: $primary-color;</span>
+                            <span>    }</span>
+                            <span>  }</span>
+                            <span>}</span>
+                            
+                            <span class="comment">// 混合宏</span>
+                            <span class="selector">@mixin center-content</span> {
+                            <span>  <span class="property">display</span>: flex;</span>
+                            <span>  <span class="property">justify-content</span>: center;</span>
+                            <span>  <span class="property">align-items</span>: center;</span>
+                            <span>}</span>
+                            
+                            <span class="selector">.modal</span> {
+                            <span>  <span class="selector">@include</span> center-content;</span>
+                            <span>}</span>
+                        </div>
+                    </div>
+
+                    <!-- 性能优化 -->
+                    <div class="knowledge-item" data-category="performance">
+                        <h3>CSS性能优化</h3>
+                        <p>提高CSS性能的技术和策略：</p>
+                        
+                        <h4>减少重绘和回流</h4>
+                        <ul>
+                            <li>使用transform和opacity实现动画（不会触发回流）</li>
+                            <li>避免频繁修改布局属性（如width、height、position）</li>
+                            <li>使用will-change属性提示浏览器元素变化</li>
+                        </ul>
+                        
+                        <h4>CSS选择器性能</h4>
+                        <div class="code-example">
+                            <span class="comment">/* 高效选择器 */</span>
+                            <span class="selector">.class-name</span> { }
+                            <span class="selector">#id-name</span> { }
+                            
+                            <span class="comment">/* 低效选择器（避免使用） */</span>
+                            <span class="selector">div ul li a</span> { } <span class="comment">/* 过于具体 */</span>
+                            <span class="selector">*</span> { } <span class="comment">/* 通配符 */</span>
+                            <span class="selector">[type="text"]</span> { } <span class="comment">/* 属性选择器 */</span>
+                        </div>
+                        
+                        <h4>关键CSS和代码分割</h4>
+                        <p>提取首屏关键CSS并异步加载其余样式：</p>
+                        <div class="code-example">
+                            <span class="tag">&lt;link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"&gt;</span>
+                            <span class="tag">&lt;noscript&gt;&lt;link rel="stylesheet" href="styles.css"&gt;&lt;/noscript&gt;</span>
+                        </div>
+                    </div>
+
+                    <div class="knowledge-item" data-category="performance">
+                        <h3>CSS变量和主题切换</h3>
+                        <p>使用CSS自定义属性实现动态主题：</p>
+                        
+                        <div class="code-example">
+                            <span class="selector">:root</span> {
+                            <span>  <span class="property">--primary-color</span>: #4361ee;</span>
+                            <span>  <span class="property">--background-color</span>: #f8f9fa;</span>
+                            <span>  <span class="property">--text-color</span>: #333333;</span>
+                            <span>}</span>
+                            <span class="selector">.dark-theme</span> {
+                            <span>  <span class="property">--primary-color</span>: #7b9dff;</span>
+                            <span>  <span class="property">--background-color</span>: #121212;</span>
+                            <span>  <span class="property">--text-color</span>: #e2e8f0;</span>
+                            <span>}</span>
+                            <span class="selector">body</span> {
+                            <span>  <span class="property">background-color</span>: var(--background-color);</span>
+                            <span>  <span class="property">color</span>: var(--text-color);</span>
+                            <span>}</span>
+                            <span class="selector">.button</span> {
+                            <span>  <span class="property">background-color</span>: var(--primary-color);</span>
+                            <span>}</span>
+                        </div>
+                    </div>
+
+                    <div class="note">
+                        <i class="fas fa-lightbulb"></i> 提示：现代CSS开发应该关注可维护性、性能和可访问性。使用CSS变量、现代布局技术和合理的架构可以提高代码质量。
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>HTML+CSS 进阶知识点 &copy; 2023 - 涵盖现代Web开发高级技术</p>
+        </footer>
+    </div>
+
+    <script>
+        // 主题切换功能
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i> 切换亮色模式';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i> 切换暗色模式';
+            }
+        });
+
+        // 知识点分类切换功能
+        const knowledgeTabs = document.querySelectorAll('.knowledge-tab');
+        const knowledgeItems = document.querySelectorAll('.knowledge-item');
+        
+        knowledgeTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // 移除所有active类
+                knowledgeTabs.forEach(t => t.classList.remove('active'));
+                // 为当前选项卡添加active类
+                tab.classList.add('active');
+                
+                const category = tab.getAttribute('data-category');
+                
+                // 显示或隐藏知识点项目
+                knowledgeItems.forEach(item => {
+                    if (item.getAttribute('data-category') === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

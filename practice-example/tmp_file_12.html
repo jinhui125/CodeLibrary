@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素垂直居中方法大全</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .method-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 0.7rem 1.5rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .tab-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .tab-btn.active {
+            background: #2c3e50;
+        }
+        
+        /* 演示区域通用样式 */
+        .demo-area {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .demo-title {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #3498db;
+            padding-left: 1rem;
+        }
+        
+        .demo-container {
+            height: 300px;
+            border: 2px dashed #bdc3c7;
+            border-radius: 5px;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .centered-element {
+            width: 150px;
+            height: 100px;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        /* Flexbox 垂直居中方法 */
+        .flex-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .flex-direction-column {
+            flex-direction: column;
+        }
+        
+        /* Grid 垂直居中方法 */
+        .grid-container {
+            display: grid;
+            place-items: center;
+        }
+        
+        .grid-align-container {
+            display: grid;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* 定位方法 */
+        .position-relative {
+            position: relative;
+        }
+        
+        .position-absolute {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .position-margin {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        
+        /* 表格方法 */
+        .table-container {
+            display: table;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .table-cell {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+        
+        /* 行高方法 */
+        .line-height-container {
+            text-align: center;
+        }
+        
+        .line-height-element {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 300px; /* 与容器高度相同 */
+        }
+        
+        .line-height-content {
+            line-height: normal;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        /* CSS计算 */
+        .calc-container {
+            position: relative;
+        }
+        
+        .calc-element {
+            position: absolute;
+            top: calc(50% - 50px); /* 元素高度的一半 */
+            left: calc(50% - 75px); /* 元素宽度的一半 */
+        }
+        
+        /* 代码展示区域 */
+        .code-section {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        .code-title {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .code-block {
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+            white-space: pre;
+        }
+        
+        /* 方法比较表格 */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .comparison-table th {
+            background: #3498db;
+            color: white;
+        }
+        
+        .comparison-table tr:hover {
+            background: #f5f7fa;
+        }
+        
+        .compatibility {
+            display: inline-block;
+            padding: 0.3rem 0.7rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .compatibility.good {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .compatibility.fair {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .demo-container {
+                height: 250px;
+            }
+            
+            .line-height-element {
+                line-height: 250px;
+            }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem 0;
+            color: #7f8c8d;
+            border-top: 1px solid #ddd;
+        }
+        
+        /* 提示信息 */
+        .tip {
+            background: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>元素垂直居中方法大全</h1>
+            <p class="subtitle">展示使用Flexbox、Grid、定位等多种技术实现元素垂直居中的方法</p>
+        </header>
+        
+        <div class="method-tabs">
+            <button class="tab-btn active" data-method="flexbox">Flexbox方法</button>
+            <button class="tab-btn" data-method="grid">Grid方法</button>
+            <button class="tab-btn" data-method="position">定位方法</button>
+            <button class="tab-btn" data-method="table">表格方法</button>
+            <button class="tab-btn" data-method="line-height">行高方法</button>
+            <button class="tab-btn" data-method="calc">Calc方法</button>
+        </div>
+        
+        <!-- Flexbox 方法 -->
+        <div class="method-section" id="flexbox-section">
+            <div class="demo-area">
+                <h2 class="demo-title">Flexbox 垂直居中方法</h2>
+                <p>Flexbox是现代CSS布局中最常用的垂直居中方法，简单且灵活。</p>
+                
+                <h3>方法1：使用 align-items 和 justify-content</h3>
+                <div class="demo-container flex-container">
+                    <div class="centered-element">垂直居中元素</div>
+                </div>
+                
+                <div class="code-section">
+                    <div class="code-title">CSS代码：</div>
+                    <div class="code-block">.container {
+    display: flex;
+    align-items: center;     /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    height: 300px;           /* 需要设置容器高度 */
+}</div>
+                </div>
+                
+                <h3>方法2：Flexbox + margin: auto</h3>
+                <div class="demo-container" style="display: flex;">
+                    <div class="centered-element" style="margin: auto;">margin: auto</div>
+                </div>
+                
+                <div class="code-section">
+                    <div class="code-title">CSS代码：</div>
+                    <div class="code-block">.container {
+    display: flex;
+    height: 300px;
+}
+
+.centered-element {
+    margin: auto;  /* 自动外边距实现居中 */
+}</div>
+                </div>
+                
+                <div class="tip">
+                    <strong>提示：</strong> Flexbox方法兼容性良好，是现代布局的首选方案。适用于各种元素类型和复杂布局。
+                </div>
+            </div>
+        </div>
+        
+        <!-- Grid 方法 -->
+        <div class="method-section" id="grid-section" style="display: none;">
+            <div class="demo-area">
+                <h2 class="demo-title">CSS Grid 垂直居中方法</h2>
+                <p>CSS Grid提供了强大的二维布局能力，垂直居中实现简单直观。</p>
+                
+                <h3>方法1：使用 place-items 属性</h3>
+                <div class="demo-container grid-container">
+                    <div class="centered-element">垂直居中元素</div>
+                </div>
+                
+                <div class="code-section">
+                    <div class="code-title">CSS代码：</div>
+                    <div class="code-block">.container {
+    display: grid;
+    place-items: center;  /* 同时设置对齐和justify-items */
+    height: 300px;
+}</div>
+                </div>
+                
+                <h3>方法2：使用 align-items 和 justify-content</h3>
+                <div class="demo-container grid-align-container">
+                    <div class="centered-element">垂直居中元素</div>
+                </div>
+                
+                <div class="code-section">
+                    <div class="code-title">CSS代码：</div>
+                    <div class="code-block">.container {
+    display: grid;
+    align-items: center;     /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    height: 300px;
+}</div>
+                </div>
+                
+                <div class="tip">
+                    <strong>提示：</strong> Grid方法特别适合复杂的二维布局，但需要注意浏览器兼容性。
+                </div>
+            </div>
+        </div>
+        
+        <!-- 定位方法 -->
+        <div class="method-section" id="position-section" style="display: none;">
+            <div class="demo-area">
+                <h2 class="demo-title">定位垂直居中方法</h2>
+                <p>使用CSS定位属性是实现垂直居中的经典方法，兼容性最好。</p>
+                
+                <h3>方法1：transform: translate()</h3>
+                <div class="demo-container position-relative">
+                    <div class="centered-element position-absolute">垂直居中元素</div>
+                </div>
+                
+                <div class="code-section">
+                    <div class="code-title">CSS代码：</div>
+                    <div class="code-block">.container {
+    position: relative;
+    height: 300px;
+}
+
+.centered-element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 基于自身尺寸偏移 */
+}</div>
+                </div>
+                
+                <h3>方法2：margin: auto</h3>
+                <div class="demo-container position-relative">
+                    <div class="centered-element position-margin">垂直居中元素</div>
+                </div>
+                
+                <div class="code-section">
+                    <div class="code-title">CSS代码：</div>
+                    <div class="code-block">.container {
+    position: relative;
+    height: 300px;
+}
+
+.centered-element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;  /* 自动外边距填充可用空间 */
+    width: 150px;  /* 需要指定宽度 */
+    height: 100px; /* 需要指定高度 */
+}</div>
+                </div>
+                
+                <div class="tip">
+                    <strong>提示：</strong> 定位方法兼容性最好，但需要知道元素尺寸或使用transform，可能影响性能。
+                </div>
+            </div>
+        </div>
+        
+        <!-- 其他方法区域（表格、行高、calc） -->
+        <div class="method-section" id="table-section" style="display: none;">
+            <div class="demo-area">
+                <h2 class="demo-title">表格方法垂直居中</h2>
+                <p>使用display: table和display: table-cell实现垂直居中，是传统但有效的方法。</p>
+                
+                <div class="demo-container table-container">
+                    <div class="table-cell">
+                        <div class="centered-element">垂直居中元素</div>
+                    </div>
+                </div>
+                
+                <div class="code-section">
+                    <div class="code-title">CSS代码：</div>
+                    <div class="code-block">.container {
+    display: table;
+    width: 100%;
+    height: 300px;
+}
+
+.table-cell {
+    display: table-cell;
+    vertical-align: middle;  /* 表格单元格垂直对齐 */
+    text-align: center;      /* 水平居中 */
+}</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="method-section" id="line-height-section" style="display: none;">
+            <div class="demo-area">
+                <h2 class="demo-title">行高方法垂直居中</h2>
+                <p>适用于单行文本的垂直居中，简单但局限性较大。</p>
+                
+                <div class="demo-container line-height-container">
+                    <span class="line-height-element">
+                        <div class="centered-element line-height-content">垂直居中元素</div>
+                    </span>
+                </div>
+                
+                <div class="code-section">
+                    <div class="code-title">CSS代码：</div>
+                    <div class="code-block">.container {
+    height: 300px;
+    text-align: center;
+}
+
+.line-height-element {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 300px;  /* 与容器高度相同 */
+}
+
+.line-height-content {
+    line-height: normal;  /* 重置内部元素行高 */
+    display: inline-block;
+    vertical-align: middle;
+}</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="method-section" id="calc-section" style="display: none;">
+            <div class="demo-area">
+                <h2 class="demo-title">Calc计算垂直居中</h2>
+                <p>使用CSS calc()函数计算位置，适用于知道元素尺寸的情况。</p>
+                
+                <div class="demo-container calc-container">
+                    <div class="centered-element calc-element">垂直居中元素</div>
+                </div>
+                
+                <div class="code-section">
+                    <div class="code-title">CSS代码：</div>
+                    <div class="code-block">.container {
+    position: relative;
+    height: 300px;
+}
+
+.centered-element {
+    position: absolute;
+    top: calc(50% - 50px);   /* 容器高度50% - 元素高度一半 */
+    left: calc(50% - 75px);  /* 容器宽度50% - 元素宽度一半 */
+    width: 150px;   /* 需要知道元素尺寸 */
+    height: 100px;  /* 需要知道元素尺寸 */
+}</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 方法比较表格 -->
+        <div class="demo-area">
+            <h2 class="demo-title">垂直居中方法比较</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>方法</th>
+                        <th>优点</th>
+                        <th>缺点</th>
+                        <th>兼容性</th>
+                        <th>适用场景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Flexbox</td>
+                        <td>简单灵活，现代标准</td>
+                        <td>IE10以下不支持</td>
+                        <td><span class="compatibility good">优秀</span></td>
+                        <td>现代浏览器，复杂布局</td>
+                    </tr>
+                    <tr>
+                        <td>CSS Grid</td>
+                        <td>强大二维控制</td>
+                        <td>兼容性较Flexbox差</td>
+                        <td><span class="compatibility fair">良好</span></td>
+                        <td>现代浏览器，网格布局</td>
+                    </tr>
+                    <tr>
+                        <td>定位+Transform</td>
+                        <td>兼容性好，灵活</td>
+                        <td>需要绝对定位</td>
+                        <td><span class="compatibility good">优秀</span></td>
+                        <td>广泛兼容，传统项目</td>
+                    </tr>
+                    <tr>
+                        <td>定位+Margin</td>
+                        <td>兼容性最好</td>
+                        <td>需要知道元素尺寸</td>
+                        <td><span class="compatibility good">优秀</span></td>
+                        <td>IE8+兼容，已知尺寸元素</td>
+                    </tr>
+                    <tr>
+                        <td>表格布局</td>
+                        <td>兼容性极好</td>
+                        <td>语义不准确</td>
+                        <td><span class="compatibility good">优秀</span></td>
+                        <td>传统浏览器支持</td>
+                    </tr>
+                    <tr>
+                        <td>行高</td>
+                        <td>简单，适合文本</td>
+                        <td>只适合单行内容</td>
+                        <td><span class="compatibility good">优秀</span></td>
+                        <td>单行文本居中</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <footer>
+            <p>元素垂直居中方法大全 &copy; 2023 | 展示Flexbox、Grid、定位等多种技术</p>
+        </footer>
+    </div>
+
+    <script>
+        // 获取DOM元素
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const methodSections = document.querySelectorAll('.method-section');
+        
+        // 切换方法标签
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // 移除所有active类
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                // 添加active类到当前按钮
+                button.classList.add('active');
+                
+                // 获取目标方法
+                const method = button.getAttribute('data-method');
+                
+                // 隐藏所有方法区域
+                methodSections.forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // 显示目标方法区域
+                document.getElementById(`${method}-section`).style.display = 'block';
+            });
+        });
+        
+        // 初始化显示第一个方法
+        document.getElementById('flexbox-section').style.display = 'block';
+    </script>
+</body>
+</html>
