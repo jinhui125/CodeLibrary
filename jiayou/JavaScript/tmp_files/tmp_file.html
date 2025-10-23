@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript小型项目实践</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--light);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--success), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a5b4fc;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .project-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            color: var(--light);
+        }
+        
+        .project-description {
+            color: #c1c8e4;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .project-content {
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .tab-container {
+            margin-top: 1rem;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .tab {
+            padding: 0.7rem 1.2rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--accent);
+            color: var(--accent);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .calculator {
+            background: rgba(30, 30, 46, 0.8);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .calculator-display {
+            background: rgba(20, 20, 35, 0.9);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            text-align: right;
+            font-size: 1.8rem;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+        }
+        
+        .calculator-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.7rem;
+        }
+        
+        .calc-btn {
+            background: rgba(40, 40, 70, 0.8);
+            border: none;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .calc-btn:hover {
+            background: rgba(60, 60, 100, 0.8);
+        }
+        
+        .calc-btn.operator {
+            background: var(--primary);
+        }
+        
+        .calc-btn.operator:hover {
+            background: var(--secondary);
+        }
+        
+        .calc-btn.equals {
+            background: var(--accent);
+        }
+        
+        .calc-btn.equals:hover {
+            background: #e11575;
+        }
+        
+        .todo-input {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+        
+        .todo-input input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .todo-input button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .todo-input button:hover {
+            background: var(--secondary);
+        }
+        
+        .todo-list {
+            list-style: none;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+        
+        .todo-item {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 0.7rem;
+            transition: all 0.3s ease;
+        }
+        
+        .todo-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .todo-item.completed {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+        
+        .todo-checkbox {
+            margin-right: 0.8rem;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .todo-text {
+            flex: 1;
+        }
+        
+        .todo-delete {
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        .weather-container {
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .weather-search {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+        
+        .weather-search input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .weather-search button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .weather-search button:hover {
+            background: var(--secondary);
+        }
+        
+        .weather-info {
+            background: rgba(30, 30, 46, 0.8);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .weather-icon {
+            font-size: 4rem;
+            margin: 1rem 0;
+        }
+        
+        .temperature {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+        
+        .weather-description {
+            font-size: 1.2rem;
+            color: #a5b4fc;
+            margin-bottom: 1rem;
+        }
+        
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .detail-item {
+            background: rgba(20, 20, 35, 0.9);
+            padding: 0.8rem;
+            border-radius: 8px;
+        }
+        
+        .detail-label {
+            font-size: 0.9rem;
+            color: #a5b4fc;
+        }
+        
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #a5b4fc;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>JavaScript小型项目实践</h1>
+            <p class="subtitle">三个精心设计的交互式项目，展示JavaScript在实际应用中的强大功能</p>
+        </header>
+        
+        <div class="projects-container">
+            <!-- 项目1：计算器 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🧮</div>
+                    <h2 class="project-title">交互式计算器</h2>
+                </div>
+                <p class="project-description">一个功能完整的计算器，支持基本算术运算和高级功能。具有优雅的UI设计和流畅的交互体验。</p>
+                
+                <div class="project-content">
+                    <div class="calculator">
+                        <div class="calculator-display">
+                            <div id="calc-history"></div>
+                            <div id="calc-display">0</div>
+                        </div>
+                        <div class="calculator-buttons">
+                            <button class="calc-btn clear">C</button>
+                            <button class="calc-btn backspace">⌫</button>
+                            <button class="calc-btn operator">%</button>
+                            <button class="calc-btn operator">÷</button>
+                            
+                            <button class="calc-btn">7</button>
+                            <button class="calc-btn">8</button>
+                            <button class="calc-btn">9</button>
+                            <button class="calc-btn operator">×</button>
+                            
+                            <button class="calc-btn">4</button>
+                            <button class="calc-btn">5</button>
+                            <button class="calc-btn">6</button>
+                            <button class="calc-btn operator">-</button>
+                            
+                            <button class="calc-btn">1</button>
+                            <button class="calc-btn">2</button>
+                            <button class="calc-btn">3</button>
+                            <button class="calc-btn operator">+</button>
+                            
+                            <button class="calc-btn" style="grid-column: span 2;">0</button>
+                            <button class="calc-btn">.</button>
+                            <button class="calc-btn equals">=</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-container">
+                    <div class="tabs">
+                        <div class="tab active" data-tab="calc-code">代码</div>
+                        <div class="tab" data-tab="calc-features">功能</div>
+                    </div>
+                    
+                    <div class="tab-content active" id="calc-code">
+                        <p>使用DOM操作和事件监听实现计算逻辑，支持键盘输入。</p>
+                        <a href="#" class="btn">查看完整代码</a>
+                    </div>
+                    
+                    <div class="tab-content" id="calc-features">
+                        <p>• 基本四则运算<br>• 百分比计算<br>• 退格功能<br>• 键盘支持</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 项目2：待办事项 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">📝</div>
+                    <h2 class="project-title">任务管理器</h2>
+                </div>
+                <p class="project-description">一个直观的任务管理应用，可以添加、完成和删除任务。数据保存在本地存储中，刷新页面不会丢失。</p>
+                
+                <div class="project-content">
+                    <div class="todo-input">
+                        <input type="text" id="todo-input" placeholder="添加新任务...">
+                        <button id="add-todo">添加</button>
+                    </div>
+                    
+                    <ul class="todo-list" id="todo-list">
+                        <!-- 任务将通过JS动态添加 -->
+                    </ul>
+                </div>
+                
+                <div class="tab-container">
+                    <div class="tabs">
+                        <div class="tab active" data-tab="todo-code">代码</div>
+                        <div class="tab" data-tab="todo-features">功能</div>
+                    </div>
+                    
+                    <div class="tab-content active" id="todo-code">
+                        <p>使用数组和本地存储管理任务状态，实现动态DOM更新。</p>
+                        <a href="#" class="btn">查看完整代码</a>
+                    </div>
+                    
+                    <div class="tab-content" id="todo-features">
+                        <p>• 添加/删除任务<br>• 标记完成状态<br>• 本地存储<br>• 响应式设计</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 项目3：天气应用 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🌤️</div>
+                    <h2 class="project-title">天气查询应用</h2>
+                </div>
+                <p class="project-description">一个美观的天气应用，显示当前天气状况和详细信息。使用模拟数据展示API集成能力。</p>
+                
+                <div class="project-content">
+                    <div class="weather-container">
+                        <div class="weather-search">
+                            <input type="text" id="city-input" placeholder="输入城市名称...">
+                            <button id="search-weather">查询</button>
+                        </div>
+                        
+                        <div class="weather-info">
+                            <h3 id="city-name">北京</h3>
+                            <div class="weather-icon">☀️</div>
+                            <div class="temperature">24°C</div>
+                            <div class="weather-description">晴朗</div>
+                            
+                            <div class="weather-details">
+                                <div class="detail-item">
+                                    <div class="detail-label">湿度</div>
+                                    <div class="detail-value">45%</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">风速</div>
+                                    <div class="detail-value">12 km/h</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">气压</div>
+                                    <div class="detail-value">1013 hPa</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">能见度</div>
+                                    <div class="detail-value">10 km</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-container">
+                    <div class="tabs">
+                        <div class="tab active" data-tab="weather-code">代码</div>
+                        <div class="tab" data-tab="weather-features">功能</div>
+                    </div>
+                    
+                    <div class="tab-content active" id="weather-code">
+                        <p>模拟API调用和数据展示，展示异步JavaScript编程。</p>
+                        <a href="#" class="btn">查看完整代码</a>
+                    </div>
+                    
+                    <div class="tab-content" id="weather-features">
+                        <p>• 城市天气查询<br>• 详细天气信息<br>• 响应式布局<br>• 模拟API数据</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>JavaScript小型项目实践 &copy; 2023 - 展示前端开发能力</p>
+        </footer>
+    </div>
+
+    <script>
+        // 计算器功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const display = document.getElementById('calc-display');
+            const history = document.getElementById('calc-history');
+            const buttons = document.querySelectorAll('.calc-btn');
+            let currentInput = '0';
+            let previousInput = '';
+            let operator = null;
+            let resetScreen = false;
+            
+            // 更新显示
+            function updateDisplay() {
+                display.textContent = currentInput;
+                history.textContent = previousInput + (operator ? ' ' + operator : '');
+            }
+            
+            // 输入数字
+            function inputNumber(num) {
+                if (currentInput === '0' || resetScreen) {
+                    currentInput = num;
+                    resetScreen = false;
+                } else {
+                    currentInput += num;
+                }
+            }
+            
+            // 输入小数点
+            function inputDecimal() {
+                if (resetScreen) {
+                    currentInput = '0.';
+                    resetScreen = false;
+                    return;
+                }
+                
+                if (!currentInput.includes('.')) {
+                    currentInput += '.';
+                }
+            }
+            
+            // 处理操作符
+            function handleOperator(nextOperator) {
+                const inputValue = parseFloat(currentInput);
+                
+                if (operator && !resetScreen) {
+                    calculate();
+                } else {
+                    previousInput = currentInput;
+                }
+                
+                operator = nextOperator;
+                previousInput = currentInput;
+                resetScreen = true;
+            }
+            
+            // 计算
+            function calculate() {
+                let result;
+                const prevValue = parseFloat(previousInput);
+                const currentValue = parseFloat(currentInput);
+                
+                if (isNaN(prevValue) || isNaN(currentValue)) return;
+                
+                switch (operator) {
+                    case '+':
+                        result = prevValue + currentValue;
+                        break;
+                    case '-':
+                        result = prevValue - currentValue;
+                        break;
+                    case '×':
+                        result = prevValue * currentValue;
+                        break;
+                    case '÷':
+                        result = prevValue / currentValue;
+                        break;
+                    case '%':
+                        result = prevValue % currentValue;
+                        break;
+                    default:
+                        return;
+                }
+                
+                currentInput = result.toString();
+                operator = null;
+                previousInput = '';
+            }
+            
+            // 重置计算器
+            function resetCalculator() {
+                currentInput = '0';
+                previousInput = '';
+                operator = null;
+            }
+            
+            // 退格
+            function backspace() {
+                if (currentInput.length > 1) {
+                    currentInput = currentInput.slice(0, -1);
+                } else {
+                    currentInput = '0';
+                }
+            }
+            
+            // 按钮点击事件
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.classList.contains('operator')) {
+                        handleOperator(this.textContent);
+                    } else if (this.classList.contains('equals')) {
+                        calculate();
+                    } else if (this.classList.contains('clear')) {
+                        resetCalculator();
+                    } else if (this.classList.contains('backspace')) {
+                        backspace();
+                    } else if (this.textContent === '.') {
+                        inputDecimal();
+                    } else {
+                        inputNumber(this.textContent);
+                    }
+                    
+                    updateDisplay();
+                });
+            });
+            
+            // 键盘支持
+            document.addEventListener('keydown', function(event) {
+                if (/[0-9]/.test(event.key)) {
+                    inputNumber(event.key);
+                } else if (event.key === '.') {
+                    inputDecimal();
+                } else if (event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') {
+                    handleOperator(event.key === '*' ? '×' : event.key === '/' ? '÷' : event.key);
+                } else if (event.key === 'Enter' || event.key === '=') {
+                    calculate();
+                } else if (event.key === 'Escape') {
+                    resetCalculator();
+                } else if (event.key === 'Backspace') {
+                    backspace();
+                } else if (event.key === '%') {
+                    handleOperator('%');
+                }
+                
+                updateDisplay();
+            });
+            
+            // 待办事项功能
+            const todoInput = document.getElementById('todo-input');
+            const addTodoButton = document.getElementById('add-todo');
+            const todoList = document.getElementById('todo-list');
+            let todos = JSON.parse(localStorage.getItem('todos')) || [];
+            
+            // 渲染待办事项
+            function renderTodos() {
+                todoList.innerHTML = '';
+                
+                todos.forEach((todo, index) => {
+                    const li = document.createElement('li');
+                    li.className = `todo-item ${todo.completed ? 'completed' : ''}`;
+                    
+                    li.innerHTML = `
+                        <input type="checkbox" class="todo-checkbox" ${todo.completed ? 'checked' : ''} data-index="${index}">
+                        <span class="todo-text">${todo.text}</span>
+                        <button class="todo-delete" data-index="${index}">×</button>
+                    `;
+                    
+                    todoList.appendChild(li);
+                });
+                
+                // 保存到本地存储
+                localStorage.setItem('todos', JSON.stringify(todos));
+            }
+            
+            // 添加待办事项
+            function addTodo() {
+                const text = todoInput.value.trim();
+                if (text) {
+                    todos.push({ text, completed: false });
+                    todoInput.value = '';
+                    renderTodos();
+                }
+            }
+            
+            // 事件监听
+            addTodoButton.addEventListener('click', addTodo);
+            todoInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addTodo();
+                }
+            });
+            
+            // 处理复选框和删除按钮
+            todoList.addEventListener('click', function(e) {
+                if (e.target.classList.contains('todo-checkbox')) {
+                    const index = e.target.dataset.index;
+                    todos[index].completed = !todos[index].completed;
+                    renderTodos();
+                }
+                
+                if (e.target.classList.contains('todo-delete')) {
+                    const index = e.target.dataset.index;
+                    todos.splice(index, 1);
+                    renderTodos();
+                }
+            });
+            
+            // 初始渲染
+            renderTodos();
+            
+            // 天气应用功能
+            const cityInput = document.getElementById('city-input');
+            const searchWeatherButton = document.getElementById('search-weather');
+            const cityName = document.getElementById('city-name');
+            const temperature = document.querySelector('.temperature');
+            const weatherDescription = document.querySelector('.weather-description');
+            const weatherIcon = document.querySelector('.weather-icon');
+            const detailItems = document.querySelectorAll('.detail-value');
+            
+            // 模拟天气数据
+            const weatherData = {
+                '北京': { temp: 24, desc: '晴朗', icon: '☀️', humidity: '45%', wind: '12 km/h', pressure: '1013 hPa', visibility: '10 km' },
+                '上海': { temp: 28, desc: '多云', icon: '☁️', humidity: '65%', wind: '8 km/h', pressure: '1015 hPa', visibility: '8 km' },
+                '广州': { temp: 32, desc: '阵雨', icon: '🌦️', humidity: '75%', wind: '15 km/h', pressure: '1008 hPa', visibility: '6 km' },
+                '深圳': { temp: 31, desc: '晴朗', icon: '☀️', humidity: '68%', wind: '10 km/h', pressure: '1010 hPa', visibility: '9 km' },
+                '成都': { temp: 22, desc: '阴天', icon: '🌥️', humidity: '70%', wind: '6 km/h', pressure: '1012 hPa', visibility: '7 km' }
+            };
+            
+            // 更新天气信息
+            function updateWeather(city) {
+                const data = weatherData[city] || weatherData['北京'];
+                
+                cityName.textContent = city;
+                temperature.textContent = `${data.temp}°C`;
+                weatherDescription.textContent = data.desc;
+                weatherIcon.textContent = data.icon;
+                
+                detailItems[0].textContent = data.humidity;
+                detailItems[1].textContent = data.wind;
+                detailItems[2].textContent = data.pressure;
+                detailItems[3].textContent = data.visibility;
+            }
+            
+            // 搜索天气
+            function searchWeather() {
+                const city = cityInput.value.trim() || '北京';
+                if (weatherData[city]) {
+                    updateWeather(city);
+                } else {
+                    alert('未找到该城市的天气信息，已显示北京天气');
+                    updateWeather('北京');
+                }
+            }
+            
+            // 事件监听
+            searchWeatherButton.addEventListener('click', searchWeather);
+            cityInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchWeather();
+                }
+            });
+            
+            // 初始显示北京天气
+            updateWeather('北京');
+            
+            // 标签切换功能
+            const tabs = document.querySelectorAll('.tab');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabContainer = this.closest('.tab-container');
+                    const tabId = this.dataset.tab;
+                    
+                    // 移除所有active类
+                    tabContainer.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    tabContainer.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // 添加active类到当前标签和内容
+                    this.classList.add('active');
+                    tabContainer.querySelector(`#${tabId}`).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

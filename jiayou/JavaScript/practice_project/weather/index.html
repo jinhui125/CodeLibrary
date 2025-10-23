@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气查询</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .search-box {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        #cityInput {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        #cityInput:focus {
+            outline: none;
+            border-color: #74b9ff;
+        }
+        
+        button {
+            padding: 15px 25px;
+            background: #74b9ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #0984e3;
+        }
+        
+        .weather-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: none;
+        }
+        
+        .weather-card.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .city-name {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #2d3436;
+        }
+        
+        .temperature {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #74b9ff;
+            margin: 20px 0;
+        }
+        
+        .weather-description {
+            font-size: 1.2rem;
+            color: #636e72;
+            margin-bottom: 20px;
+        }
+        
+        .weather-icon {
+            font-size: 5rem;
+            margin: 20px 0;
+        }
+        
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .detail-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .detail-label {
+            font-size: 0.9rem;
+            color: #636e72;
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2d3436;
+        }
+        
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            display: none;
+        }
+        
+        .error-message {
+            background: #ff7675;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .recent-searches {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .recent-searches h3 {
+            margin-bottom: 15px;
+            color: #2d3436;
+        }
+        
+        .recent-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .recent-item {
+            background: #74b9ff;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        
+        .recent-item:hover {
+            background: #0984e3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌤️ 天气查询</h1>
+            <p>输入城市名称查询实时天气</p>
+        </div>
+        
+        <div class="search-box">
+            <div class="input-group">
+                <input type="text" id="cityInput" placeholder="输入城市名称...">
+                <button id="searchBtn">查询</button>
+            </div>
+        </div>
+        
+        <div class="loading" id="loading">正在查询天气信息...</div>
+        
+        <div class="error-message" id="errorMessage"></div>
+        
+        <div class="weather-card" id="weatherCard">
+            <div class="city-name" id="cityName"></div>
+            <div class="weather-icon" id="weatherIcon"></div>
+            <div class="temperature" id="temperature"></div>
+            <div class="weather-description" id="weatherDescription"></div>
+            
+            <div class="details">
+                <div class="detail-item">
+                    <div class="detail-label">湿度</div>
+                    <div class="detail-value" id="humidity"></div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">风速</div>
+                    <div class="detail-value" id="windSpeed"></div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">气压</div>
+                    <div class="detail-value" id="pressure"></div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">能见度</div>
+                    <div class="detail-value" id="visibility"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="recent-searches" id="recentSearches">
+            <h3>最近搜索</h3>
+            <div class="recent-list" id="recentList"></div>
+        </div>
+    </div>
+
+    <script src="weather.js"></script>
+</body>
+</html>

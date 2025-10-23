@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>待办事项列表</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #4a90e2;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .input-section {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        #todoInput {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        
+        #todoInput:focus {
+            outline: none;
+            border-color: #4a90e2;
+        }
+        
+        button {
+            padding: 12px 20px;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background: #357ae8;
+        }
+        
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background: #f1f1f1;
+            color: #666;
+        }
+        
+        .filter-btn.active {
+            background: #4a90e2;
+            color: white;
+        }
+        
+        .todo-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .todo-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s;
+        }
+        
+        .todo-item:hover {
+            background: #f9f9f9;
+        }
+        
+        .todo-item.completed {
+            opacity: 0.6;
+        }
+        
+        .todo-item.completed .todo-text {
+            text-decoration: line-through;
+        }
+        
+        .todo-checkbox {
+            margin-right: 15px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .todo-text {
+            flex: 1;
+            font-size: 16px;
+        }
+        
+        .delete-btn {
+            background: #ff4757;
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+        
+        .delete-btn:hover {
+            background: #ff3742;
+        }
+        
+        .stats {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            text-align: center;
+            color: #666;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>待办事项</h1>
+        </div>
+        
+        <div class="input-section">
+            <div class="input-group">
+                <input type="text" id="todoInput" placeholder="添加新的待办事项...">
+                <button id="addBtn">添加</button>
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="active">未完成</button>
+                <button class="filter-btn" data-filter="completed">已完成</button>
+            </div>
+        </div>
+        
+        <div class="todo-list" id="todoList">
+            <div class="empty-state">暂无待办事项</div>
+        </div>
+        
+        <div class="stats">
+            <span id="statsText">总共 0 个任务，0 个已完成</span>
+        </div>
+    </div>
+
+    <script src="todo.js"></script>
+</body>
+</html>
